@@ -25,9 +25,9 @@ class PageListLayout extends Table {
 			TD::make( 'title', 'Заголовок' )
 			  ->align( 'left' )
 			  ->cantHide()
+				->width( '30%' )
 			  ->render( function ( $pages ) {
-				  return Link::make( $pages->title )
-				             ->route( 'platform.pages.edit', $pages );
+				  return '<strong><a href='.route( 'platform.pages.edit', $pages ).'>'.$pages->title.'</a></strong>';
 			  } ),
 			TD::make( 'slug', 'Slug' )
 			  ->align( 'left' )

@@ -31,13 +31,46 @@ class PageListScreen extends Screen
      */
     public function query(): array
     {
+    	$gpages  = Page::all();
+		$pages = [];
+	    foreach ($gpages as $page):
+		    array_push($pages,$page);
+	    endforeach;
+
+	    $basePage = array_filter($pages, function($obj){
+		    if($obj->parent_id == 0) {
+			    return true;
+		    }
+		    return false;
+	    });
+
+	    for ($i = 1; $i < count($basePage); $i++) {
+		    $basePage[$i]['subpage'] = $this->getSubparrent( $basePage[$i], $pages );
+
+	    }
+	    print_r($basePage);
 	    return [
-		    'pages' => Page::all()
+		    'pages' => $basePage
 		                   //->filters()
 		                   //->filtersApplySelection(UserFiltersLayout::class)
 		                   //->defaultSort('id', 'desc')
 		                   //paginate(),
 	    ];
+    }
+
+    public function getSubparrent($basePage, $pagess) : array {
+	    $subPages = array_filter($pagess, function($obj) use ($basePage){
+
+		    if($obj->parent_id == $basePage->id) {
+			    return true;
+		    }
+		    return false;
+	    });
+	    for ($i = 1; $i < count($subPages); $i++) {
+		    $subPages[$i]->subpage = $this->getSubparrent( $subPages[$i], $pagess );
+	    }
+
+	    return $subPages;
     }
 
     /**
