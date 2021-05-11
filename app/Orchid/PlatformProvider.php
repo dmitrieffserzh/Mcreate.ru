@@ -26,6 +26,49 @@ class PlatformProvider extends OrchidServiceProvider
     public function registerMainMenu(): array
     {
         return [
+	        Menu::make('Главная')
+	            ->icon('home')
+	            ->route('platform.main'),
+
+	        // Контент
+	        Menu::make('Страницы')
+	            ->icon('layers')
+	            ->route('platform.pages')
+	            ->title('Контент'),
+	        Menu::make('Портфолио')
+	            ->icon('grid')
+	            ->list([
+					    Menu::make('Записи')->icon('docs')->route('platform.example'),
+					    Menu::make('Добавить запись')->icon('note'),
+				    ])
+	            ,
+	        Menu::make('Отзывы')
+	            ->icon('bubble')
+	            ->list([
+		            Menu::make('Записи')->icon('docs')->route('platform.example'),
+		            Menu::make('Добавить запись')->icon('note'),
+	            ])
+	        ,
+	        Menu::make('Блог')
+	            ->icon('module')
+	            ->list([
+		            Menu::make('Записи')->icon('docs'),
+		            Menu::make('Категории')->icon('folder'),
+		            Menu::make('Добавить запись')->icon('note'),
+	            ])
+	        ,
+
+	        // Заявки
+	        Menu::make('Заказать звонок')
+	            ->icon('call-in')
+	            ->title('Заявки')
+	            ->badge(function () {
+		            return 6;
+	            }),
+
+
+
+
             Menu::make('Example screen')
                 ->icon('monitor')
                 ->route('platform.example')
