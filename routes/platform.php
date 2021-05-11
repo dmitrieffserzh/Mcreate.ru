@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 
 use \App\Orchid\Screens\Page\PageListScreen;
+use \App\Orchid\Screens\Page\PageEditScreen;
 
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -113,7 +114,19 @@ Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('pla
 //Route::screen('idea', 'Idea::class','platform.screens.idea');
 
 // MY ROUTES
-Route::screen('/pages', PageListScreen::class)
+// =====================================================================================================================
+
+// Platfotm > Pages > Create
+Route::screen('pages/create', PageEditScreen::class)
+     ->name('platform.pages.create')
+     ->breadcrumbs(function (Trail $trail) {
+	     return $trail
+		     ->parent('platform.pages')
+		     ->push(__('Create'), route('platform.pages.create'));
+     });
+
+// Platfotm > Pages
+Route::screen('pages', PageListScreen::class)
 	->name('platform.pages')
 	->breadcrumbs(function (Trail $trail) {
 		return $trail

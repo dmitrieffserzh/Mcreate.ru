@@ -3,7 +3,7 @@
 namespace App\Orchid\Screens\Page;
 
 use Orchid\Screen\Screen;
-use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\Link;
 
 class PageListScreen extends Screen
 {
@@ -39,10 +39,9 @@ class PageListScreen extends Screen
     public function commandBar(): array
     {
         return [
-	        Button::make('Добавить страницу')
-	              ->method('showToast')
-	              ->novalidate()
-	              ->icon('plus'),
+	        Link::make(__('Добавить страницу'))
+	            ->icon('plus')
+	            ->href(route('platform.pages.create')),
         ];
     }
 
