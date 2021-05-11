@@ -109,7 +109,7 @@ return [
     */
 
     'resource' => [
-        'stylesheets' => ['/css/admin/loginscreen.css'],
+        'stylesheets' => [],
         'scripts'     => [],
     ],
 
@@ -128,8 +128,8 @@ return [
     */
 
     'template' => [
-        'header' => 'branding.header',
-        'footer' => 'branding.footer',
+        'header' => '/branding/header.blade.php',
+        'footer' => '/branding/footer.blade.php',
     ],
 
     /*
