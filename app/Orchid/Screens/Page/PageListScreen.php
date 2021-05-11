@@ -2,6 +2,8 @@
 
 namespace App\Orchid\Screens\Page;
 
+use App\Models\Page;
+use App\Orchid\Layouts\Page\PageListLayout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Actions\Link;
 
@@ -21,6 +23,7 @@ class PageListScreen extends Screen
      */
     public $description = 'Список страниц';
 
+
     /**
      * Query data.
      *
@@ -28,7 +31,13 @@ class PageListScreen extends Screen
      */
     public function query(): array
     {
-        return [];
+	    return [
+		    'pages' => Page::all()
+		                   //->filters()
+		                   //->filtersApplySelection(UserFiltersLayout::class)
+		                   //->defaultSort('id', 'desc')
+		                   //paginate(),
+	    ];
     }
 
     /**
@@ -52,6 +61,8 @@ class PageListScreen extends Screen
      */
     public function layout(): array
     {
-        return [];
+	    return [
+		    PageListLayout::class,
+	    ];
     }
 }

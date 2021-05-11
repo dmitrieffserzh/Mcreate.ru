@@ -2,11 +2,15 @@
 
 namespace App\Orchid\Screens\Page;
 
+use App\Models\Page;
+use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Input;
-use Orchid\Support\Color;
-use Orchid\Screen\Screen;
+use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Fields\Quill;
+use Orchid\Screen\Fields\RadioButtons;
+use Orchid\Screen\Fields\Relation;
 use Orchid\Support\Facades\Layout;
-use App\Orchid\Layouts\Page\PageEditLayout;
+use Orchid\Screen\Screen;
 
 class PageEditScreen extends Screen {
 	/**
@@ -14,7 +18,7 @@ class PageEditScreen extends Screen {
 	 *
 	 * @var string
 	 */
-	public $name = 'Добавить страницу';
+	public $name = 'Редактировать страницу';
 
 	/**
 	 * Display header description.
@@ -23,13 +27,23 @@ class PageEditScreen extends Screen {
 	 */
 	public $description = '';
 
+	private $page;
+
 	/**
 	 * Query data.
 	 *
 	 * @return array
 	 */
-	public function query(): array {
-		return [];
+	public function query( Page $page ): array {
+		$this->page = $page;
+
+		if ( ! $page->exists ) {
+			$this->name = 'Добавить страницу';
+		}
+
+		return [
+			'page' => $page
+		];
 	}
 
 	/**
@@ -48,20 +62,57 @@ class PageEditScreen extends Screen {
 	 */
 	public function layout(): array {
 		return [
-			Layout::columns( [
-				Layout::rows( [
+			Layout::tabs( [
+				'Содержимое' => [
+					Layout::rows( [
+						Group::make( [
+							Input::make( 'page.title' )
+							     ->title( 'Заголовок' )
+							     ->placeholder( 'Введите заголовок страницы' )
+							     ->required(),
 
-					Input::make( 'title' )
-					     ->title( 'Заголовок' )
-					     ->placeholder( 'Введите заголовок страницы' )
-					     ->required(),
+							Input::make( 'page.slug' )
+							     ->title( 'Введите "SLUG"' )
+							     ->placeholder( '' )
+							     ->help( "Допускоется введение символов a-z, 0-9 и _-" )
+							     ->required(),
+						] ),
 
-					Input::make( 'slug' )
-					     ->title( 'Введите "SLUG"' )
-					     ->placeholder( '' )
-					     ->help( "Допускоется введение символов a-z, 0-9 и _-" ),
-				] ),
-			] ),
+						Group::make( [
+							Relation::make( 'page.' )
+							        ->fromModel( Page::class, 'title', "parent_id" )
+							        ->title( 'Вложенность' ),
+							RadioButtons::make( 'page.published' )
+							            ->title( 'Активность' )
+							            ->options( [
+								            1 => 'Активна',
+								            0 => 'Не активна',
+							            ] )
+							            ->value( 1 ),
+						] ),
+					] ),
+
+					Layout::rows( [
+						Quill::make( 'page.content' )
+						     ->title( '' )
+						     ->popover( '' ),
+
+					] ),
+				],
+				'SEO'        => [
+					Layout::rows( [
+						Input::make( 'meta_title' )
+						     ->title( 'TITLE - заголовок' )
+						     ->placeholder( 'Введите заголовок страницы' ),
+
+						TextArea::make( 'meta_description' )
+						        ->rows( 5 )
+						        ->title( 'Description - описание' )
+						        ->placeholder( 'Введите описание страницы' ),
+					] )
+				]
+
+			] )
 		];
 	}
 }

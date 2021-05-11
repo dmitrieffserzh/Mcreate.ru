@@ -115,6 +115,14 @@ Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('pla
 
 // MY ROUTES
 // =====================================================================================================================
+// Platform > Pages > Edit
+Route::screen('pages/{id}/edit', PageEditScreen::class)
+	->name('platform.pages.edit')
+	->breadcrumbs(function (Trail $trail, $page) {
+		return $trail
+			->parent('platform.pages')
+			->push(__('Edit'), route('platform.pages.edit', $page->id));
+	});
 
 // Platfotm > Pages > Create
 Route::screen('pages/create', PageEditScreen::class)
