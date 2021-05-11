@@ -3,7 +3,6 @@
 namespace App\Orchid\Screens\Page;
 
 use App\Models\Page;
-use App\Orchid\Layouts\SlugListener;
 use Illuminate\Support\Str;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Input;
@@ -133,9 +132,7 @@ class PageEditScreen extends Screen
                     ])
                 ]
 
-            ]),
-
-            SlugListener::class
+            ])
         ];
     }
 }
