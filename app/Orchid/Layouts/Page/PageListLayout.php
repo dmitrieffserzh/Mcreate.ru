@@ -44,7 +44,7 @@ class PageListLayout extends Table {
 				                 ->list( [
 
 					                 Link::make( __( 'Edit' ) )
-					                     ->route( 'platform.pages.edit', $pages->id )
+					                     ->route( 'platform.pages.edit', $pages->slug )
 					                     ->icon( 'pencil' ),
 
 					                 Button::make( __( 'Delete' ) )

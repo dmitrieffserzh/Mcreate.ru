@@ -2,137 +2,85 @@
 
 namespace App\Orchid\Screens\Page;
 
-use App\Models\Page;
 use Illuminate\Support\Str;
-use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Fields\Input;
+use App\Models\Page;
+use App\Orchid\Layouts\SlugEditListener;
+use App\Orchid\Layouts\Helpers\MetaLayout;
+use App\Orchid\Layouts\Page\PageEditLayout;
+use Orchid\Screen\Actions\Button;
+use Orchid\Support\Color;
 use Orchid\Screen\Fields\Group;
-use Orchid\Screen\Fields\Quill;
-use Orchid\Screen\Fields\RadioButtons;
-use Orchid\Screen\Fields\Relation;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Screen;
 
-class PageEditScreen extends Screen
-{
-    /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Редактировать страницу';
+class PageEditScreen extends Screen {
 
-    /**
-     * Display header description.
-     *
-     * @var string|null
-     */
-    public $description = '';
+	public $name = 'Редактировать';
 
-    private $page;
+	public $description = 'Редактирование страницы';
 
-    /**
-     * Query data.
-     *
-     * @return array
-     */
-    public function query(Page $page): array
-    {
-        $this->page = $page;
+	private $page;
 
-        if (!$page->exists) {
-            $this->name = 'Добавить страницу';
-        }
+	public function query( Page $page ): array {
+		$this->page = $page;
 
-        return [
-            'page' => $page
-        ];
-    }
+		if ( ! $page->exists ) {
+			$this->name        = 'Добавить';
+			$this->description = 'Добавление новой страницы';
+		}
 
-    /**
-     * Button commands.
-     *
-     * @return \Orchid\Screen\Action[]
-     */
-    public function commandBar(): array
-    {
-        return [];
-    }
+		return [
+			'page'  => $page,
+			'title' => $page->title
+		];
+	}
 
+	public function commandBar(): array {
+		return [
+			Button::make( 'Отменить' )
+			      ->method( 'buttonClickProcessing' )
+			      ->type( Color::LIGHT() )
+			      ->icon( 'close' ),
+			Button::make( 'Сохранить' )
+			      ->method( 'buttonClickProcessing' )
+			      ->type( Color::LIGHT() )
+			      ->icon( 'check' ),
+		];
+	}
 
-    /**
-     * @param $title
-     * @return array
-     */
-    public function asyncSlugListener($title)
-    {
+	public function asyncSlugEdit( $title ) {
 
-        $slug = Str::slug($title, '-');
-        return [
-            'page.slug' => $slug
-        ];
-    }
+		$slug = Str::slug( $title, '-' );
 
-    /**
-     * Views.
-     *
-     * @return \Orchid\Screen\Layout[]|string[]
-     */
-    public function layout(): array
-    {
-        return [
-            Layout::tabs([
-                'Содержимое' => [
-                    Layout::rows([
-                        Group::make([
-                            Input::make('page.title')
-                                ->title('Заголовок')
-                                ->placeholder('Введите заголовок страницы')
-                                ->required(),
+		return [
+			'page.slug'  => $slug,
+			'page.title' => $title
+		];
+	}
 
-                            Input::make('page.slug')
-                                ->title('Введите "SLUG"')
-                                ->placeholder()
-                                ->help("Допускоется введение символов a-z, 0-9 и _-")
-                                ->required()
-                        ]),
-
-                        Group::make([
-                            Relation::make('page.')
-                                ->fromModel(Page::class, 'title', "parent_id")
-                                ->title('Вложенность'),
-                            RadioButtons::make('page.published')
-                                ->title('Активность')
-                                ->options([
-                                    1 => 'Активна',
-                                    0 => 'Не активна',
-                                ])
-                                ->value(1),
-                        ]),
-
-                    ]),
-
-                    Layout::rows([
-                        Quill::make('page.content')
-                            ->title('')
-                            ->popover(''),
-
-                    ])
-                ],
-                'SEO' => [
-                    Layout::rows([
-                        Input::make('meta_title')
-                            ->title('TITLE - заголовок')
-                            ->placeholder('Введите заголовок страницы'),
-
-                        TextArea::make('meta_description')
-                            ->rows(5)
-                            ->title('Description - описание')
-                            ->placeholder('Введите описание страницы'),
-                    ])
-                ]
-
-            ])
-        ];
-    }
+	public function layout(): array {
+		return [
+			Layout::tabs( [
+				'Контент' => [
+					PageEditLayout::class,
+				],
+				'SEO'     => [
+					MetaLayout::class,
+					SlugEditListener::class,
+				]
+			] ),
+			Layout::rows( [
+				Group::make( [
+					Button::make( 'Отменить' )
+					      ->method( 'buttonClickProcessing' )
+					      ->icon( 'close' )
+					      ->class( 'float-start btn btn-' . Color::SECONDARY() ),
+					Button::make( 'Сохранить' )
+					      ->method( 'buttonClickProcessing' )
+					      ->icon( 'check' )
+					      ->class( 'float-end btn btn-' . Color::PRIMARY() ),
+				] )
+			] )
+		];
+	}
 }
