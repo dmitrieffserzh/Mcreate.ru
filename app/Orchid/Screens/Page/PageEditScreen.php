@@ -87,98 +87,93 @@ class PageEditScreen extends Screen {
 		];
 	}
 
-
-	public function save(Page $page, Request $request) {
+	public function save( Page $page, Request $request ) {
 		$request->validate( [
 			'page.title' => [
 				'required',
-				Rule::unique(Page::class, 'title')->ignore($page),
+				Rule::unique( Page::class, 'title' )->ignore( $page ),
 			],
-			'page.slug' => [
+			'page.slug'  => [
 				'required',
 				'regex:/[a-zA-Z0-9-]/',
+				Rule::unique( Page::class, 'slug' )->ignore( $page ),
 			],
 		] );
 
-		$pageData = $request->get('page');
+		$pageData = $request->get( 'page' );
 
-		$page->fill($pageData)
+		$page->fill( $pageData )
 		     ->save();
 
+		Toast::info( 'Страница сохранена!' );
 
-		Toast::info('Страница сохранена!');
-
-		return redirect()->route('platform.pages');
+		return redirect()->route( 'platform.pages' );
 	}
 
-	public function remove(Page $page)
-	{
+	public function remove( Page $page ) {
 		$page->delete();
 
-		Toast::info('Страница удалена');
+		Toast::info( 'Страница удалена' );
 
-		return redirect()->route('platform.pages');
+		return redirect()->route( 'platform.pages' );
 	}
 
-	public function cancel()
-	{
-		return redirect()->route('platform.pages');
+	public function cancel() {
+		return redirect()->route( 'platform.pages' );
 	}
 
-/*
+	/*
 
-	public function save(User $user, Request $request)
-	{
-		$request->validate([
-			'user.email' => [
-				'required',
-				Rule::unique(User::class, 'email')->ignore($user),
-			],
-		]);
+		public function save(User $user, Request $request)
+		{
+			$request->validate([
+				'user.email' => [
+					'required',
+					Rule::unique(User::class, 'email')->ignore($user),
+				],
+			]);
 
-		$permissions = collect($request->get('permissions'))
-			->map(function ($value, $key) {
-				return [base64_decode($key) => $value];
-			})
-			->collapse()
-			->toArray();
+			$permissions = collect($request->get('permissions'))
+				->map(function ($value, $key) {
+					return [base64_decode($key) => $value];
+				})
+				->collapse()
+				->toArray();
 
-		$userData = $request->get('user');
-		if ($user->exists && (string)$userData['password'] === '') {
-			// When updating existing user null password means "do not change current password"
-			unset($userData['password']);
-		} else {
-			$userData['password'] = Hash::make($userData['password']);
+			$userData = $request->get('user');
+			if ($user->exists && (string)$userData['password'] === '') {
+				// When updating existing user null password means "do not change current password"
+				unset($userData['password']);
+			} else {
+				$userData['password'] = Hash::make($userData['password']);
+			}
+
+			$user
+				->fill($userData)
+				->fill([
+					'permissions' => $permissions,
+				])
+				->save();
+
+			$user->replaceRoles($request->input('user.roles'));
+
+			Toast::info(__('User was saved.'));
+
+			return redirect()->route('platform.systems.users');
 		}
 
-		$user
-			->fill($userData)
-			->fill([
-				'permissions' => $permissions,
-			])
-			->save();
 
-		$user->replaceRoles($request->input('user.roles'));
+		public function remove(User $user)
+		{
+			$user->delete();
 
-		Toast::info(__('User was saved.'));
+			Toast::info(__('User was removed'));
 
-		return redirect()->route('platform.systems.users');
-	}
+			return redirect()->route('platform.systems.users');
+		}
 
 
-	public function remove(User $user)
-	{
-		$user->delete();
-
-		Toast::info(__('User was removed'));
-
-		return redirect()->route('platform.systems.users');
-	}
-
-
-*/
-
-
+	*/
 
 
 }
