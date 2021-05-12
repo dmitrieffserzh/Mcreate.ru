@@ -38,12 +38,14 @@ class SlugEditListener extends Listener
 	        Layout::rows([
 	        	Input::make('page.slug')
 		             ->title('Введите "SLUG"')
-		             ->placeholder()
-		             ->help("Допускоется введение символов a-z, 0-9 и _-")
+		             ->placeholder('Введите SLUG')
+		             ->help("Допускоется введение символов a-z, A-Z, 0-9 и -")
 		             ->style( 'width: 100%; max-width: 100%;' )
+		             ->mask([
+		             	'regex' => '[a-zA-Z0-9-]*'
+		             ])
 		             ->required(),
-		        Input::make('page.title')
-		             ->hidden()
+		        Input::make('page.title')->hidden('true')
 	        ])
 
         ];

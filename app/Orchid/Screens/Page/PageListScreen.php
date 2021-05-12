@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Orchid\Layouts\Page\PageListLayout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Actions\Link;
+use Orchid\Support\Facades\Toast;
 
 class PageListScreen extends Screen {
 
@@ -85,5 +86,14 @@ class PageListScreen extends Screen {
 		return [
 			PageListLayout::class,
 		];
+	}
+
+	public function remove(Page $page)
+	{
+		$page->delete();
+
+		Toast::info('Страница удалена');
+
+		return redirect()->route('platform.pages');
 	}
 }

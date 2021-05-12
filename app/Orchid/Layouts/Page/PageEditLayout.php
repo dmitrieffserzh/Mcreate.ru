@@ -28,7 +28,7 @@ class PageEditLayout extends Rows
 		        ]),
 
 	        Group::make([
-		        Relation::make('page.')
+		        Relation::make('page.parent_id')
 		                ->fromModel(Page::class, 'title', "parent_id")
 		                ->title('Вложенность'),
 
@@ -38,7 +38,7 @@ class PageEditLayout extends Rows
 		                    1 => 'Активна',
 		                    0 => 'Не активна',
 	                    ])
-	                    ->value(1),
+	                    ->value(1)
 	        ]),
 
 	        Quill::make('page.content')
