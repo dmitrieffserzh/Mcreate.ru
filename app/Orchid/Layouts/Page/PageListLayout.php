@@ -22,6 +22,17 @@ class PageListLayout extends Table {
 	 */
 	public function columns(): array {
 		return [
+			TD::make( 'published', '' )
+			  ->align( 'left' )
+			  ->cantHide()
+			  ->width( '30px' )
+			  ->render( function ( $pages ) {
+			  	    $color = '#c0c0c0';
+			  	    if($pages->pablished == 1)
+				        $color = '#df0031';
+
+				  return '<span style="display: block;width: 16px;height: 16px;border-radius: 50%;background: '.$color.';"></span>';
+			  } ),
 			TD::make( 'title', 'Заголовок' )
 			  ->align( 'left' )
 			  ->cantHide()
