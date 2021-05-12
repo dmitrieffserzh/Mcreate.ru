@@ -27,9 +27,9 @@ class PageListLayout extends Table {
 			  ->cantHide()
 			  ->width( '30px' )
 			  ->render( function ( $pages ) {
-			  	    $color = '#c0c0c0';
-			  	    if($pages->pablished == 1)
-				        $color = '#df0031';
+			  	    $color = '#eff1f9';
+			  	    if($pages->published == 1)
+				        $color = '#a8e7ff';
 
 				  return '<span style="display: block;width: 16px;height: 16px;border-radius: 50%;background: '.$color.';"></span>';
 			  } ),
