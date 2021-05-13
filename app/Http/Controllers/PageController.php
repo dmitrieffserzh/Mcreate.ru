@@ -19,7 +19,8 @@ class PageController extends Controller {
 
 			return false;
 		} );
-		$page    = array_shift( $page );
+
+		$page = array_shift( $page );
 		if ( is_null( $page ) ) {
 			abort( 404 );
 		}
@@ -38,19 +39,19 @@ class PageController extends Controller {
 	}
 
 	public function constructPage( $pageAll, $page ) {
-
 		$result = '';
 		if ( $page['parent_id'] == 0 ) {
 			return $page['slug'] . '/';
 		}
 
 		$parent = array_filter( $pageAll, function ( $obj ) use ( $page ) {
-			return $page['parent_id'] = $obj['id'];
+			return $page['parent_id'] == $obj['id'];
 		} );
 		$parent = array_shift( $parent );
 
 		if ( ! is_null( $parent ) ) {
 			$result = $this->constructPage( $pageAll, $parent ) . $page['slug'] . '/';
+
 		} else {
 			$result = $page['slug'] . '/';
 		}
