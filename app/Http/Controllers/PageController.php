@@ -3,89 +3,58 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use Illuminate\Http\Request;
 
 class PageController extends Controller {
 
-	public function getPage($path) {
+	public function getPage( $path ) {
 
-		$path = explode('/', $path);
-		$slug = end($path);
+		$pathSp = explode( '/', $path );
+		$slug   = end( $pathSp );
 
-		$pageAll = Page::where('published', '=', 1)->get()->toArray();
-		$page = array_filter($pageAll, function ($obj) use ($slug) {
-			if($obj['slug'] == $slug)
+		$pageAll = Page::where( 'published', '=', 1 )->get()->toArray();
+		$page    = array_filter( $pageAll, function ( $obj ) use ( $slug ) {
+			if ( $obj['slug'] == $slug ) {
 				return true;
+			}
+
 			return false;
-		});
-		print_r($page);
+		} );
+		$page    = array_shift( $page );
+		if ( is_null( $page ) ) {
+			abort( 404 );
+		}
 
-		$pageUrl = $this->constructPage($pageAll, $page);
+		$pageUrl = $this->constructPage( $pageAll, $page );
+		$pageUrl = rtrim( $pageUrl, "/" );
 
-
-
-
-
-
-
-
-
-		/*
-
-		mainPage = filterPage(pageAll);
-
-		pageUrl = constructPage(mainPage,pageAll);
-
-		requestUrl
-
-if(requestUrl == pageUrl) ok;
-
-function constructPage(mainPage,pageAll){
-	result = '';
-	if(mainPage.parentId == 0) return parent.slag . '/';
-	parent = array_filter(pageAll, function (obj) { return mainPage.parentId = obj.Id; })
-	if(isset(parent) && parent['parentId'] != 0)
-		result = constructPage(parent,pageAll) . parent.slag . '/';
-	else
-		result = parent.slag . '/'
-	return result
-}
-		*/
+		if ( $path != $pageUrl ) {
+			abort( 404 );
+		}
 
 
-
-
-
-
-
-
-
-
-
-		$path = explode('/', $path);
-		$slug = end($path);
-
-		$page = Page::where( 'slug', $slug )->firstOrFail();
-
-
-		dd($page->parent()->get());
 		return view( 'pages.page', [
 			'page' => $page
-		]);
+		] );
 	}
 
 	public function constructPage( $pageAll, $page ) {
 
-		if($page['parent_id'] == 0)
+		$result = '';
+		if ( $page['parent_id'] == 0 ) {
 			return $page['slug'] . '/';
+		}
 
-		$parent = array_filter($pageAll, function ($obj) use ($page) {
+		$parent = array_filter( $pageAll, function ( $obj ) use ( $page ) {
 			return $page['parent_id'] = $obj['id'];
-		});
-		if(isset($parent) && $parent[1]['parent_id'] != 0)
-			$result = $this->constructPage($parent, $pageAll) . $page['slag'] . '/';
-		else
-			$result = $page['slag'] . '/';
+		} );
+		$parent = array_shift( $parent );
+
+		if ( ! is_null( $parent ) ) {
+			$result = $this->constructPage( $pageAll, $parent ) . $page['slug'] . '/';
+		} else {
+			$result = $page['slug'] . '/';
+		}
+
 		return $result;
 	}
 
