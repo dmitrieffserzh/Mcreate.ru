@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::pattern(	'slug',     '[a-z0-9-_\/]+');
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+// PAGES
+Route::get('/{slug}', [PageController::class, 'getPage']);

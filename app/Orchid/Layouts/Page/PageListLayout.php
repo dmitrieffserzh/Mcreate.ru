@@ -29,7 +29,7 @@ class PageListLayout extends Table {
 			  ->render( function ( $pages ) {
 			  	    $color = '#eff1f9';
 			  	    if($pages->published == 1)
-				        $color = '#a8e7ff';
+				        $color = '#43d040';
 
 				  return '<span style="display: block;width: 16px;height: 16px;border-radius: 50%;background: '.$color.';"></span>';
 			  } ),

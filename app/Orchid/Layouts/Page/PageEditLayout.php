@@ -33,8 +33,8 @@ class PageEditLayout extends Rows {
 				RadioButtons::make( 'page.published' )
 				            ->title( 'Активность' )
 				            ->options( [
-					            1 => 'Активна',
-					            0 => 'Не активна',
+					            1 => 'Опубликовать',
+					            0 => 'Скрыть',
 				            ] )
 				            ->value( 1 )
 			] ),

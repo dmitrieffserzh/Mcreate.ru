@@ -16,7 +16,7 @@ class PageListScreen extends Screen {
 
 	public function query(): array {
 
-		$pages = Page::with( 'children' )->paginate( 15 );
+		$pages = Page::with( 'parent' )->paginate( 15 );
 
 		//dd( $pages );
 
