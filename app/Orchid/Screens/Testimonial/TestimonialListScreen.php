@@ -8,7 +8,7 @@ use Orchid\Screen\Screen;
 use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Toast;
 
-class PortfolioListScreen extends Screen {
+class TestimonialListScreen extends Screen {
 
 	public $name = 'Страницы';
 
