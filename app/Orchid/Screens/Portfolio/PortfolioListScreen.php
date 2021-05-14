@@ -38,7 +38,7 @@ class PortfolioListScreen extends Screen {
 		return [
 			Link::make( __( 'Добавить запись' ) )
 			    ->icon( 'plus' )
-			    ->href( route( 'platform.pages.create' ) ),
+			    ->href( route( 'platform.portfolio.create' ) ),
 		];
 	}
 
@@ -53,12 +53,12 @@ class PortfolioListScreen extends Screen {
 		];
 	}
 
-	public function remove(Portfolio $page)
+	public function remove(Portfolio $portfolio)
 	{
-		$page->delete();
+		$portfolio->delete();
 
 		Toast::info('Страница удалена');
 
-		return redirect()->route('platform.pages');
+		return redirect()->route('platform.portfolio');
 	}
 }

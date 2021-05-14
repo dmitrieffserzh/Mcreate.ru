@@ -17,7 +17,7 @@ class TestimonialListLayout extends Table {
 	/**
 	 * @var string
 	 */
-	public $target = 'pages';
+	public $target = 'testimonial';
 
 	/**
 	 * @return TD[]
@@ -28,7 +28,7 @@ class TestimonialListLayout extends Table {
 			  ->align( 'left' )
 			  ->cantHide()
 			  ->width( '30px' )
-			  ->render( function ( $pages ) {
+			  ->render( function ( $testimonials ) {
 			  	    $color = '#eff1f9';
 			  	    if($pages->published == 1)
 				        $color = '#43d040';
@@ -39,15 +39,15 @@ class TestimonialListLayout extends Table {
 			  ->align( 'left' )
 			  ->cantHide()
 			  //->width( '30px' )
-			  ->render( function ( $pages ) {
-			  	return "<img src='https://picsum.photos/450/200?random={".$pages->id."}' class='mw-100 d-block img-fluid'>";
+			  ->render( function ( $testimonial ) {
+			  	return "<img src='https://picsum.photos/450/200?random={".$testimonial->id."}' class='mw-100 d-block img-fluid'>";
 			  } ),
 			TD::make( 'title', 'Заголовок' )
 			  ->align( 'left' )
 			  ->cantHide()
 				->width( '80%' )
-			  ->render( function ( $pages ) {
-				  return '<strong><a href='.route( 'platform.pages.edit', $pages ).'>'.$pages->title.'</a></strong>';
+			  ->render( function ( $testimonial ) {
+				  return '<strong><a href='.route( 'platform.testimonials.edit', $testimonial ).'>'.$testimonial->title.'</a></strong>';
 			  } ),
 			/*TD::make( 'slug', 'Slug' )
 			  ->align( 'left' )
@@ -58,22 +58,20 @@ class TestimonialListLayout extends Table {
 			TD::make( __( '' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
-			  ->render( function ( Testimonial $pages ) {
+			  ->render( function ( Testimonial $testimonial ) {
 				  return DropDown::make()
 				                 ->icon( 'options-vertical' )
 				                 ->list( [
-
-					                /* Link::make( __( 'Edit' ) )
-					                     ->route( 'platform.pages.edit', $pages->slug )
+				                 	Link::make( __( 'Edit' ) )
+					                     ->route( 'platform.testimonials.edit', $testimonial->slug )
 					                     ->icon( 'pencil' ),
-
 					                 Button::make( __( 'Delete' ) )
 					                       ->icon( 'trash' )
 					                       ->method( 'remove' )
 					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.')
 					                       ->parameters( [
-						                       'slug' => $pages->slug,
-					                       ] ),*/
+						                       'slug' => $testimonial->slug,
+					                       ] ),
 				                 ] );
 			  } ),
 		];

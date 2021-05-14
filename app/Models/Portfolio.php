@@ -2,19 +2,31 @@
 
 namespace App\Models;
 
-use App\Models\Testimonial;
+use Orchid\Screen\AsSource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Portfolio extends Model
 {
-    use HasFactory;
+	use HasFactory;
+	use AsSource;
 
+	public $fillable = [
+		'title',
+		'content',
+		'created_at',
+		'updated_at'
+	];
+
+	public $dates = [
+		'created_at',
+		'updated_at'
+	];
 
 
 
 	// RELATIONSHIPS
-	public function parent() {
+	public function testimonials() {
 		return $this->hasOne(Testimonial::class, 'id');
 	}
 }

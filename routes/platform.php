@@ -132,6 +132,8 @@ Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('pla
 // =====================================================================================================================
 
 // PAGES
+// =====================================================================================================================
+
 // Platform > Pages > Edit
 Route::screen('pages/{id}/edit', PageEditScreen::class)
 	->name('platform.pages.edit')
@@ -161,13 +163,15 @@ Route::screen('pages', PageListScreen::class)
 
 
 // PORTFOLIO
+// =====================================================================================================================
+
 // Platform > Portfolio > Edit
 Route::screen('portfolio/{id}/edit', PortfolioEditScreen::class)
      ->name('platform.portfolio.edit')
-     ->breadcrumbs(function (Trail $trail, $page) {
+     ->breadcrumbs(function (Trail $trail, $portfolio) {
 	     return $trail
 		     ->parent('platform.portfolio')
-		     ->push(__('Edit'), route('platform.portfolio.edit', $page));
+		     ->push(__('Edit'), route('platform.portfolio.edit', $portfolio));
      });
 
 // Platfotm > Portfolio > Create
@@ -190,6 +194,26 @@ Route::screen('portfolio', PortfolioListScreen::class)
 
 
 // TESTIMONIALS
+// =====================================================================================================================
+
+// Platform > Testimonials > Edit
+Route::screen('testimonials/{id}/edit', PortfolioEditScreen::class)
+     ->name('platform.testimonials.edit')
+     ->breadcrumbs(function (Trail $trail, $testimonials) {
+	     return $trail
+		     ->parent('platform.testimonials')
+		     ->push(__('Edit'), route('platform.testimonials.edit', $testimonials));
+     });
+
+// Platfotm > Testimonials > Create
+Route::screen('testimonials/create', PortfolioEditScreen::class)
+     ->name('platform.testimonials.create')
+     ->breadcrumbs(function (Trail $trail) {
+	     return $trail
+		     ->parent('platform.testimonials')
+		     ->push(__('Create'), route('platform.testimonials.create'));
+     });
+
 // Platfotm > Testimonials
 Route::screen('testimonials', TestimonialListScreen::class)
      ->name('platform.testimonials')

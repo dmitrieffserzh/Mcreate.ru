@@ -69,7 +69,7 @@ class PageEditScreen extends Screen {
 				],
 				'SEO'     => [
 					MetaLayout::class,
-					SlugEditListener::class,
+					new SlugEditListener('page')
 				]
 			] ),
 			Layout::rows( [

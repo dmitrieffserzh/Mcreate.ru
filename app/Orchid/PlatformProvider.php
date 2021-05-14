@@ -39,7 +39,7 @@ class PlatformProvider extends OrchidServiceProvider
 	            ->icon('grid')
 	            ->list([
 					    Menu::make('Записи')->icon('docs')->route('platform.portfolio'),
-					    Menu::make('Добавить запись')->icon('note'),
+					    Menu::make('Добавить запись')->icon('note')->route('platform.portfolio.create'),
 				    ])
 	            ,
 	        Menu::make('Отзывы')

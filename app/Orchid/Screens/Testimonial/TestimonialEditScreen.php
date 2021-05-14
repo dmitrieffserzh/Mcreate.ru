@@ -16,25 +16,25 @@ use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
 
-class PortfolioEditScreen extends Screen {
+class TestimonialEditScreen extends Screen {
 
 	public $name = 'Редактировать';
 
 	public $description = 'Редактирование записи';
 
-	private $portfolio;
+	private $testimonial;
 
-	public function query( Portfolio $portfolio ): array {
-		$this->portfolio = $portfolio;
+	public function query( Testimonial $testimonial ): array {
+		$this->$testimonial = $testimonial;
 
-		if ( ! $portfolio->exists ) {
+		if ( ! $testimonial->exists ) {
 			$this->name        = 'Добавить';
 			$this->description = 'Добавление новой записи';
 		}
 
 		return [
-			'portfolio'  => $portfolio,
-			'title' => $portfolio->title
+			'portfolio'  => $testimonial,
+			'title' => $testimonial->title
 		];
 	}
 
@@ -56,8 +56,8 @@ class PortfolioEditScreen extends Screen {
 		$slug = Str::slug( $title, '-' );
 
 		return [
-			'portfolio.slug'  => $slug,
-			'portfolio.title' => $title
+			'$testimonial.slug'  => $slug,
+			'$testimonial.title' => $title
 		];
 	}
 
@@ -69,7 +69,7 @@ class PortfolioEditScreen extends Screen {
 				],
 				'SEO'     => [
 					MetaLayout::class,
-					new SlugEditListener('portfolio'),
+					new SlugEditListener('testimonial'),
 				]
 			] ),
 			Layout::rows( [
@@ -87,39 +87,39 @@ class PortfolioEditScreen extends Screen {
 		];
 	}
 
-	public function save( Portfolio $portfolio, Request $request ) {
+	public function save( Testimonial $testimonial, Request $request ) {
 		$request->validate( [
 			'portfolio.title' => [
 				'required',
-				Rule::unique( Portfolio::class, 'title' )->ignore( $portfolio ),
+				Rule::unique( Testimonial::class, 'title' )->ignore( $testimonial ),
 			],
 			'portfolio.slug'  => [
 				'required',
 				'regex:/[a-zA-Z0-9-]/',
-				Rule::unique( Portfolio::class, 'slug' )->ignore( $portfolio ),
+				Rule::unique( Testimonial::class, 'slug' )->ignore( $testimonial ),
 			],
 		] );
 
-		$pageData = $request->get( 'portfolio' );
+		$pageData = $request->get( 'testimonial' );
 
-		$portfolio->fill( $pageData )
+		$testimonial->fill( $pageData )
 		     ->save();
 
 		Toast::info( 'Страница сохранена!' );
 
-		return redirect()->route( 'platform.portfolio' );
+		return redirect()->route( 'platform.testimonials' );
 	}
 
-	public function remove( Portfolio $portfolio ) {
-		$portfolio->delete();
+	public function remove( Portfolio $testimonial ) {
+		$testimonial->delete();
 
 		Toast::info( 'Страница удалена' );
 
-		return redirect()->route( 'platform.portfolio' );
+		return redirect()->route( 'platform.testimonials' );
 	}
 
 	public function cancel() {
-		return redirect()->route( 'platform.portfolio' );
+		return redirect()->route( 'platform.testimonials' );
 	}
 
 	/*

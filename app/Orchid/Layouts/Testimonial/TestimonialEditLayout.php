@@ -12,7 +12,7 @@ use Orchid\Screen\Fields\RadioButtons;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Rows;
 
-class PortfolioEditLayout extends Rows {
+class TestimonialEditLayout extends Rows {
 
 	public function fields(): array {
 		return [
@@ -25,7 +25,7 @@ class PortfolioEditLayout extends Rows {
 			] ),
 
 			Group::make( [
-				Select::make( 'portfolio.' )
+				Select::make( 'testimonial.' )
 				      ->fromModel( Testimonial::class, 'title', 'id' )
 				      ->empty( 'Не выбран', '0' )
 				      ->title( 'Связанный отзыв' ),
@@ -38,7 +38,7 @@ class PortfolioEditLayout extends Rows {
 				            ->value( 1 )
 			] ),
 
-			Quill::make( 'portfolio.content' )
+			Quill::make( 'testimonial.content' )
 			     ->title( '' )
 			     ->popover( '' ),
 
