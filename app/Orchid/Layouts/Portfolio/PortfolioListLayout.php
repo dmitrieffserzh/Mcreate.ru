@@ -17,7 +17,7 @@ class PortfolioListLayout extends Table {
 	/**
 	 * @var string
 	 */
-	public $target = 'pages';
+	public $target = 'portfolio';
 
 	/**
 	 * @return TD[]
@@ -47,7 +47,7 @@ class PortfolioListLayout extends Table {
 			  ->cantHide()
 				->width( '80%' )
 			  ->render( function ( $pages ) {
-				  return '<strong><a href='.route( 'platform.pages.edit', $pages ).'>'.$pages->title.'</a></strong>';
+				  return '<strong><a href='.route( 'platform.portfolio.edit', $pages ).'>'.$pages->title.'</a></strong>';
 			  } ),
 			/*TD::make( 'slug', 'Slug' )
 			  ->align( 'left' )
@@ -58,13 +58,13 @@ class PortfolioListLayout extends Table {
 			TD::make( __( '' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
-			  ->render( function ( Portfolio $pages ) {
+			  ->render( function ( Portfolio $portfolio ) {
 				  return DropDown::make()
 				                 ->icon( 'options-vertical' )
 				                 ->list( [
 
-					                /* Link::make( __( 'Edit' ) )
-					                     ->route( 'platform.pages.edit', $pages->slug )
+					                 Link::make( __( 'Edit' ) )
+					                     ->route( 'platform.portfolio.edit', $portfolio->id )
 					                     ->icon( 'pencil' ),
 
 					                 Button::make( __( 'Delete' ) )
@@ -72,8 +72,8 @@ class PortfolioListLayout extends Table {
 					                       ->method( 'remove' )
 					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.')
 					                       ->parameters( [
-						                       'slug' => $pages->slug,
-					                       ] ),*/
+						                       'slug' => $portfolio->id,
+					                       ] ),
 				                 ] );
 			  } ),
 		];

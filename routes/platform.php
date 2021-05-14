@@ -6,6 +6,7 @@ declare(strict_types=1);
 use App\Orchid\Screens\Page\PageListScreen;
 use App\Orchid\Screens\Page\PageEditScreen;
 use App\Orchid\Screens\Portfolio\PortfolioListScreen;
+use App\Orchid\Screens\Portfolio\PortfolioEditScreen;
 use App\Orchid\Screens\Testimonial\TestimonialListScreen;
 
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
@@ -160,6 +161,24 @@ Route::screen('pages', PageListScreen::class)
 
 
 // PORTFOLIO
+// Platform > Portfolio > Edit
+Route::screen('portfolio/{id}/edit', PortfolioEditScreen::class)
+     ->name('platform.portfolio.edit')
+     ->breadcrumbs(function (Trail $trail, $page) {
+	     return $trail
+		     ->parent('platform.portfolio')
+		     ->push(__('Edit'), route('platform.portfolio.edit', $page));
+     });
+
+// Platfotm > Portfolio > Create
+Route::screen('portfolio/create', PortfolioEditScreen::class)
+     ->name('platform.portfolio.create')
+     ->breadcrumbs(function (Trail $trail) {
+	     return $trail
+		     ->parent('platform.portfolio')
+		     ->push(__('Create'), route('platform.portfolio.create'));
+     });
+
 // Platfotm > Portfolio
 Route::screen('portfolio', PortfolioListScreen::class)
      ->name('platform.portfolio')

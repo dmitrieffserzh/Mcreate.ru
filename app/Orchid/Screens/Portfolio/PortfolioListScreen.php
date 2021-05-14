@@ -16,12 +16,12 @@ class PortfolioListScreen extends Screen {
 
 	public function query(): array {
 
-		$pages = Portfolio::paginate( 15 );
+		$result = Portfolio::paginate( 15 );
 
 
 		return [
 
-			'pages' => $pages
+			'portfolio' => $result
 			//->filters()
 			//->filtersApplySelection(UserFiltersLayout::class)
 			//->defaultSort('id', 'desc')
