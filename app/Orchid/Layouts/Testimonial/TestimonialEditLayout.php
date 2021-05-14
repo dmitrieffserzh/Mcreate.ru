@@ -14,6 +14,8 @@ use Orchid\Screen\Layouts\Rows;
 
 class TestimonialEditLayout extends Rows {
 
+	public $target = 'testimonial';
+
 	public function fields(): array {
 		return [
 			Group::make( [
