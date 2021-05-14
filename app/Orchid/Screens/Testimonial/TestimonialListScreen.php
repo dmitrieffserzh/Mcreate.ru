@@ -2,8 +2,8 @@
 
 namespace App\Orchid\Screens\Testimonial;
 
-use App\Models\Portfolio;
-use App\Orchid\Layouts\Portfolio\TestimonialListLayout;
+use App\Models\Testimonial;
+use App\Orchid\Layouts\Testimonial\TestimonialListLayout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Toast;
@@ -16,7 +16,7 @@ class TestimonialListScreen extends Screen {
 
 	public function query(): array {
 
-		$pages = Portfolio::paginate( 15 );
+		$pages = Testimonial::paginate( 15 );
 
 
 		return [
@@ -53,7 +53,7 @@ class TestimonialListScreen extends Screen {
 		];
 	}
 
-	public function remove(Portfolio $page)
+	public function remove(Testimonial $page)
 	{
 		$page->delete();
 

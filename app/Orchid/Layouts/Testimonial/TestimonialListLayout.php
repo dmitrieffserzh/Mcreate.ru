@@ -6,7 +6,7 @@ namespace App\Orchid\Layouts\Testimonial;
 
 use Orchid\Screen\Repository;
 
-use App\Models\Portfolio;
+use App\Models\Testimonial;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
@@ -58,7 +58,7 @@ class TestimonialListLayout extends Table {
 			TD::make( __( '' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
-			  ->render( function ( Portfolio $pages ) {
+			  ->render( function ( Testimonial $pages ) {
 				  return DropDown::make()
 				                 ->icon( 'options-vertical' )
 				                 ->list( [

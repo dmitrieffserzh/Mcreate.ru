@@ -45,7 +45,7 @@ class PlatformProvider extends OrchidServiceProvider
 	        Menu::make('Отзывы')
 	            ->icon('bubble')
 	            ->list([
-		            Menu::make('Записи')->icon('docs')->route('platform.example'),
+		            Menu::make('Записи')->icon('docs')->route('platform.testimonials'),
 		            Menu::make('Добавить запись')->icon('note'),
 	            ])
 	        ,
@@ -67,7 +67,7 @@ class PlatformProvider extends OrchidServiceProvider
 	            }),
 
 
-
+/*
 
             Menu::make('Example screen')
                 ->icon('monitor')
@@ -123,7 +123,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->badge(function () {
                     return Dashboard::version();
                 }, Color::DARK()),
-
+*/
             Menu::make(__('Users'))
                 ->icon('user')
                 ->route('platform.systems.users')
