@@ -5,7 +5,8 @@ declare(strict_types=1);
 
 use App\Orchid\Screens\Page\PageListScreen;
 use App\Orchid\Screens\Page\PageEditScreen;
-use App\Orchid\Screens\Portfolio\TestimonialListScreen;
+use App\Orchid\Screens\Portfolio\PortfolioListScreen;
+use App\Orchid\Screens\Testimonial\TestimonialListScreen;
 
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -160,10 +161,21 @@ Route::screen('pages', PageListScreen::class)
 
 // PORTFOLIO
 // Platfotm > Portfolio
-Route::screen('portfolio', TestimonialListScreen::class)
+Route::screen('portfolio', PortfolioListScreen::class)
      ->name('platform.portfolio')
      ->breadcrumbs(function (Trail $trail) {
 	     return $trail
 		     ->parent('platform.index')
 		     ->push(__('Портфолио'), route('platform.portfolio'));
+     });
+
+
+// TESTIMONIALS
+// Platfotm > Testimonials
+Route::screen('testimonials', TestimonialListScreen::class)
+     ->name('platform.testimonials')
+     ->breadcrumbs(function (Trail $trail) {
+	     return $trail
+		     ->parent('platform.index')
+		     ->push(__('Отзывы'), route('platform.testimonials'));
      });

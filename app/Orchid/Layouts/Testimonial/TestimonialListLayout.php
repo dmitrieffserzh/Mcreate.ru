@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace App\Orchid\Layouts\Portfolio;
+namespace App\Orchid\Layouts\Testimonial;
 
 use Orchid\Screen\Repository;
 

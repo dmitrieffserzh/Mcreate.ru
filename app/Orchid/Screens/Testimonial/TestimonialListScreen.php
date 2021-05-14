@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Orchid\Screens\Portfolio;
+namespace App\Orchid\Screens\Testimonial;
 
 use App\Models\Portfolio;
 use App\Orchid\Layouts\Portfolio\TestimonialListLayout;

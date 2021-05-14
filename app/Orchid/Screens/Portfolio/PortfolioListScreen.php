@@ -3,7 +3,7 @@
 namespace App\Orchid\Screens\Portfolio;
 
 use App\Models\Portfolio;
-use App\Orchid\Layouts\Portfolio\TestimonialListLayout;
+use App\Orchid\Layouts\Portfolio\PortfolioListLayout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Toast;
@@ -49,7 +49,7 @@ class PortfolioListScreen extends Screen {
 	 */
 	public function layout(): array {
 		return [
-			TestimonialListLayout::class,
+			PortfolioListLayout::class,
 		];
 	}
 
