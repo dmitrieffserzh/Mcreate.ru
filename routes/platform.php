@@ -3,8 +3,9 @@
 declare(strict_types=1);
 
 
-use \App\Orchid\Screens\Page\PageListScreen;
-use \App\Orchid\Screens\Page\PageEditScreen;
+use App\Orchid\Screens\Page\PageListScreen;
+use App\Orchid\Screens\Page\PageEditScreen;
+use App\Orchid\Screens\Portfolio\PortfolioListScreen;
 
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -127,6 +128,8 @@ Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('pla
 
 // MY ROUTES
 // =====================================================================================================================
+
+// PAGES
 // Platform > Pages > Edit
 Route::screen('pages/{id}/edit', PageEditScreen::class)
 	->name('platform.pages.edit')
@@ -153,3 +156,14 @@ Route::screen('pages', PageListScreen::class)
 			->parent('platform.index')
 			->push(__('Страницы'), route('platform.pages'));
 	});
+
+
+// PORTFOLIO
+// Platfotm > Portfolio
+Route::screen('portfolio', PortfolioListScreen::class)
+     ->name('platform.portfolio')
+     ->breadcrumbs(function (Trail $trail) {
+	     return $trail
+		     ->parent('platform.index')
+		     ->push(__('Портфолио'), route('platform.portfolio'));
+     });
