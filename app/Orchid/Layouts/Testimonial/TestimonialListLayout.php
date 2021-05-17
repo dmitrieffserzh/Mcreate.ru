@@ -4,8 +4,7 @@ declare( strict_types=1 );
 
 namespace App\Orchid\Layouts\Testimonial;
 
-use Orchid\Screen\Repository;
-
+use Illuminate\Support\Carbon;
 use App\Models\Testimonial;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
@@ -14,14 +13,9 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
 class TestimonialListLayout extends Table {
-	/**
-	 * @var string
-	 */
+
 	public $target = 'testimonials';
 
-	/**
-	 * @return TD[]
-	 */
 	public function columns(): array {
 		return [
 			/*TD::make( 'published', '' )
@@ -38,23 +32,26 @@ class TestimonialListLayout extends Table {
 			TD::make( 'img_cover', '' )
 			  ->align( 'left' )
 			  ->cantHide()
-				//->width( '30px' )
-              ->render( function ( $testimonials ) {
-					return "<img src='https://picsum.photos/450/200?random={" . $testimonials->id . "}' class='mw-100 d-block img-fluid'>";
-				} ),
+			  ->render( function ( $testimonials ) {
+				  //return "<img src='https://picsum.photos/450/200?random={" . $testimonials->id . "}' class='mw-100 d-block img-fluid'>";
+				  return '<img src="'. $testimonials->img_cover.'" class="mw-100 d-block img-fluid">';
+			  } ),
 			TD::make( 'title', 'Заголовок' )
 			  ->align( 'left' )
 			  ->cantHide()
-			  ->width( '80%' )
+			  ->width( '60%' )
 			  ->render( function ( $testimonials ) {
 				  return '<strong><a href=' . route( 'platform.testimonials.edit', $testimonials ) . '>' . $testimonials->title . '</a></strong>';
-			  } ),
-			/*TD::make( 'slug', 'Slug' )
-			  ->align( 'left' )
+			  } )
+			  ->sort(),
+			TD::make( 'created_at', 'Размещено' )
+			  ->align( 'right' )
 			  ->cantHide()
-			  ->render( function ( $pages ) {
-				  return $pages->slug;
-			  } ),*/
+			  ->width( '220px' )
+			  ->render( function ( $testimonials ) {
+				  return '<span class="text-muted">Обновлено: ' . Carbon::parse( $testimonials->updated_at )->format( 'd.m.Y H:i:s' ) . '</span><br><span class="text-muted">Размещено: ' . Carbon::parse( $testimonials->created_at )->format( 'd.m.Y H:i:s' ) . '</span>';
+			  } )
+			  ->sort(),
 			TD::make( __( '' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )

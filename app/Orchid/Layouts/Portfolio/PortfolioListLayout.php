@@ -4,8 +4,7 @@ declare( strict_types=1 );
 
 namespace App\Orchid\Layouts\Portfolio;
 
-use Orchid\Screen\Repository;
-
+use Illuminate\Support\Carbon;
 use App\Models\Portfolio;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
@@ -14,14 +13,9 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
 class PortfolioListLayout extends Table {
-	/**
-	 * @var string
-	 */
+
 	public $target = 'portfolio';
 
-	/**
-	 * @return TD[]
-	 */
 	public function columns(): array {
 		return [
 			/*TD::make( 'published', '' )
@@ -38,23 +32,25 @@ class PortfolioListLayout extends Table {
 			TD::make( 'img_cover', '' )
 			  ->align( 'left' )
 			  ->cantHide()
-			  //->width( '30px' )
-			  ->render( function ( $pages ) {
-			  	return "<img src='https://picsum.photos/450/200?random={".$pages->id."}' class='mw-100 d-block img-fluid'>";
-			  } ),
+				//->width( '30px' )
+              ->render( function ( $portfolio ) {
+					return "<img src='https://picsum.photos/450/200?random={" . $portfolio->id . "}' class='mw-100 d-block img-fluid'>";
+				} ),
 			TD::make( 'title', 'Заголовок' )
 			  ->align( 'left' )
 			  ->cantHide()
-				->width( '80%' )
-			  ->render( function ( $pages ) {
-				  return '<strong><a href='.route( 'platform.portfolio.edit', $pages ).'>'.$pages->title.'</a></strong>';
+			  ->width( '60%' )
+			  ->render( function ( $portfolio ) {
+				  return '<strong><a href=' . route( 'platform.portfolio.edit', $portfolio ) . '>' . $portfolio->title . '</a></strong>';
 			  } ),
-			/*TD::make( 'slug', 'Slug' )
-			  ->align( 'left' )
+			TD::make( 'created_at', 'Размещено' )
+			  ->align( 'right' )
 			  ->cantHide()
-			  ->render( function ( $pages ) {
-				  return $pages->slug;
-			  } ),*/
+			  ->width( '220px' )
+			  ->render( function ( $portfolio ) {
+				  return '<span class="text-muted">Обновлено: ' . Carbon::parse( $portfolio->updated_at )->format( 'd.m.Y H:i:s' ) . '</span><br><span class="text-muted">Размещено: ' . Carbon::parse( $portfolio->created_at )->format( 'd.m.Y H:i:s' ) . '</span>';
+			  } )
+			  ->sort(),
 			TD::make( __( '' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
@@ -70,7 +66,7 @@ class PortfolioListLayout extends Table {
 					                 Button::make( __( 'Delete' ) )
 					                       ->icon( 'trash' )
 					                       ->method( 'remove' )
-					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.')
+					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )
 					                       ->parameters( [
 						                       'slug' => $portfolio->id,
 					                       ] ),

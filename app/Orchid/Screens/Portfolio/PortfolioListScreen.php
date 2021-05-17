@@ -16,7 +16,7 @@ class PortfolioListScreen extends Screen {
 
 	public function query(): array {
 
-		$result = Portfolio::paginate( 15 );
+		$result = Portfolio::filters()->defaultSort('created_at', 'desc')->paginate( 15 );
 
 
 		return [
@@ -29,11 +29,6 @@ class PortfolioListScreen extends Screen {
 		];
 	}
 
-	/**
-	 * Button commands.
-	 *
-	 * @return \Orchid\Screen\Action[]
-	 */
 	public function commandBar(): array {
 		return [
 			Link::make( __( 'Добавить запись' ) )
@@ -42,11 +37,6 @@ class PortfolioListScreen extends Screen {
 		];
 	}
 
-	/**
-	 * Views.
-	 *
-	 * @return \Orchid\Screen\Layout[]|string[]
-	 */
 	public function layout(): array {
 		return [
 			PortfolioListLayout::class,

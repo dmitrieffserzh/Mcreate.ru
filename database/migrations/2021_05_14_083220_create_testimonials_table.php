@@ -18,6 +18,8 @@ class CreateTestimonialsTable extends Migration
 	        $table->string('title');
 	        $table->text('content');
 	        $table->string('img_cover')->nullable();
+	        $table->string('img_main')->nullable();
+	        $table->string('slug');
             $table->timestamps();
         });
     }

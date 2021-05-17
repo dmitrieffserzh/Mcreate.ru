@@ -28,11 +28,11 @@ class TestimonialEditLayout extends Rows {
 			] ),
 
 			Group::make( [
-				Select::make( 'testimonial.' )
+				/*Select::make( 'testimonial.' )
 				      ->fromModel( Testimonial::class, 'title', 'id' )
 				      ->empty( 'Не выбран', '0' )
-				      ->title( 'Связанный отзыв' ),
-				RadioButtons::make( 'portfolio.published' )
+				      ->title( 'Связанный отзыв' ),*/
+				RadioButtons::make( 'testimonial.published' )
 				            ->title( 'Активность' )
 				            ->options( [
 					            1 => 'Опубликовать',
@@ -41,17 +41,14 @@ class TestimonialEditLayout extends Rows {
 				            ->value( 1 )
 			] ),
 			Cropper::make('testimonial.img_cover')
-				->width(900)
-				->height(400)
-				->targetRelativeUrl(),
+			       ->title('Обложка')
+			       ->width(1200)
+			       ->height(550)->class('text-start')
+			       //->targetUrl(),
+			       ->targetRelativeUrl(),
 			Quill::make( 'testimonial.content' )
 			     ->title( '' )
 			     ->popover( '' ),
-			Cropper::make('testimonial.img_cover')
-			       ->width(900)
-			       ->height(400)
-			       ->targetRelativeUrl(),
-
 		];
 	}
 }

@@ -16,7 +16,7 @@ class TestimonialListScreen extends Screen {
 
 	public function query(): array {
 
-		$testimonials = Testimonial::paginate( 15 );
+		$testimonials = Testimonial::filters()->defaultSort('created_at', 'desc')->paginate( 15 );
 
 
 		return [
@@ -29,11 +29,6 @@ class TestimonialListScreen extends Screen {
 		];
 	}
 
-	/**
-	 * Button commands.
-	 *
-	 * @return \Orchid\Screen\Action[]
-	 */
 	public function commandBar(): array {
 		return [
 			Link::make( __( 'Добавить запись' ) )
@@ -42,11 +37,6 @@ class TestimonialListScreen extends Screen {
 		];
 	}
 
-	/**
-	 * Views.
-	 *
-	 * @return \Orchid\Screen\Layout[]|string[]
-	 */
 	public function layout(): array {
 		return [
 			TestimonialListLayout::class,

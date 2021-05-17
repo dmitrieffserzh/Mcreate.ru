@@ -235,9 +235,8 @@ class ExampleFieldsAdvancedScreen extends Screen
 
                 Cropper::make('cropper')
                     ->title('Cropper')
-                    ->width(500)
-                    ->height(300)
-                    ->horizontal(),
+                    ->width(900)
+                    ->height(400),
 
                 Upload::make('files')
                     ->title('Upload files')
