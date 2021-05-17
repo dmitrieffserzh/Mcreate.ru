@@ -40,7 +40,7 @@ class PlatformProvider extends OrchidServiceProvider {
 				    Menu::make( 'Добавить запись' )->icon( 'note' )->route( 'platform.testimonials.create' ),
 			    ] )
 			,
-			Menu::make( 'Блог' )
+			Menu::make( 'Блог (DEV)' )
 			    ->icon( 'module' )
 			    ->list( [
 				    Menu::make( 'Записи' )->icon( 'docs' ),
@@ -55,10 +55,27 @@ class PlatformProvider extends OrchidServiceProvider {
 			    ->title( 'Заявки' )
 			    ->badge( function () {
 				    return 6;
-			    } ),
+			    } )->divider(),
+			Menu::make( __( 'Users' ) )
+			    ->icon( 'user' )
+			    ->route( 'platform.systems.users' )
+			    ->permission( 'platform.systems.users' )
+			    ->title( __( 'Права и пользователи' ) ),
+
+			Menu::make( __( 'Roles' ) )
+			    ->icon( 'lock' )
+			    ->route( 'platform.systems.roles' )
+			    ->permission( 'platform.systems.roles' ),
+			Menu::make( 'Настройки' )
+			    ->icon( 'settings' )
+			    ->route( 'platform.systems.users' )
+			    ->permission( 'platform.systems.users' )
+			    ->title( 'Настройки продукта' ),
 
 
-			/*
+
+
+
 
 						Menu::make('Example screen')
 							->icon('monitor')
@@ -102,34 +119,8 @@ class PlatformProvider extends OrchidServiceProvider {
 							->route('platform.example.cards')
 							->divider(),
 
-						Menu::make('Documentation')
-							->title('Docs')
-							->icon('docs')
-							->url('https://orchid.software/en/docs'),
 
-						Menu::make('Changelog')
-							->icon('shuffle')
-							->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
-							->target('_blank')
-							->badge(function () {
-								return Dashboard::version();
-							}, Color::DARK()),
-			*/
-			Menu::make( __( 'Users' ) )
-			    ->icon( 'user' )
-			    ->route( 'platform.systems.users' )
-			    ->permission( 'platform.systems.users' )
-			    ->title( __( 'Права и пользователи' ) ),
 
-			Menu::make( __( 'Roles' ) )
-			    ->icon( 'lock' )
-			    ->route( 'platform.systems.roles' )
-			    ->permission( 'platform.systems.roles' ),
-			Menu::make( 'Настройки' )
-			    ->icon( 'settings' )
-			    ->route( 'platform.systems.users' )
-			    ->permission( 'platform.systems.users' )
-			    ->title( 'Настройки продукта' ),
 		];
 	}
 
