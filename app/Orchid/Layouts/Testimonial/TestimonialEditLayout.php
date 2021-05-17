@@ -10,7 +10,7 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\RadioButtons;
-use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Layouts\Rows;
 
 class TestimonialEditLayout extends Rows {
@@ -42,9 +42,9 @@ class TestimonialEditLayout extends Rows {
 			] ),
 			Cropper::make('testimonial.img_cover')
 			       ->title('Обложка')
+			       ->class('float-left')
 			       ->width(1200)
-			       ->height(550)->class('text-start')
-			       //->targetUrl(),
+			       ->height(550)
 			       ->targetRelativeUrl(),
 			Quill::make( 'testimonial.content' )
 			     ->title( '' )
