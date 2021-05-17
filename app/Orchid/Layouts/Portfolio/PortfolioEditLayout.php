@@ -38,11 +38,11 @@ class PortfolioEditLayout extends Rows {
 				            ] )
 				            ->value( 1 )
 			] ),
-			Cropper::make('testimonial.img_cover')
-			       ->title('Обложка')
-			       ->class('float-left')
-			       ->width(1200)
-			       ->height(550)
+			Cropper::make( 'testimonial.img_cover' )
+			       ->title( 'Обложка' )
+			       ->class( 'float-left' )
+			       ->width( 1200 )
+			       ->height( 550 )
 			       ->targetRelativeUrl(),
 			Quill::make( 'portfolio.content' )
 			     ->title( '' )

@@ -2,12 +2,12 @@
 
 namespace App\Orchid\Layouts;
 
-use App\Orchid\Layouts\Page\PageEditLayout;
 use Orchid\Screen\Fields\Input;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Layouts\Listener;
 
 class SlugEditListener extends Listener {
+
 	protected $targets = [
 		'title'
 	];

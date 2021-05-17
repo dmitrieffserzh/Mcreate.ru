@@ -12,14 +12,9 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
 class PageListLayout extends Table {
-	/**
-	 * @var string
-	 */
+
 	public $target = 'pages';
 
-	/**
-	 * @return TD[]
-	 */
 	public function columns(): array {
 		return [
 			TD::make( 'published', '' )
@@ -27,18 +22,19 @@ class PageListLayout extends Table {
 			  ->cantHide()
 			  ->width( '30px' )
 			  ->render( function ( $pages ) {
-			  	    $color = '#eff1f9';
-			  	    if($pages->published == 1)
-				        $color = '#43d040';
+				  $color = '#eff1f9';
+				  if ( $pages->published == 1 ) {
+					  $color = '#43d040';
+				  }
 
-				  return '<span style="display: block;width: 16px;height: 16px;border-radius: 50%;background: '.$color.';"></span>';
+				  return '<span style="display: block;width: 16px;height: 16px;border-radius: 50%;background: ' . $color . ';"></span>';
 			  } ),
 			TD::make( 'title', 'Заголовок' )
 			  ->align( 'left' )
 			  ->cantHide()
-				->width( '30%' )
+			  ->width( '30%' )
 			  ->render( function ( $pages ) {
-				  return '<strong><a href='.route( 'platform.pages.edit', $pages ).'>'.$pages->title.'</a></strong>';
+				  return '<strong><a href=' . route( 'platform.pages.edit', $pages ) . '>' . $pages->title . '</a></strong>';
 			  } ),
 			TD::make( 'slug', 'Slug' )
 			  ->align( 'left' )
@@ -61,7 +57,7 @@ class PageListLayout extends Table {
 					                 Button::make( __( 'Delete' ) )
 					                       ->icon( 'trash' )
 					                       ->method( 'remove' )
-					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.')
+					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )
 					                       ->parameters( [
 						                       'slug' => $pages->slug,
 					                       ] ),

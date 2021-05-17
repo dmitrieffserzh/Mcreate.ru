@@ -34,7 +34,7 @@ class TestimonialListLayout extends Table {
 			  ->cantHide()
 			  ->render( function ( $testimonials ) {
 				  //return "<img src='https://picsum.photos/450/200?random={" . $testimonials->id . "}' class='mw-100 d-block img-fluid'>";
-				  return '<img src="'. $testimonials->img_cover.'" class="mw-100 d-block img-fluid">';
+				  return '<img src="' . $testimonials->img_cover . '" class="mw-100 d-block img-fluid">';
 			  } ),
 			TD::make( 'title', 'Заголовок' )
 			  ->align( 'left' )
