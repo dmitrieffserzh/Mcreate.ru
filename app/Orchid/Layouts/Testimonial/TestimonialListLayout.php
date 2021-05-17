@@ -17,7 +17,7 @@ class TestimonialListLayout extends Table {
 	/**
 	 * @var string
 	 */
-	public $target = 'testimonial';
+	public $target = 'testimonials';
 
 	/**
 	 * @return TD[]
@@ -38,16 +38,16 @@ class TestimonialListLayout extends Table {
 			TD::make( 'img_cover', '' )
 			  ->align( 'left' )
 			  ->cantHide()
-			  //->width( '30px' )
-			  ->render( function ( $testimonial ) {
-			  	return "<img src='https://picsum.photos/450/200?random={".$testimonial->id."}' class='mw-100 d-block img-fluid'>";
-			  } ),
+				//->width( '30px' )
+              ->render( function ( $testimonials ) {
+					return "<img src='https://picsum.photos/450/200?random={" . $testimonials->id . "}' class='mw-100 d-block img-fluid'>";
+				} ),
 			TD::make( 'title', 'Заголовок' )
 			  ->align( 'left' )
 			  ->cantHide()
-				->width( '80%' )
-			  ->render( function ( $testimonial ) {
-				  return '<strong><a href='.route( 'platform.testimonials.edit', $testimonial ).'>'.$testimonial->title.'</a></strong>';
+			  ->width( '80%' )
+			  ->render( function ( $testimonials ) {
+				  return '<strong><a href=' . route( 'platform.testimonials.edit', $testimonials ) . '>' . $testimonials->title . '</a></strong>';
 			  } ),
 			/*TD::make( 'slug', 'Slug' )
 			  ->align( 'left' )
@@ -58,19 +58,19 @@ class TestimonialListLayout extends Table {
 			TD::make( __( '' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
-			  ->render( function ( Testimonial $testimonial ) {
+			  ->render( function ( Testimonial $testimonials ) {
 				  return DropDown::make()
 				                 ->icon( 'options-vertical' )
 				                 ->list( [
-				                 	Link::make( __( 'Edit' ) )
-					                     ->route( 'platform.testimonials.edit', $testimonial->slug )
+					                 Link::make( __( 'Edit' ) )
+					                     ->route( 'platform.testimonials.edit', $testimonials->id)
 					                     ->icon( 'pencil' ),
 					                 Button::make( __( 'Delete' ) )
 					                       ->icon( 'trash' )
 					                       ->method( 'remove' )
-					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.')
+					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )
 					                       ->parameters( [
-						                       'slug' => $testimonial->slug,
+						                       'slug' => $testimonials->id,
 					                       ] ),
 				                 ] );
 			  } ),

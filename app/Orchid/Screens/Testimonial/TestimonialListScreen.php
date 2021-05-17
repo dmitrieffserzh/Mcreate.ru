@@ -16,12 +16,12 @@ class TestimonialListScreen extends Screen {
 
 	public function query(): array {
 
-		$pages = Testimonial::paginate( 15 );
+		$testimonials = Testimonial::paginate( 15 );
 
 
 		return [
 
-			'pages' => $pages
+			'testimonials' => $testimonials
 			//->filters()
 			//->filtersApplySelection(UserFiltersLayout::class)
 			//->defaultSort('id', 'desc')
@@ -38,7 +38,7 @@ class TestimonialListScreen extends Screen {
 		return [
 			Link::make( __( 'Добавить запись' ) )
 			    ->icon( 'plus' )
-			    ->href( route( 'platform.pages.create' ) ),
+			    ->href( route( 'platform.testimonials.create' ) ),
 		];
 	}
 
@@ -53,12 +53,12 @@ class TestimonialListScreen extends Screen {
 		];
 	}
 
-	public function remove(Testimonial $page)
+	public function remove(Testimonial $testimonials)
 	{
-		$page->delete();
+		$testimonials->delete();
 
 		Toast::info('Страница удалена');
 
-		return redirect()->route('platform.pages');
+		return redirect()->route('platform.testimonials');
 	}
 }

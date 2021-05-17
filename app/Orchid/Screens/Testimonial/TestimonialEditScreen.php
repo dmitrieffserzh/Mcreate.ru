@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Orchid\Screens\Portfolio;
+namespace App\Orchid\Screens\Testimonial;
 
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
@@ -25,7 +26,7 @@ class TestimonialEditScreen extends Screen {
 	private $testimonial;
 
 	public function query( Testimonial $testimonial ): array {
-		$this->$testimonial = $testimonial;
+		$this->testimonial = $testimonial;
 
 		if ( ! $testimonial->exists ) {
 			$this->name        = 'Добавить';
@@ -33,7 +34,7 @@ class TestimonialEditScreen extends Screen {
 		}
 
 		return [
-			'portfolio'  => $testimonial,
+			'testimonial'  => $testimonial,
 			'title' => $testimonial->title
 		];
 	}
@@ -56,8 +57,8 @@ class TestimonialEditScreen extends Screen {
 		$slug = Str::slug( $title, '-' );
 
 		return [
-			'$testimonial.slug'  => $slug,
-			'$testimonial.title' => $title
+			'testimonial.slug'  => $slug,
+			'testimonial.title' => $title
 		];
 	}
 
@@ -89,11 +90,11 @@ class TestimonialEditScreen extends Screen {
 
 	public function save( Testimonial $testimonial, Request $request ) {
 		$request->validate( [
-			'portfolio.title' => [
+			'testimonial.title' => [
 				'required',
 				Rule::unique( Testimonial::class, 'title' )->ignore( $testimonial ),
 			],
-			'portfolio.slug'  => [
+			'testimonial.slug'  => [
 				'required',
 				'regex:/[a-zA-Z0-9-]/',
 				Rule::unique( Testimonial::class, 'slug' )->ignore( $testimonial ),
@@ -121,59 +122,4 @@ class TestimonialEditScreen extends Screen {
 	public function cancel() {
 		return redirect()->route( 'platform.testimonials' );
 	}
-
-	/*
-
-		public function save(User $user, Request $request)
-		{
-			$request->validate([
-				'user.email' => [
-					'required',
-					Rule::unique(User::class, 'email')->ignore($user),
-				],
-			]);
-
-			$permissions = collect($request->get('permissions'))
-				->map(function ($value, $key) {
-					return [base64_decode($key) => $value];
-				})
-				->collapse()
-				->toArray();
-
-			$userData = $request->get('user');
-			if ($user->exists && (string)$userData['password'] === '') {
-				// When updating existing user null password means "do not change current password"
-				unset($userData['password']);
-			} else {
-				$userData['password'] = Hash::make($userData['password']);
-			}
-
-			$user
-				->fill($userData)
-				->fill([
-					'permissions' => $permissions,
-				])
-				->save();
-
-			$user->replaceRoles($request->input('user.roles'));
-
-			Toast::info(__('User was saved.'));
-
-			return redirect()->route('platform.systems.users');
-		}
-
-
-		public function remove(User $user)
-		{
-			$user->delete();
-
-			Toast::info(__('User was removed'));
-
-			return redirect()->route('platform.systems.users');
-		}
-
-
-	*/
-
-
 }
