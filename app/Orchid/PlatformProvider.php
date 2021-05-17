@@ -46,7 +46,7 @@ class PlatformProvider extends OrchidServiceProvider
 	            ->icon('bubble')
 	            ->list([
 		            Menu::make('Записи')->icon('docs')->route('platform.testimonials'),
-		            Menu::make('Добавить запись')->icon('note'),
+		            Menu::make('Добавить запись')->icon('note')->route('platform.testimonials.create'),
 	            ])
 	        ,
 	        Menu::make('Блог')

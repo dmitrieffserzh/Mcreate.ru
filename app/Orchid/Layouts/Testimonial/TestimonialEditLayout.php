@@ -2,9 +2,10 @@
 
 declare( strict_types=1 );
 
-namespace App\Orchid\Layouts\Portfolio;
+namespace App\Orchid\Layouts\Testimonial;
 
 use App\Models\Testimonial;
+use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Quill;
@@ -39,10 +40,17 @@ class TestimonialEditLayout extends Rows {
 				            ] )
 				            ->value( 1 )
 			] ),
-
+			Cropper::make('testimonial.img_cover')
+				->width(900)
+				->height(400)
+				->targetRelativeUrl(),
 			Quill::make( 'testimonial.content' )
 			     ->title( '' )
 			     ->popover( '' ),
+			Cropper::make('testimonial.img_cover')
+			       ->width(900)
+			       ->height(400)
+			       ->targetRelativeUrl(),
 
 		];
 	}

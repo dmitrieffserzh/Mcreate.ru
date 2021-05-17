@@ -63,7 +63,7 @@ class TestimonialListLayout extends Table {
 				                 ->icon( 'options-vertical' )
 				                 ->list( [
 					                 Link::make( __( 'Edit' ) )
-					                     ->route( 'platform.testimonials.edit', $testimonials->id)
+					                     ->route( 'platform.testimonials.edit', $testimonials->id )
 					                     ->icon( 'pencil' ),
 					                 Button::make( __( 'Delete' ) )
 					                       ->icon( 'trash' )

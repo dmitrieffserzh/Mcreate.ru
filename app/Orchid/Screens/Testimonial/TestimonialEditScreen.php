@@ -6,10 +6,9 @@ use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use App\Models\Portfolio;
+use App\Orchid\Layouts\Testimonial\TestimonialEditLayout;
 use App\Orchid\Layouts\SlugEditListener;
 use App\Orchid\Layouts\Helpers\MetaLayout;
-use App\Orchid\Layouts\Portfolio\PortfolioEditLayout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Support\Color;
 use Orchid\Screen\Fields\Group;
@@ -34,8 +33,8 @@ class TestimonialEditScreen extends Screen {
 		}
 
 		return [
-			'testimonial'  => $testimonial,
-			'title' => $testimonial->title
+			'testimonial' => $testimonial,
+			'title'       => $testimonial->title
 		];
 	}
 
@@ -66,11 +65,11 @@ class TestimonialEditScreen extends Screen {
 		return [
 			Layout::tabs( [
 				'Контент' => [
-					PortfolioEditLayout::class,
+					TestimonialEditLayout::class,
 				],
 				'SEO'     => [
 					MetaLayout::class,
-					new SlugEditListener('testimonial'),
+					new SlugEditListener( 'testimonial' ),
 				]
 			] ),
 			Layout::rows( [
@@ -104,14 +103,14 @@ class TestimonialEditScreen extends Screen {
 		$pageData = $request->get( 'testimonial' );
 
 		$testimonial->fill( $pageData )
-		     ->save();
+		            ->save();
 
 		Toast::info( 'Страница сохранена!' );
 
 		return redirect()->route( 'platform.testimonials' );
 	}
 
-	public function remove( Portfolio $testimonial ) {
+	public function remove( Testimonial $testimonial ) {
 		$testimonial->delete();
 
 		Toast::info( 'Страница удалена' );
