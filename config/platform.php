@@ -109,7 +109,7 @@ return [
     */
 
     'resource' => [
-        'stylesheets' => ['/css/admin/loginscreen.css'],
+        'stylesheets' => ['/css/admin.css'],
         'scripts'     => [],
     ],
 

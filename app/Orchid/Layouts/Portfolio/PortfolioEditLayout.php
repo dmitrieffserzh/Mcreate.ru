@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace App\Orchid\Layouts\Portfolio;
 
 use App\Models\Testimonial;
+use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Quill;
@@ -37,7 +38,12 @@ class PortfolioEditLayout extends Rows {
 				            ] )
 				            ->value( 1 )
 			] ),
-
+			Cropper::make('testimonial.img_cover')
+			       ->title('Обложка')
+			       ->class('float-left')
+			       ->width(1200)
+			       ->height(550)
+			       ->targetRelativeUrl(),
 			Quill::make( 'portfolio.content' )
 			     ->title( '' )
 			     ->popover( '' ),

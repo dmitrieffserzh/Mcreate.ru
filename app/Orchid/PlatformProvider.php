@@ -6,13 +6,10 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
-use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
-    /**
-     * @param Dashboard $dashboard
-     */
+
     public function boot(Dashboard $dashboard): void
     {
         parent::boot($dashboard);
@@ -20,9 +17,6 @@ class PlatformProvider extends OrchidServiceProvider
         // ...
     }
 
-    /**
-     * @return Menu[]
-     */
     public function registerMainMenu(): array
     {
         return [
@@ -128,18 +122,20 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('user')
                 ->route('platform.systems.users')
                 ->permission('platform.systems.users')
-                ->title(__('Access rights')),
+                ->title(__('Права и пользователи')),
 
             Menu::make(__('Roles'))
                 ->icon('lock')
                 ->route('platform.systems.roles')
                 ->permission('platform.systems.roles'),
+	        Menu::make('Настройки')
+	            ->icon('settings')
+	            ->route('platform.systems.users')
+	            ->permission('platform.systems.users')
+	            ->title('Настройки продукта'),
         ];
     }
 
-    /**
-     * @return Menu[]
-     */
     public function registerProfileMenu(): array
     {
         return [
@@ -149,9 +145,6 @@ class PlatformProvider extends OrchidServiceProvider
         ];
     }
 
-    /**
-     * @return ItemPermission[]
-     */
     public function registerPermissions(): array
     {
         return [
@@ -161,9 +154,6 @@ class PlatformProvider extends OrchidServiceProvider
         ];
     }
 
-    /**
-     * @return string[]
-     */
     public function registerSearchModels(): array
     {
         return [
