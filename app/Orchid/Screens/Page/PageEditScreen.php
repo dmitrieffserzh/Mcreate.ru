@@ -22,19 +22,22 @@ class PageEditScreen extends Screen {
 
 	public $description = 'Редактирование страницы';
 
-	private $page;
-
 	public function query( Page $page ): array {
-		$this->page = $page;
 
 		if ( ! $page->exists ) {
 			$this->name        = 'Добавить';
 			$this->description = 'Добавление новой страницы';
 		}
 
+		$meta = [];
+		foreach ( $page->meta as $item ):
+			$meta[] = (array) $item->getAttributes();
+		endforeach;
+
 		return [
 			'page'  => $page,
-			'title' => $page->title
+			'title' => $page->title,
+			'meta'  => $meta[0]
 		];
 	}
 
@@ -69,7 +72,7 @@ class PageEditScreen extends Screen {
 				],
 				'SEO'     => [
 					MetaLayout::class,
-					new SlugEditListener('page')
+					new SlugEditListener( 'page' )
 				]
 			] ),
 			Layout::rows( [
@@ -101,14 +104,21 @@ class PageEditScreen extends Screen {
 		] );
 
 		$pageData = $request->get( 'page' );
+		$metaData = $request->get( 'meta' );
 
-		$page->fill( $pageData )
-		     ->save();
+		$page->fill( $pageData );
+		if ( count( $page->meta ) > 0 ):
+			$page->meta()->update( $metaData );
+		else:
+			$page->meta()->create( $metaData );
+		endif;
+		$page->save();
 
 		Toast::info( 'Страница сохранена!' );
 
 		return redirect()->route( 'platform.pages' );
 	}
+
 
 	public function remove( Page $page ) {
 		$page->delete();

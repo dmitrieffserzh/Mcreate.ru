@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 
-class Page extends Model
-{
-    use HasFactory;
+class Page extends Model {
+	use HasFactory;
 	use AsSource;
 
 	public $fillable = [
@@ -30,8 +29,12 @@ class Page extends Model
 		return 'slug';
 	}
 
-    // RELATIONSHIPS
+	// RELATIONSHIPS
 	public function parent() {
-		return $this->belongsTo(self::class, 'parent_id', 'id');
+		return $this->belongsTo( self::class, 'parent_id', 'id' );
+	}
+
+	public function meta() {
+		return $this->morphMany( Meta::class, 'content' );
 	}
 }
