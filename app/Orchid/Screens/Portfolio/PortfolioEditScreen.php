@@ -32,9 +32,15 @@ class PortfolioEditScreen extends Screen {
 			$this->description = 'Добавление новой записи';
 		}
 
+		$meta = [];
+		foreach ( $portfolio->meta as $item ):
+			$meta[] = (array) $item->getAttributes();
+		endforeach;
+
 		return [
-			'portfolio'  => $portfolio,
-			'title' => $portfolio->title
+			'portfolio' => $portfolio,
+			'title'     => $portfolio->title,
+			'meta'      => $meta ? $meta[0] : $meta
 		];
 	}
 
@@ -69,7 +75,7 @@ class PortfolioEditScreen extends Screen {
 				],
 				'SEO'     => [
 					MetaLayout::class,
-					new SlugEditListener('portfolio'),
+					new SlugEditListener( 'portfolio' ),
 				]
 			] ),
 			Layout::rows( [
@@ -101,9 +107,15 @@ class PortfolioEditScreen extends Screen {
 		] );
 
 		$pageData = $request->get( 'portfolio' );
+		$metaData = $request->get( 'meta' );
 
-		$portfolio->fill( $pageData )
-		     ->save();
+		$portfolio->fill( $pageData );
+		if ( count( $portfolio->meta ) > 0 ):
+			$portfolio->meta()->update( $metaData );
+		else:
+			$portfolio->meta()->create( $metaData );
+		endif;
+		$portfolio->save();
 
 		Toast::info( 'Страница сохранена!' );
 

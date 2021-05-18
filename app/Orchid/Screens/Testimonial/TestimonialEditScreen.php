@@ -22,19 +22,22 @@ class TestimonialEditScreen extends Screen {
 
 	public $description = 'Редактирование записи';
 
-	private $testimonial;
-
 	public function query( Testimonial $testimonial ): array {
-		$this->testimonial = $testimonial;
 
 		if ( ! $testimonial->exists ) {
 			$this->name        = 'Добавить';
 			$this->description = 'Добавление новой записи';
 		}
 
+		$meta = [];
+		foreach ( $testimonial->meta as $item ):
+			$meta[] = (array) $item->getAttributes();
+		endforeach;
+
 		return [
 			'testimonial' => $testimonial,
-			'title'       => $testimonial->title
+			'title'       => $testimonial->title,
+			'meta'        => $meta ? $meta[0] : $meta
 		];
 	}
 
@@ -101,9 +104,15 @@ class TestimonialEditScreen extends Screen {
 		] );
 
 		$pageData = $request->get( 'testimonial' );
+		$metaData = $request->get( 'meta' );
 
-		$testimonial->fill( $pageData )
-		            ->save();
+		$testimonial->fill( $pageData );
+		if ( count( $testimonial->meta ) > 0 ):
+			$testimonial->meta()->update( $metaData );
+		else:
+			$testimonial->meta()->create( $metaData );
+		endif;
+		$testimonial->save();
 
 		Toast::info( 'Страница сохранена!' );
 

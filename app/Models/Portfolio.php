@@ -38,4 +38,8 @@ class Portfolio extends Model
 	public function testimonials() {
 		return $this->hasOne(Testimonial::class, 'id');
 	}
+
+	public function meta() {
+		return $this->morphMany( Meta::class, 'content' );
+	}
 }

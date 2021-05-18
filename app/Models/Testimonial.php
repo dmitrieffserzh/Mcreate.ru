@@ -39,4 +39,9 @@ class Testimonial extends Model
 		'created_at',
 		'updated_at'
 	];
+
+	//RELATIONSHIPS
+	public function meta() {
+		return $this->morphMany( Meta::class, 'content' );
+	}
 }
