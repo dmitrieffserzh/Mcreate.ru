@@ -14,6 +14,7 @@ class Testimonial extends Model
 	use Filterable;
 
 	public $fillable = [
+		'published',
 		'title',
 		'content',
 		'img_cover',

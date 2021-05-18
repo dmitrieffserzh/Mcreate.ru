@@ -12,6 +12,7 @@ class Page extends Model {
 
 	public $fillable = [
 		'parent_id',
+		'published',
 		'title',
 		'slug',
 		'content',
