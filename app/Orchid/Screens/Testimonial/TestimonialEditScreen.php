@@ -107,6 +107,7 @@ class TestimonialEditScreen extends Screen {
 		$metaData = $request->get( 'meta' );
 
 		$testimonial->fill( $pageData );
+		$testimonial->save();
 		if ( count( $testimonial->meta ) > 0 ):
 			$testimonial->meta()->update( $metaData );
 		else:
