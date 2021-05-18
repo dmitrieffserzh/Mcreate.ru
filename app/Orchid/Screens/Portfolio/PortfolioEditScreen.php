@@ -40,7 +40,7 @@ class PortfolioEditScreen extends Screen {
 		return [
 			'portfolio' => $portfolio,
 			'title'     => $portfolio->title,
-			'meta'      => $meta ? $meta[0] : $meta
+			'meta'      => $meta[0] ? $meta[0] : $meta
 		];
 	}
 
@@ -110,6 +110,7 @@ class PortfolioEditScreen extends Screen {
 		$metaData = $request->get( 'meta' );
 
 		$portfolio->fill( $pageData );
+		$portfolio->save();
 		if ( count( $portfolio->meta ) > 0 ):
 			$portfolio->meta()->update( $metaData );
 		else:

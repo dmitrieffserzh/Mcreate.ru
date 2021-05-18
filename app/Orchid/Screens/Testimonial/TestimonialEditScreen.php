@@ -37,7 +37,7 @@ class TestimonialEditScreen extends Screen {
 		return [
 			'testimonial' => $testimonial,
 			'title'       => $testimonial->title,
-			'meta'        => $meta ? $meta[0] : $meta
+			'meta'        => $meta[0] ? $meta[0] : $meta
 		];
 	}
 
@@ -115,7 +115,7 @@ class TestimonialEditScreen extends Screen {
 		endif;
 		$testimonial->save();
 
-		Toast::info( 'Страница сохранена!' );
+		Toast::info( 'Отзыв сохранен!' );
 
 		return redirect()->route( 'platform.testimonials' );
 	}
@@ -123,7 +123,7 @@ class TestimonialEditScreen extends Screen {
 	public function remove( Testimonial $testimonial ) {
 		$testimonial->delete();
 
-		Toast::info( 'Страница удалена' );
+		Toast::info( 'Отзыв удален!' );
 
 		return redirect()->route( 'platform.testimonials' );
 	}

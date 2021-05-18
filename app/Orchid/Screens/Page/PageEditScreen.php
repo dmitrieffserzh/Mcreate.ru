@@ -37,7 +37,7 @@ class PageEditScreen extends Screen {
 		return [
 			'page'  => $page,
 			'title' => $page->title,
-			'meta'  => $meta ? $meta[0] : $meta
+			'meta'  => $meta[0] ? $meta[0] : $meta
 		];
 	}
 
@@ -107,6 +107,7 @@ class PageEditScreen extends Screen {
 		$metaData = $request->get( 'meta' );
 
 		$page->fill( $pageData );
+		$page->save();
 		if ( count( $page->meta ) > 0 ):
 			$page->meta()->update( $metaData );
 		else:
