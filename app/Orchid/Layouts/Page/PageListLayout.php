@@ -23,7 +23,7 @@ class PageListLayout extends Table {
 			  ->width( '30px' )
 			  ->render( function ( $pages ) {
 				  $color = '#eff1f9';
-				  if ( $pages->published == 1 ) {
+				  if ( $pages['published'] == 1 ) {
 					  $color = '#43d040';
 				  }
 
@@ -34,24 +34,24 @@ class PageListLayout extends Table {
 			  ->cantHide()
 			  ->width( '30%' )
 			  ->render( function ( $pages ) {
-				  return '<strong><a href=' . route( 'platform.pages.edit', $pages ) . '>' . $pages->title . '</a></strong>';
+				  return '<strong><a href=' . route( 'platform.pages.edit', $pages['slug'] ) . '>' . $pages['title'] . '</a></strong>';
 			  } ),
 			TD::make( 'slug', 'Slug' )
 			  ->align( 'left' )
 			  ->cantHide()
 			  ->render( function ( $pages ) {
-				  return $pages->slug;
+				  return $pages['slug'];
 			  } ),
 			TD::make( __( '' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
-			  ->render( function ( Page $pages ) {
+			  ->render( function ( $pages ) {
 				  return DropDown::make()
 				                 ->icon( 'options-vertical' )
 				                 ->list( [
 
 					                 Link::make( __( 'Edit' ) )
-					                     ->route( 'platform.pages.edit', $pages->slug )
+					                     ->route( 'platform.pages.edit', $pages['slug'] )
 					                     ->icon( 'pencil' ),
 
 					                 Button::make( __( 'Delete' ) )
@@ -59,7 +59,7 @@ class PageListLayout extends Table {
 					                       ->method( 'remove' )
 					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )
 					                       ->parameters( [
-						                       'slug' => $pages->slug,
+						                       'slug' => $pages['slug'],
 					                       ] ),
 				                 ] );
 			  } ),

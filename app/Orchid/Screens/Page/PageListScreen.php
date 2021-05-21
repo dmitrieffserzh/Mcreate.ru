@@ -14,16 +14,6 @@ class PageListScreen extends Screen {
 
 	public $description = 'Список всех страниц';
 
-	public function recursion( $page, $prefix ): array {
-		$pageTree = [];
-		foreach ( $page->child as $pageChild ):
-			$pageTree[] = $this->getTree( $pageChild, '—' . $prefix );
-			$pageTree   = array_merge( $pageTree, $this->recursion( $pageChild, '—' . $prefix ) );
-		endforeach;
-
-		return $pageTree;
-	}
-
 	public function query(): array {
 
 		$pages = Page::where( 'parent_id', '=', 0 )->paginate( 15 );
@@ -31,13 +21,17 @@ class PageListScreen extends Screen {
 		$pageTree = [];
 		foreach ( $pages as $page ):
 			if ( $page->parent_id == 0 ) :
-				$pageTree[] = $page->title;
+				$pageTree[] = [
+					'id'        => $page->id,
+					'title'     => $page->title,
+					'published' => $page->published,
+					'slug'      => $page->slug,
+					'content'   => $page->content
+				];
 			endif;
 
 			$pageTree = array_merge( $pageTree, $this->recursion( $page, "" ) );
 		endforeach;
-
-		dd( $pageTree );
 
 		return [
 			'pages' => $pageTree
@@ -82,9 +76,25 @@ class PageListScreen extends Screen {
 		return redirect()->route( 'platform.pages' );
 	}
 
+	public function recursion( $page, $prefix ): array {
+		$pageTree = [];
+		foreach ( $page->child as $pageChild ):
+			$pageTree[] = [
+				'id'        => $page->id,
+				'title'     => $this->getTree( $pageChild, '—' . $prefix ),
+				'published' => $pageChild->published,
+				'slug'      => $pageChild->slug,
+				'content'   => $pageChild->content
+			];
+			$pageTree   = array_merge( $pageTree, $this->recursion( $pageChild, '—' . ' ' .$prefix ) );
+		endforeach;
+
+		return $pageTree;
+	}
+
 	public function getTree( $page, $prefix ) {
 
-		return $prefix . $page['title'];
+		return $prefix .  ' ' .$page['title'];
 	}
 
 }
