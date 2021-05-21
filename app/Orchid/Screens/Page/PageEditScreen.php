@@ -37,7 +37,7 @@ class PageEditScreen extends Screen {
 		return [
 			'page'  => $page,
 			'title' => $page->title,
-			'meta'  => $meta ? $meta[0] : $meta
+			'meta'  => $meta
 		];
 	}
 

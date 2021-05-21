@@ -15,10 +15,6 @@ use App\Http\Controllers\PageController;
 
 Route::pattern(	'slug',     '[a-z0-9-_\/]+');
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-
 // PAGES
-Route::get('/{slug}', [PageController::class, 'getPage']);
+Route::get('/',         [PageController::class, 'index']);
+Route::get('/{slug}',   [PageController::class, 'getPage']);

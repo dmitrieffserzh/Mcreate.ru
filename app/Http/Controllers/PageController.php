@@ -6,13 +6,23 @@ use App\Models\Page;
 
 class PageController extends Controller {
 
+
+	public function index() {
+		$page = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'glavnaya-stranica' )->firstOrFail()->load( 'meta' )->toArray();
+
+		return view( 'pages.page', [
+			'page' => $page
+		] );
+	}
+
 	public function getPage( $path ) {
 
 		$pathSp = explode( '/', $path );
 		$slug   = end( $pathSp );
 
-		$pageAll = Page::where( 'published', '=', 1 )->get()->toArray();
-		$page    = array_filter( $pageAll, function ( $obj ) use ( $slug ) {
+		$pageAll = Page::where( 'published', '=', 1 )->get()->load( 'meta' )->toArray();
+
+		$page = array_filter( $pageAll, function ( $obj ) use ( $slug ) {
 			if ( $obj['slug'] == $slug ) {
 				return true;
 			}
