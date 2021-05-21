@@ -31,8 +31,8 @@ class Page extends Model {
 	}
 
 	// RELATIONSHIPS
-	public function parent() {
-		return $this->belongsTo( self::class, 'parent_id', 'id' );
+	public function child() {
+		return $this->hasMany( self::class, 'parent_id', 'id' );
 	}
 
 	public function meta() {

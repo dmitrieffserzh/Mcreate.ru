@@ -9,6 +9,8 @@
         <meta name="description" content="@yield('meta_description','default description')">
         <link rel="canonical" href="{{url()->current()}}"/>
 
+        <script src="{{ asset('js/app.js') }}"></script>
+
     </head>
     <body>
         <div class="container">

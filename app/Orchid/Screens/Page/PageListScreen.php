@@ -14,37 +14,33 @@ class PageListScreen extends Screen {
 
 	public $description = 'Список всех страниц';
 
+	public function recursion( $page, $prefix ): array {
+		$pageTree = [];
+		foreach ( $page->child as $pageChild ):
+			$pageTree[] = $this->getTree( $pageChild, '—' . $prefix );
+			$pageTree   = array_merge( $pageTree, $this->recursion( $pageChild, '—' . $prefix ) );
+		endforeach;
+
+		return $pageTree;
+	}
+
 	public function query(): array {
 
-		$pages = Page::with( 'parent' )->paginate( 15 );
+		$pages = Page::where( 'parent_id', '=', 0 )->paginate( 15 );
 
-		//dd( $pages );
+		$pageTree = [];
+		foreach ( $pages as $page ):
+			if ( $page->parent_id == 0 ) :
+				$pageTree[] = $page->title;
+			endif;
 
-//    	$gpages  = Page::where()->paginate();
-//		$pages = [];
-//	    foreach ($gpages as $page):
-//		    array_push($pages,$page);
-//	    endforeach;
-//
-//	    $basePage = array_filter($pages, function($obj){
-//		    if($obj->parent_id == 0) {
-//			    return true;
-//		    }
-//		    return false;
-//	    });
-//
-//	    for ($i = 1; $i < count($basePage); $i++) {
-//		    $basePage[$i]['subpage'] = $this->getSubparrent( $basePage[$i], $pages );
-//
-//	    }
-//	    print_r($basePage);
+			$pageTree = array_merge( $pageTree, $this->recursion( $page, "" ) );
+		endforeach;
+
+		dd( $pageTree );
+
 		return [
-			//'pages' => $basePage
-			'pages' => $pages
-			//->filters()
-			//->filtersApplySelection(UserFiltersLayout::class)
-			//->defaultSort('id', 'desc')
-			//paginate(),
+			'pages' => $pageTree
 		];
 	}
 
@@ -64,11 +60,6 @@ class PageListScreen extends Screen {
 		return $subPages;
 	}*/
 
-	/**
-	 * Button commands.
-	 *
-	 * @return \Orchid\Screen\Action[]
-	 */
 	public function commandBar(): array {
 		return [
 			Link::make( __( 'Добавить страницу' ) )
@@ -77,23 +68,23 @@ class PageListScreen extends Screen {
 		];
 	}
 
-	/**
-	 * Views.
-	 *
-	 * @return \Orchid\Screen\Layout[]|string[]
-	 */
 	public function layout(): array {
 		return [
 			PageListLayout::class,
 		];
 	}
 
-	public function remove(Page $page)
-	{
+	public function remove( Page $page ) {
 		$page->delete();
 
-		Toast::info('Страница удалена');
+		Toast::info( 'Страница удалена' );
 
-		return redirect()->route('platform.pages');
+		return redirect()->route( 'platform.pages' );
 	}
+
+	public function getTree( $page, $prefix ) {
+
+		return $prefix . $page['title'];
+	}
+
 }
