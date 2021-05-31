@@ -37,7 +37,7 @@ class TestimonialEditScreen extends Screen {
 		return [
 			'testimonial' => $testimonial,
 			'title'       => $testimonial->title,
-			'meta'        => $meta ? $meta[0] : $meta
+			'meta'        => $meta[0] ? $meta[0] : $meta
 		];
 	}
 
