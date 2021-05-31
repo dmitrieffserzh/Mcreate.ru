@@ -7,13 +7,4 @@
 @section('content')
 <h1>{{ $page['title'] }}</h1>
 {!! $page['content'] !!}
-
-
-
-
-    <button id="click" class="click">Кнопка</button>
-
-    <div id="result"></div>
-
-
 @endsection

@@ -9,10 +9,15 @@
         <meta name="description" content="@yield('meta_description','default description')">
         <link rel="canonical" href="{{url()->current()}}"/>
 
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <script src="{{ asset('js/app.js') }}"></script>
-
     </head>
     <body>
+    <header class="header">
+        <div class="container">
+            HEADER
+        </div>
+    </header>
         <div class="container">
             @yield('content')
         </div>
