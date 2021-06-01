@@ -20,6 +20,7 @@ class CreateRequestsTable extends Migration
             $table->text('message')->nullable();
             $table->integer('agreement')->default(0)->unsigned();
             $table->string('type')->nullable();
+            $table->string('page_url')->nullable();
             $table->string('utm_source')->nullable();
             $table->string('ip')->nullable();
             $table->string('user_agent')->nullable();
