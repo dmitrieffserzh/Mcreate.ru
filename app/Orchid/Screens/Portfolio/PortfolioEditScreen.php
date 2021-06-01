@@ -34,13 +34,12 @@ class PortfolioEditScreen extends Screen {
 
 		$meta = [];
 		foreach ( $portfolio->meta as $item ):
-			$meta[] = (array) $item->getAttributes();
+			$meta = (array) $item->getAttributes();
 		endforeach;
-
 		return [
 			'portfolio' => $portfolio,
 			'title'     => $portfolio->title,
-			'meta'      => $meta[0] ? $meta[0] : $meta
+			'meta'      => $meta
 		];
 	}
 

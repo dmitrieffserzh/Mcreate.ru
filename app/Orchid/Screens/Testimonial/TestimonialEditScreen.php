@@ -31,13 +31,13 @@ class TestimonialEditScreen extends Screen {
 
 		$meta = [];
 		foreach ( $testimonial->meta as $item ):
-			$meta[] = (array) $item->getAttributes();
+			$meta = (array) $item->getAttributes();
 		endforeach;
 
 		return [
 			'testimonial' => $testimonial,
 			'title'       => $testimonial->title,
-			'meta'        => $meta[0] ? $meta[0] : $meta
+			'meta'        => $meta
 		];
 	}
 

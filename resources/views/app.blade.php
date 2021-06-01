@@ -15,7 +15,7 @@
     <body>
         <header class="header">
             <div class="container">
-                HEADER
+                <a href="/" class="header__logo">LOGOTYPE</a>
             </div>
         </header>
         <main class="main">

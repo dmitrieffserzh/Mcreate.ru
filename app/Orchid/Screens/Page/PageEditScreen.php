@@ -31,13 +31,13 @@ class PageEditScreen extends Screen {
 
 		$meta = [];
 		foreach ( $page->meta as $item ):
-			$meta[] = (array) $item->getAttributes();
+			$meta = (array) $item->getAttributes();
 		endforeach;
 
 		return [
 			'page'  => $page,
 			'title' => $page->title,
-			'meta'  => $meta[0] ? $meta[0] : $meta
+			'meta'  => $meta
 		];
 	}
 
