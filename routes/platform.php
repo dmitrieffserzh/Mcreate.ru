@@ -10,6 +10,7 @@ use App\Orchid\Screens\Portfolio\PortfolioEditScreen;
 use App\Orchid\Screens\Testimonial\TestimonialListScreen;
 use App\Orchid\Screens\Testimonial\TestimonialEditScreen;
 use App\Orchid\Screens\Callback\CallbackListScreen;
+use App\Orchid\Screens\Callback\CallbackViewScreen;
 
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -227,6 +228,14 @@ Route::screen('testimonials', TestimonialListScreen::class)
 
 // CALLBACKS
 // =====================================================================================================================
+// Platfotm > Callbacks > View
+Route::screen('callbacks/{id}/view', CallbackViewScreen::class)
+     ->name('platform.callbacks.view')
+     ->breadcrumbs(function (Trail $trail, $callback) {
+	     return $trail
+		     ->parent('platform.index')
+		     ->push(__('Заявка на обратный звонок'), route('platform.callbacks.view', $callback));
+     });
 // Platfotm > Callbacks
 Route::screen('callbacks', CallbackListScreen::class)
      ->name('platform.callbacks')

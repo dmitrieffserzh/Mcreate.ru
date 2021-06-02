@@ -35,4 +35,9 @@ class Request extends Model
 		'created_at',
 		'updated_at'
 	];
+
+	protected $allowedSorts = [
+		'created_at',
+		'updated_at'
+	];
 }

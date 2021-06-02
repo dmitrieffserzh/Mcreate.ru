@@ -42,7 +42,7 @@ class PageListLayout extends Table {
 			  ->render( function ( $pages ) {
 				  return $pages['slug'];
 			  } ),
-			TD::make( __( '' ) )
+			TD::make( __( '	Действия' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
 			  ->render( function ( $pages ) {

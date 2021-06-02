@@ -35,6 +35,12 @@ class Portfolio extends Model
 		'updated_at'
 	];
 
+	protected $allowedSorts = [
+		'title',
+		'created_at',
+		'updated_at'
+	];
+
 	// RELATIONSHIPS
 	public function testimonials() {
 		return $this->hasOne(Testimonial::class, 'id');

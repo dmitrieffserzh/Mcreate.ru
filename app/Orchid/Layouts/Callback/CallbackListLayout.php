@@ -23,7 +23,7 @@ class CallbackListLayout extends Table {
 			  ->cantHide()
 			  ->width( '80px' )
 			  ->render( function ( $result ) {
-				  return '<span style="display: block;word-break: inherit;">№ ' .$result['id'].'</span>';
+				  return '<span style="display: block;word-break: inherit;">№ ' . $result['id'] . '</span>';
 			  } ),
 			TD::make( 'name', 'Имя' )
 			  ->align( 'left' )
@@ -33,7 +33,7 @@ class CallbackListLayout extends Table {
 			  ->align( 'left' )
 			  ->cantHide()
 			  ->render( function ( $result ) {
-				  return $this->phone_format($result['phone']);
+				  return $this->phone_format( $result['phone'] );
 			  } ),
 			TD::make( 'created_at', 'Размещено' )
 			  ->align( 'right' )
@@ -43,7 +43,7 @@ class CallbackListLayout extends Table {
 				  return '<span class="text-muted">Обновлено: ' . Carbon::parse( $result->updated_at )->format( 'd.m.Y H:i:s' ) . '</span><br><span class="text-muted">Размещено: ' . Carbon::parse( $result->created_at )->format( 'd.m.Y H:i:s' ) . '</span>';
 			  } )
 			  ->sort(),
-			TD::make( __( '' ) )
+			TD::make( __( 'Действия' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
 			  ->render( function ( $result ) {
@@ -52,24 +52,23 @@ class CallbackListLayout extends Table {
 				                 ->list( [
 
 					                 Link::make( 'Просмотреть' )
-					                    // ->route( 'platform.pages.edit', $result['slug'] )
+					                     ->route( 'platform.callbacks.view', $result['id'] )
 					                     ->icon( 'eye' ),
 
 					                 Button::make( __( 'Delete' ) )
 					                       ->icon( 'trash' )
 					                       ->method( 'remove' )
 					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )
-					                       //->parameters( [
-						                   //    'slug' => $pages['slug'],
-					                       //] ),
+					                       ->parameters( [
+						                       'id' => $result['id'],
+					                       ] ),
 				                 ] );
 			  } ),
 		];
 	}
 
-	public function phone_format($phone)
-	{
-		$phone = trim($phone);
+	public function phone_format( $phone ) {
+		$phone = trim( $phone );
 
 		$res = preg_replace(
 			array(
@@ -93,5 +92,4 @@ class CallbackListLayout extends Table {
 
 		return $res;
 	}
-
 }

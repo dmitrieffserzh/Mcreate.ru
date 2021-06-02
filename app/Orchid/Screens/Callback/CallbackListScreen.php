@@ -14,7 +14,7 @@ class CallbackListScreen extends Screen {
 
 	public function query(): array {
 		return [
-			'result' => Request::filters()->where( 'type', '=', 'callback' )->defaultSort( 'created_at', 'desc' )->paginate( 15 )
+			'result' => Request::filters()->where( 'type', '=', 'callback' )->defaultSort( 'id', 'desc' )->paginate( 30 )
 		];
 	}
 

@@ -11,6 +11,8 @@ use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
+use Orchid\Support\Color;
+use Orchid\Screen\Fields\Group;
 
 class TestimonialListLayout extends Table {
 
@@ -23,11 +25,12 @@ class TestimonialListLayout extends Table {
 			  ->cantHide()
 			  ->width( '30px' )
 			  ->render( function ( $testimonials ) {
-			  	    $color = '#eff1f9';
-			  	    if($testimonials->published == 1)
-				        $color = '#43d040';
+				  $color = '#eff1f9';
+				  if ( $testimonials->published == 1 ) {
+					  $color = '#43d040';
+				  }
 
-				  return '<span style="display: block;width: 16px;height: 16px;border-radius: 50%;background: '.$color.';"></span>';
+				  return '<span style="display: block;width: 16px;height: 16px;border-radius: 50%;background: ' . $color . ';"></span>';
 			  } ),
 			TD::make( 'img_cover', '' )
 			  ->align( 'left' )
@@ -52,24 +55,32 @@ class TestimonialListLayout extends Table {
 				  return '<span class="text-muted">Обновлено: ' . Carbon::parse( $testimonials->updated_at )->format( 'd.m.Y H:i:s' ) . '</span><br><span class="text-muted">Размещено: ' . Carbon::parse( $testimonials->created_at )->format( 'd.m.Y H:i:s' ) . '</span>';
 			  } )
 			  ->sort(),
-			TD::make( __( '' ) )
+			TD::make( __( 'Действия' ) )
 			  ->align( TD::ALIGN_CENTER )
-			  ->width( '50px' )
+			  ->width( '130px' )
 			  ->render( function ( Testimonial $testimonials ) {
-				  return DropDown::make()
-				                 ->icon( 'options-vertical' )
-				                 ->list( [
-					                 Link::make( __( 'Edit' ) )
-					                     ->route( 'platform.testimonials.edit', $testimonials->id )
-					                     ->icon( 'pencil' ),
-					                 Button::make( __( 'Delete' ) )
-					                       ->icon( 'trash' )
-					                       ->method( 'remove' )
-					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )
-					                       ->parameters( [
-						                       'slug' => $testimonials->id,
-					                       ] ),
-				                 ] );
+				  return Group::make( [
+					  Button::make( '' )->method( 'buttonClickProcessing' )->type( Color::PRIMARY() )->icon( 'pencil' )->route( 'platform.testimonials.edit', $testimonials->id ),
+					  Button::make( '' )->method( 'buttonClickProcessing' )->type( Color::DANGER() )->icon( 'trash' )->method( 'remove' )->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )->parameters( [
+						  'slug' => $testimonials->id,
+					  ] )
+				  ] )->autoWidth();
+
+
+				  /* return DropDown::make()
+								  ->icon( 'options-vertical' )
+								  ->list( [
+									  Link::make( __( 'Edit' ) )
+										  ->route( 'platform.testimonials.edit', $testimonials->id )
+										  ->icon( 'pencil' ),
+									  Button::make( __( 'Delete' ) )
+											->icon( 'trash' )
+											->method( 'remove' )
+											->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )
+											->parameters( [
+												'slug' => $testimonials->id,
+											] ),
+								  ] );*/
 			  } ),
 		];
 	}

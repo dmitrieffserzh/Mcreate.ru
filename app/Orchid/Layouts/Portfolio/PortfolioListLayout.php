@@ -51,7 +51,7 @@ class PortfolioListLayout extends Table {
 				  return '<span class="text-muted">Обновлено: ' . Carbon::parse( $portfolio->updated_at )->format( 'd.m.Y H:i:s' ) . '</span><br><span class="text-muted">Размещено: ' . Carbon::parse( $portfolio->created_at )->format( 'd.m.Y H:i:s' ) . '</span>';
 			  } )
 			  ->sort(),
-			TD::make( __( '' ) )
+			TD::make( __( 'Действия' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
 			  ->render( function ( Portfolio $portfolio ) {
