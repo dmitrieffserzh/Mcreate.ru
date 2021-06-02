@@ -11,8 +11,6 @@ use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
-use Orchid\Support\Color;
-use Orchid\Screen\Fields\Group;
 
 class TestimonialListLayout extends Table {
 
@@ -59,28 +57,20 @@ class TestimonialListLayout extends Table {
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '130px' )
 			  ->render( function ( Testimonial $testimonials ) {
-				  return Group::make( [
-					  Button::make( '' )->method( 'buttonClickProcessing' )->type( Color::PRIMARY() )->icon( 'pencil' )->route( 'platform.testimonials.edit', $testimonials->id ),
-					  Button::make( '' )->method( 'buttonClickProcessing' )->type( Color::DANGER() )->icon( 'trash' )->method( 'remove' )->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )->parameters( [
-						  'slug' => $testimonials->id,
-					  ] )
-				  ] )->autoWidth();
-
-
-				  /* return DropDown::make()
-								  ->icon( 'options-vertical' )
-								  ->list( [
-									  Link::make( __( 'Edit' ) )
-										  ->route( 'platform.testimonials.edit', $testimonials->id )
-										  ->icon( 'pencil' ),
-									  Button::make( __( 'Delete' ) )
-											->icon( 'trash' )
-											->method( 'remove' )
-											->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )
-											->parameters( [
-												'slug' => $testimonials->id,
-											] ),
-								  ] );*/
+				  return DropDown::make()
+				                 ->icon( 'options-vertical' )
+				                 ->list( [
+					                 Link::make( __( 'Edit' ) )
+					                     ->route( 'platform.testimonials.edit', $testimonials->id )
+					                     ->icon( 'pencil' ),
+					                 Button::make( __( 'Delete' ) )
+					                       ->icon( 'trash' )
+					                       ->method( 'remove' )
+					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )
+					                       ->parameters( [
+						                       'slug' => $testimonials->id,
+					                       ] ),
+				                 ] );
 			  } ),
 		];
 	}

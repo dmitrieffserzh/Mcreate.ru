@@ -11,7 +11,6 @@ use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
-
 class CallbackListLayout extends Table {
 
 	public $target = 'result';
@@ -28,7 +27,10 @@ class CallbackListLayout extends Table {
 			TD::make( 'name', 'Имя' )
 			  ->align( 'left' )
 			  ->cantHide()
-			  ->width( '20%' ),
+			  ->width( '20%' )
+			  ->render( function ( $result ) {
+				  return '<strong><a href=' . route( 'platform.callbacks.view', $result['id'] ) . '>' . $result['name'] . '</a></strong>';
+			  } ),
 			TD::make( 'phone', 'Телефон' )
 			  ->align( 'left' )
 			  ->cantHide()

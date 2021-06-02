@@ -23,11 +23,12 @@ class PortfolioListLayout extends Table {
 			  ->cantHide()
 			  ->width( '30px' )
 			  ->render( function ( $portfolio ) {
-			  	    $color = '#eff1f9';
-			  	    if($portfolio->published == 1)
-				        $color = '#43d040';
+				  $color = '#eff1f9';
+				  if ( $portfolio->published == 1 ) {
+					  $color = '#43d040';
+				  }
 
-				  return '<span style="display: block;width: 16px;height: 16px;border-radius: 50%;background: '.$color.';"></span>';
+				  return '<span style="display: block;width: 16px;height: 16px;border-radius: 50%;background: ' . $color . ';"></span>';
 			  } ),
 			TD::make( 'img_cover', '' )
 			  ->align( 'left' )
