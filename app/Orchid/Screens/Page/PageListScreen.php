@@ -38,22 +38,6 @@ class PageListScreen extends Screen {
 		];
 	}
 
-	/*public function getSubparrent( $basePage, $pagess ): array {
-		$subPages = array_filter( $pagess, function ( $obj ) use ( $basePage ) {
-
-			if ( $obj->parent_id == $basePage->id ) {
-				return true;
-			}
-
-			return false;
-		} );
-		for ( $i = 1; $i < count( $subPages ); $i ++ ) {
-			$subPages[ $i ]->subpage = $this->getSubparrent( $subPages[ $i ], $pagess );
-		}
-
-		return $subPages;
-	}*/
-
 	public function commandBar(): array {
 		return [
 			Link::make( __( 'Добавить страницу' ) )

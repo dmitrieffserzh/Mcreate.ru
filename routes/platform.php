@@ -9,6 +9,7 @@ use App\Orchid\Screens\Portfolio\PortfolioListScreen;
 use App\Orchid\Screens\Portfolio\PortfolioEditScreen;
 use App\Orchid\Screens\Testimonial\TestimonialListScreen;
 use App\Orchid\Screens\Testimonial\TestimonialEditScreen;
+use App\Orchid\Screens\Callback\CallbackListScreen;
 
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -222,4 +223,15 @@ Route::screen('testimonials', TestimonialListScreen::class)
 	     return $trail
 		     ->parent('platform.index')
 		     ->push(__('Отзывы'), route('platform.testimonials'));
+     });
+
+// CALLBACKS
+// =====================================================================================================================
+// Platfotm > Callbacks
+Route::screen('callbacks', CallbackListScreen::class)
+     ->name('platform.callbacks')
+     ->breadcrumbs(function (Trail $trail) {
+	     return $trail
+		     ->parent('platform.index')
+		     ->push(__('Обратный звонок'), route('platform.callbacks'));
      });

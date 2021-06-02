@@ -36,6 +36,7 @@ class PortfolioEditScreen extends Screen {
 		foreach ( $portfolio->meta as $item ):
 			$meta = (array) $item->getAttributes();
 		endforeach;
+
 		return [
 			'portfolio' => $portfolio,
 			'title'     => $portfolio->title,
@@ -133,59 +134,4 @@ class PortfolioEditScreen extends Screen {
 	public function cancel() {
 		return redirect()->route( 'platform.portfolio' );
 	}
-
-	/*
-
-		public function save(User $user, Request $request)
-		{
-			$request->validate([
-				'user.email' => [
-					'required',
-					Rule::unique(User::class, 'email')->ignore($user),
-				],
-			]);
-
-			$permissions = collect($request->get('permissions'))
-				->map(function ($value, $key) {
-					return [base64_decode($key) => $value];
-				})
-				->collapse()
-				->toArray();
-
-			$userData = $request->get('user');
-			if ($user->exists && (string)$userData['password'] === '') {
-				// When updating existing user null password means "do not change current password"
-				unset($userData['password']);
-			} else {
-				$userData['password'] = Hash::make($userData['password']);
-			}
-
-			$user
-				->fill($userData)
-				->fill([
-					'permissions' => $permissions,
-				])
-				->save();
-
-			$user->replaceRoles($request->input('user.roles'));
-
-			Toast::info(__('User was saved.'));
-
-			return redirect()->route('platform.systems.users');
-		}
-
-
-		public function remove(User $user)
-		{
-			$user->delete();
-
-			Toast::info(__('User was removed'));
-
-			return redirect()->route('platform.systems.users');
-		}
-
-
-	*/
-
-
 }

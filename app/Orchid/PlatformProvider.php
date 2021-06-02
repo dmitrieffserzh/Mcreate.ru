@@ -52,10 +52,9 @@ class PlatformProvider extends OrchidServiceProvider {
 			// Заявки
 			Menu::make( 'Заказать звонок' )
 			    ->icon( 'call-in' )
+				->route( 'platform.callbacks' )
 			    ->title( 'Заявки' )
-			    ->badge( function () {
-				    return 6;
-			    } )->divider(),
+			    ->divider(),
 			Menu::make( __( 'Users' ) )
 			    ->icon( 'user' )
 			    ->route( 'platform.systems.users' )

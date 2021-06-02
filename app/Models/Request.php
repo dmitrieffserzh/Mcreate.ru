@@ -32,7 +32,6 @@ class Request extends Model
 	];
 
 	public $allowedFilters = [
-		'title',
 		'created_at',
 		'updated_at'
 	];
