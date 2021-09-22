@@ -47,9 +47,9 @@
                 <h3 class="portfolio-item__title">{{ $item['title'] }}</h3>
             </div>
             @endforeach
-            <div class="container">
+            <!--<div class="container">
                 <a href="#" class="button button--center">Смореть все</a>
-            </div>
+            </div>-->
         </div>
     </section>
     <section class="section section--services">

@@ -97,10 +97,11 @@
             <div class="overlay"></div>
             <nav class="main-menu">
                 <a href="/" class="main-menu__link">Главная</a>
-                <a href="" class="main-menu__link">Услуги</a>
-                <a href="/works.html" class="main-menu__link">Работы</a>
-                <a href="" class="main-menu__link main-menu__link--active">Отзывы</a>
-                <a href="/contacts.html" class="main-menu__link">Контакты</a>
+                <a href="/services/" class="main-menu__link{{ request()->is('services*') ? ' main-menu__link--active' : '' }}">Услуги</a>
+                <a href="/works/" class="main-menu__link{{ request()->is('works*') ? ' main-menu__link--active' : '' }}">Работы</a>
+                <a href="/testimonials/" class="main-menu__link{{ request()->is('testimonials*') ? ' main-menu__link--active' : '' }}">Отзывы</a>
+                <a href="/articles/" class="main-menu__link{{ request()->is('articles*') ? ' main-menu__link--active' : '' }}">Статьи</a>
+                <a href="/contacts/" class="main-menu__link{{ request()->is('contacts*') ? ' main-menu__link--active' : '' }}">Контакты</a>
                 <div id="contacts"></div>
             </nav>
             <button class="button-menu">
