@@ -35,7 +35,7 @@ class TestimonialEditLayout extends Rows {
 			       ->title( 'Обложка' )
 			       ->class( 'float-left' )
 			       ->width( 1200 )
-			       ->height( 550 )
+			       ->height( 496 )
 			       ->targetRelativeUrl(),
 			Quill::make( 'testimonial.content' )
 			     ->title( '' )

@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Testimonial;
 
 class PageController extends Controller {
 
 
 	public function index() {
-		$page = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'glavnaya-stranica' )->firstOrFail()->load( 'meta' )->toArray();
+		$page = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'main' )->firstOrFail()->load( 'meta' )->toArray();
+		$portfolio = Testimonial::all()->toArray();
 
-		return view( 'pages.page', [
-			'page' => $page
+		return view( 'pages.main', [
+			'page' => $page,
+			'portfolio' => $portfolio
 		] );
 	}
 
@@ -68,6 +71,4 @@ class PageController extends Controller {
 
 		return $result;
 	}
-
-
 }
