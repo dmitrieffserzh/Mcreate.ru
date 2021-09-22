@@ -26,10 +26,6 @@ class PortfolioEditLayout extends Rows {
 			] ),
 
 			Group::make( [
-				Select::make( 'portfolio.' )
-				      ->fromModel( Testimonial::class, 'title', 'id' )
-				      ->empty( 'Не выбран', '0' )
-				      ->title( 'Связанный отзыв' ),
 				RadioButtons::make( 'portfolio.published' )
 				            ->title( 'Активность' )
 				            ->options( [
@@ -38,7 +34,7 @@ class PortfolioEditLayout extends Rows {
 				            ] )
 				            ->value( 1 )
 			] ),
-			Cropper::make( 'testimonial.img_cover' )
+			Cropper::make( 'portfolio.img_cover' )
 			       ->title( 'Обложка' )
 			       ->class( 'float-left' )
 			       ->width( 1200 )
@@ -46,7 +42,8 @@ class PortfolioEditLayout extends Rows {
 			       ->targetRelativeUrl(),
 			Quill::make( 'portfolio.content' )
 			     ->title( '' )
-			     ->popover( '' ),
+			     ->popover( '' )
+			     ->required(),
 
 		];
 	}

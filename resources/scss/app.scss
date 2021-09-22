@@ -517,7 +517,6 @@ SECTIONS
     flex: 1 1 33.33333%;
 
     width: 100%;
-    min-height: 300px;
 
     &::before {
       position: absolute;
@@ -582,7 +581,7 @@ SECTIONS
     }
 
     &__img {
-      width: auto;
+      width: 100%;
 
       transition: all .3s Linear;
     }

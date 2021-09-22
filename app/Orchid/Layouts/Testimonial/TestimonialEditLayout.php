@@ -39,7 +39,8 @@ class TestimonialEditLayout extends Rows {
 			       ->targetRelativeUrl(),
 			Quill::make( 'testimonial.content' )
 			     ->title( '' )
-			     ->popover( '' ),
+			     ->popover( '' )
+			     ->required(),
 		];
 	}
 }
