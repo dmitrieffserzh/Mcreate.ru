@@ -35,7 +35,7 @@ class PortfolioListLayout extends Table {
 			  ->cantHide()
 				//->width( '30px' )
               ->render( function ( $portfolio ) {
-					return "<img src='https://picsum.photos/450/200?random={" . $portfolio->id . "}' class='mw-100 d-block img-fluid'>";
+					return '<img src="' . $portfolio->img_cover . '" class="mw-100 d-block img-fluid">';
 				} ),
 			TD::make( 'title', 'Заголовок' )
 			  ->align( 'left' )
