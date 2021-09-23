@@ -11,6 +11,7 @@
     <meta name="description" content="@yield('meta_description','')">
     <link rel="canonical" href="{{url()->current()}}"/>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @stack('header-scripts')
 </head>
 
 <body>
@@ -120,5 +121,6 @@
     <div class="copyright">&copy; 2021 Mcreate. Все права защищены.</div>
 </footer>
 <script src="{{ asset('js/app.js') }}"></script>
+@stack('footer-scripts')
 </body>
 </html>

@@ -47,9 +47,17 @@ class PageController extends Controller {
 		}
 
 		$portfolio = Portfolio::all()->toArray();
-		return view( 'pages.main', [
+
+		$url = url()->current();
+		$segment = explode("/",$url);
+
+
+
+
+		return view( 'pages.page-'. end($segment), [
 			'page' => $page,
-			'portfolio' => $portfolio
+			'portfolio' => $portfolio,
+			'segment' => $segment
 		] );
 	}
 
