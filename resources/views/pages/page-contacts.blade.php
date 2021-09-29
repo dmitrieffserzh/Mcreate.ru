@@ -10,6 +10,15 @@
             <div class="page-section">
                 <h1 class="page-section__title">{{ $page['title'] }}</h1>
                 <p class="page-section__description">{{ strip_tags($page['content']) }}</p>
+                <form action="" class="feedback">
+                    <input type="text" class="feedback__input" placeholder="Имя">
+                    <input type="text" class="feedback__input" placeholder="Телефон">
+                    <textarea name="" rows="3" class="feedback__textarea" placeholder="Сообщение..."></textarea>
+                    <p>Нажимая «Отправить», Вы принимаете условия
+                        <a href="">политики конфиденциальности</a>.
+                    </p>
+                    <button class="button feedback__submit">Отправить</button>
+                </form>
             </div>
         </div>
     </section>
