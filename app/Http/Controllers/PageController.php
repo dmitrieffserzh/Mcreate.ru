@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Portfolio;
-use App\Models\Testimonial;
 
 class PageController extends Controller {
 
 
 	public function index() {
-		$page = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'main' )->firstOrFail()->load( 'meta' )->toArray();
+		$page      = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'main' )->firstOrFail()->load( 'meta' )->toArray();
 		$portfolio = Portfolio::all()->toArray();
 
 		return view( 'pages.main', [
-			'page' => $page,
+			'page'      => $page,
 			'portfolio' => $portfolio
 		] );
 	}
@@ -48,16 +47,14 @@ class PageController extends Controller {
 
 		$portfolio = Portfolio::all()->toArray();
 
-		$url = url()->current();
-		$segment = explode("/",$url);
+		$url     = url()->current();
+		$segment = explode( "/", $url );
 
 
-
-
-		return view( 'pages.page-'. end($segment), [
-			'page' => $page,
+		return view( 'pages.page-' . end( $segment ), [
+			'page'      => $page,
 			'portfolio' => $portfolio,
-			'segment' => $segment
+			'segment'   => $segment
 		] );
 	}
 

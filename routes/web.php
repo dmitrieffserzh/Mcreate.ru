@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\FormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,6 @@ Route::pattern(	'slug',     '[a-z0-9-_\/]+');
 // PAGES
 Route::get('/',         [PageController::class, 'index']);
 Route::get('/{slug}',   [PageController::class, 'getPage']);
+
+// FORMS
+Route::post('send',     [FormController::class, 'sendForm']);

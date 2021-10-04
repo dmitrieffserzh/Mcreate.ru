@@ -29,7 +29,7 @@
                         iconImageHref: 'https://static.tildacdn.com/tild3061-3235-4537-b066-616662373363/Group_783.svg',
                         iconImageSize: [130, 130],
                         iconImageOffset: [-65, -110]
-                    })
+                    });
 
                 myMap.geoObjects
                     .add(myPlacemark1)
@@ -41,5 +41,4 @@
             -webkit-filter: grayscale(100%);
         }
     </style>
-
 @endsection

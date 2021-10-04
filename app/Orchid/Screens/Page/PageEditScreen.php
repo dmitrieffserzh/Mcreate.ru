@@ -123,7 +123,7 @@ class PageEditScreen extends Screen {
 
 	public function remove( Page $page ) {
 		$page->delete();
-
+		$page->meta()->delete();
 		Toast::info( 'Страница удалена' );
 
 		return redirect()->route( 'platform.pages' );

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0f1922">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title','')</title>
     <meta name="keywords" content="@yield('meta_keywords','')">
     <meta name="description" content="@yield('meta_description','')">
@@ -16,7 +17,7 @@
 
 <body>
 <header class="header">
-    <div class="container d-flex justify-content-between">
+    <!--<div class="container d-flex justify-content-between">
         <div class="logo">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  height="40" viewBox="0 0 837 153" xml:space="preserve" stroke="none" stroke-width="0"
@@ -111,7 +112,7 @@
                 <span class="button-menu__line"></span>
             </button>
         </div>
-    </div>
+    </div>-->
 </header>
 <main class="main">
     @yield('content')

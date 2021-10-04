@@ -666,6 +666,9 @@ CONTACT FORM
     &:focus {
       border-color: #ff0106;
     }
+    &.error {
+      border-color: #ff0106;
+    }
   }
 
   &__textarea {

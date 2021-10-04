@@ -19,6 +19,7 @@
         "sass-loader": "^11.1.1"
     },
     "dependencies": {
+        "inputmask": "^5.0.6",
         "jquery": "^3.6.0"
     }
 }
