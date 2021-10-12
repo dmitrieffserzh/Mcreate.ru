@@ -10,11 +10,11 @@ class PageController extends Controller {
 
 	public function index() {
 		$page      = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'main' )->firstOrFail()->load( 'meta' )->toArray();
-		$portfolio = Portfolio::all()->toArray();
+		$works =    Portfolio::all()->toArray();
 
 		return view( 'pages.main', [
 			'page'      => $page,
-			'portfolio' => $portfolio
+			'works' => $works
 		] );
 	}
 
@@ -45,7 +45,7 @@ class PageController extends Controller {
 			abort( 404 );
 		}
 
-		$portfolio = Portfolio::all()->toArray();
+		$works = Portfolio::all()->toArray();
 
 		$url     = url()->current();
 		$segment = explode( "/", $url );
@@ -53,7 +53,7 @@ class PageController extends Controller {
 
 		return view( 'pages.page-' . end( $segment ), [
 			'page'      => $page,
-			'portfolio' => $portfolio,
+			'works' => $works,
 			'segment'   => $segment
 		] );
 	}

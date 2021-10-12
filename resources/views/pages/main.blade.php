@@ -35,21 +35,21 @@
             </div>
         </div>
     </section>
-    <section class="section section--portfolio">
+    <section class="section section--works">
         <div class="container">
             <h2 class="section__title">Наши работы</h2>
         </div>
-        <div class="portfolio">
-            @foreach( $portfolio as $item)
-            <div class="portfolio-item">
-                <a class="portfolio-item__link" href="#"></a>
-                <img class="portfolio-item__img" src="{{ $item['img_cover'] }}" alt="">
-                <h3 class="portfolio-item__title">{{ $item['title'] }}</h3>
+        <div class="works">
+            @foreach( $works as $item)
+            <div class="works-item">
+                <a class="works-item__link" href="{{ route('works.show', ['slug' => $item['slug']]) }}"></a>
+                <img class="works-item__img" src="{{ $item['img_cover'] }}" alt="">
+                <h3 class="works-item__title">{{ $item['title'] }}</h3>
             </div>
             @endforeach
-            <!--<div class="container">
-                <a href="#" class="button button--center">Смореть все</a>
-            </div>-->
+            <div class="container">
+                <a href="/works/" class="button button--center">Смореть все</a>
+            </div>
         </div>
     </section>
     <section class="section section--services">
@@ -60,11 +60,17 @@
 
     <section class="section section--contacts">
         <div class="container">
-            <h2 class="section__title">Контакты</h2>
-            <form action="" class="feedback">
-                <input type="text" class="feedback__input" placeholder="Имя">
-                <input type="text" class="feedback__input" placeholder="Телефон">
-                <textarea name="" rows="3" class="feedback__textarea" placeholder="Сообщение..."></textarea>
+            <h2 class="section__title section__title--center">Контакты</h2>
+            <form id="feedback" action="" class="feedback" novalidate>
+                <div class="feedback__block">
+                    <input type="text" class="feedback__input" placeholder="Имя *" autocomplete="off" required>
+                </div>
+                <div class="feedback__block">
+                    <input type="text" class="feedback__input" placeholder="Телефон *" autocomplete="off" required>
+                </div>
+                <div class="feedback__block">
+                    <textarea name="" rows="3" class="feedback__textarea" placeholder="Сообщение..."></textarea>
+                </div>
                 <p>Нажимая «Отправить», Вы принимаете условия
                     <a href="">политики конфиденциальности</a>.
                 </p>

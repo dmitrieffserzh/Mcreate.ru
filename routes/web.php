@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\WorkController;
 use App\Http\Controllers\FormController;
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,11 @@ use App\Http\Controllers\FormController;
 */
 
 Route::pattern(	'slug',     '[a-z0-9-_\/]+');
+
+
+// WORKS
+//Route::get('/works/',   [WorkController::class, 'index'])->name('works');
+Route::get('/works/{slug}',   [WorkController::class, 'show'])->name('works.show');
 
 // PAGES
 Route::get('/',         [PageController::class, 'index']);

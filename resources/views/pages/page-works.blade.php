@@ -14,13 +14,13 @@
         </div>
     </section>
 
-    <section class="section section--portfolio">
-        <div class="portfolio">
-            @foreach( $portfolio as $item)
-                <div class="portfolio-item">
-                    <a class="portfolio-item__link" href="#"></a>
-                    <img class="portfolio-item__img" src="{{ $item['img_cover'] }}" alt="">
-                    <h3 class="portfolio-item__title">{{ $item['title'] }}</h3>
+    <section class="section section--works">
+        <div class="works">
+            @foreach( $works as $item)
+                <div class="works-item">
+                    <a class="works-item__link" href="{{ route('works.show', ['slug' => $item['slug']]) }}"></a>
+                    <img class="works-item__img" src="{{ $item['img_cover'] }}" alt="">
+                    <h3 class="works-item__title">{{ $item['title'] }}</h3>
                 </div>
             @endforeach
         </div>
