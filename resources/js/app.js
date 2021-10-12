@@ -1,8 +1,30 @@
 //window.$ = require('jquery');
 //require('./bootstrap');
+window.Swiper = require('swiper');
 require('inputmask');
+window.onload = function() {
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'vertical',
+        loop: true,
 
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
 
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // And if we need scrollbar
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    });
+}
 
 window.addEventListener("scroll", function () {
     if (document.scrollingElement.scrollTop > 10) {
@@ -13,7 +35,7 @@ window.addEventListener("scroll", function () {
 });
 
 // ADD CONTACTS NAVIGATION
-/*function appengHeaderContacts() {
+function appengHeaderContacts() {
     var div = document.getElementById("contacts");
     if (window.innerWidth < 768) {
         var content = '';
@@ -54,19 +76,12 @@ for (i = 0; i < button.length; i++) {
     });
 }
 
-*/
 
 // CONTACT FORM
-
 var phoneInputs = document.getElementsByName("phone");
 for (i = 0; i < phoneInputs.length; i++) {
    Inputmask({"mask": "+7 (999) 999-9999"}).mask(phoneInputs[i]);
 }
-
-
-
-
-
 
 function validateForm(form) {
     var requiredInputs = form.querySelectorAll("[required]");
@@ -100,14 +115,11 @@ function sendForm() {
     xhttp.send(data);
 }
 
-
-
 var form = document.getElementById("contact-form");
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     if(validateForm(form))
         sendForm();
 });
-
 
 

@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "inputmask": "^5.0.6",
-        "jquery": "^3.6.0"
+        "jquery": "^3.6.0",
+        "swiper": "^7.0.8"
     }
 }
