@@ -5,64 +5,30 @@
 @section('meta_description', $page['meta'][0]['description'])
 
 @section('content')
-   <!-- <section class="section section--page section-bg--page-{{ end($segment) }}">
+    <section class="section section--page section-bg--page-{{ end($segment) }}">
         <div class="container">
             <div class="page-section">
                 <h1 class="page-section__title">{{ $page['title'] }}</h1>
                 <p class="page-section__description">{{ strip_tags($page['content']) }}</p>
-                <form action="" class="feedback">
-                    <input type="text" class="feedback__input" placeholder="Имя">
-                    <input type="text" class="feedback__input" placeholder="Телефон">
-                    <textarea name="" rows="3" class="feedback__textarea" placeholder="Сообщение..."></textarea>
-                    <p>Нажимая «Отправить», Вы принимаете условия
-                        <a href="">политики конфиденциальности</a>.
-                    </p>
-                    <button class="button feedback__submit">Отправить</button>
-                </form>
             </div>
         </div>
     </section>
--->
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
 
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
    <div class="container">
-       <form id="contact-form" class="feedback" method="POST" enctype="multipart/form-data" novalidate>
-           <input type="text" name="name" class="feedback__input" placeholder="Имя" autocomplete="off" required>
-           <input type="text" name="phone" class="feedback__input" placeholder="Телефон" autocomplete="off" required>
-           <textarea name="message" rows="3" class="feedback__textarea" placeholder="Сообщение..."></textarea>
-           <p>Нажимая «Отправить», Вы принимаете условия <a href="">политики конфиденциальности</a>.</p>
-           <button type="submit" class="button feedback__submit">Отправить</button>
+       <form id="feedback" action="" class="feedback" novalidate>
+           <div class="feedback__block">
+               <input type="text" class="feedback__input" placeholder="Имя *" autocomplete="off" required>
+           </div>
+           <div class="feedback__block">
+               <input type="text" class="feedback__input" placeholder="Телефон *" autocomplete="off" required>
+           </div>
+           <div class="feedback__block">
+               <textarea name="" rows="3" class="feedback__textarea" placeholder="Сообщение..."></textarea>
+           </div>
+           <p>Нажимая «Отправить», Вы принимаете условия
+               <a href="">политики конфиденциальности</a>.
+           </p>
+           <button class="button feedback__submit">Отправить</button>
        </form>
    </div>
     <div id="map" style="width:100%; height:60vh;"></div>
@@ -76,7 +42,7 @@
         </script>
 
 
-        <!--<script>
+        <script>
             ymaps.ready(init);
             function init() {
                 var myMap = new ymaps.Map("map", {
@@ -94,7 +60,7 @@
                 myMap.geoObjects
                     .add(myPlacemark1)
             }
-        </script>-->
+        </script>
     @endpush
     <style>
         .ymaps-layers-pane {

@@ -252,8 +252,6 @@ SECTIONS
     overflow: hidden;
 
     min-height: 40vh;
-    margin: 0 0 10rem;
-
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -446,7 +444,7 @@ SECTIONS
   justify-content: flex-end;
 
   max-width: 700px;
-  height: 40vh;
+  height: 30vh;
 
   &__title {
     font-size: 2.7rem;
