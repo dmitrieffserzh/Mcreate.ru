@@ -5,7 +5,7 @@ namespace App\Orchid\Screens\Work;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use App\Models\Works;
+use App\Models\Work;
 use App\Orchid\Layouts\SlugEditListener;
 use App\Orchid\Layouts\Helpers\MetaLayout;
 use App\Orchid\Layouts\Work\WorkEditLayout;
@@ -24,7 +24,7 @@ class WorkEditScreen extends Screen {
 
 	private $works;
 
-	public function query( Works $works ): array {
+	public function query( Work $works ): array {
 		$this->works = $works;
 
 		if ( ! $works->exists ) {
@@ -93,16 +93,16 @@ class WorkEditScreen extends Screen {
 		];
 	}
 
-	public function save( Works $works, Request $request ) {
+	public function save( Work $works, Request $request ) {
 		$request->validate( [
 			'work.title' => [
 				'required',
-				Rule::unique( Works::class, 'title' )->ignore( $works ),
+				Rule::unique( Work::class, 'title' )->ignore( $works ),
 			],
 			'work.slug'  => [
 				'required',
 				'regex:/[a-zA-Z0-9-]/',
-				Rule::unique( Works::class, 'slug' )->ignore( $works ),
+				Rule::unique( Work::class, 'slug' )->ignore( $works ),
 			],
 		] );
 
@@ -123,7 +123,7 @@ class WorkEditScreen extends Screen {
 		return redirect()->route( 'platform.works' );
 	}
 
-	public function remove( Works $works ) {
+	public function remove( Work $works ) {
 		$works->delete();
 
 		Toast::info( 'Страница удалена' );

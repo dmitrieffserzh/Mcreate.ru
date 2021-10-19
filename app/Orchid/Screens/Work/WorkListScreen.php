@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens\Work;
 
-use App\Models\Works;
+use App\Models\Work;
 use App\Orchid\Layouts\Work\WorkListLayout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Actions\Link;
@@ -16,7 +16,7 @@ class WorkListScreen extends Screen {
 
 	public function query(): array {
 
-		$result = Works::filters()->defaultSort('created_at', 'desc')->paginate( 15 );
+		$result = Work::filters()->defaultSort('created_at', 'desc')->paginate( 15 );
 
 
 		return [
@@ -43,7 +43,7 @@ class WorkListScreen extends Screen {
 		];
 	}
 
-	public function remove(Works $works)
+	public function remove(Work $works)
 	{
 		$works->delete();
 
