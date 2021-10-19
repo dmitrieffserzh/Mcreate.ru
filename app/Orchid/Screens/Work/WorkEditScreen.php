@@ -62,8 +62,8 @@ class WorkEditScreen extends Screen {
 		$slug = Str::slug( $title, '-' );
 
 		return [
-			'portfolio.slug'  => $slug,
-			'portfolio.title' => $title
+			'works.slug'  => $slug,
+			'works.title' => $title
 		];
 	}
 
@@ -75,7 +75,7 @@ class WorkEditScreen extends Screen {
 				],
 				'SEO'     => [
 					MetaLayout::class,
-					new SlugEditListener( 'works' ),
+					new SlugEditListener( 'work' ),
 				]
 			] ),
 			Layout::rows( [
