@@ -9,11 +9,11 @@ class PageController extends Controller {
 
 
 	public function index() {
-		$page      = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'main' )->firstOrFail()->load( 'meta' )->toArray();
-		$works =    Work::all()->toArray();
+		$page  = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'main' )->firstOrFail()->load( 'meta' )->toArray();
+		$works = Work::all()->toArray();
 
 		return view( 'pages.main', [
-			'page'      => $page,
+			'page'  => $page,
 			'works' => $works
 		] );
 	}
@@ -52,9 +52,9 @@ class PageController extends Controller {
 
 
 		return view( 'pages.page-' . end( $segment ), [
-			'page'      => $page,
-			'works' => $works,
-			'segment'   => $segment
+			'page'    => $page,
+			'works'   => $works,
+			'segment' => $segment
 		] );
 	}
 

@@ -15,10 +15,12 @@ class WorkController extends Controller
 
 	public function show ($slug) {
 		$work = Work::where( 'slug', '=', $slug )->get()->load( 'meta' )->toArray();
+		$works = Work::all()->toArray();
 
 		return view( 'pages.page-work-show', [
 			//'page'      => $page,
-			'work' => $work
+			'work' => $work,
+			'works' => $works
 		] );
 	}
 }

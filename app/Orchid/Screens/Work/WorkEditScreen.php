@@ -35,7 +35,7 @@ class WorkEditScreen extends Screen {
 		endforeach;
 
 		return [
-			'works' => $works,
+			'work' => $works,
 			'title' => $works->title,
 			'meta'  => $meta
 		];
@@ -90,30 +90,30 @@ class WorkEditScreen extends Screen {
 		];
 	}
 
-	public function save( Work $works, Request $request ) {
+	public function save( Work $work, Request $request ) {
 		$request->validate( [
 			'work.title' => [
 				'required',
-				Rule::unique( Work::class, 'title' )->ignore( $works ),
+				Rule::unique( Work::class, 'title' )->ignore( $work ),
 			],
 			'work.slug'  => [
 				'required',
 				'regex:/[a-zA-Z0-9-]/',
-				Rule::unique( Work::class, 'slug' )->ignore( $works ),
+				Rule::unique( Work::class, 'slug' )->ignore( $work ),
 			],
 		] );
 
 		$pageData = $request->get( 'work' );
 		$metaData = $request->get( 'meta' );
 
-		$works->fill( $pageData );
-		$works->save();
-		if ( count( $works->meta ) > 0 ):
-			$works->meta()->update( $metaData );
+		$work->fill( $pageData );
+		$work->save();
+		if ( count( $work->meta ) > 0 ):
+			$work->meta()->update( $metaData );
 		else:
-			$works->meta()->create( $metaData );
+			$work->meta()->create( $metaData );
 		endif;
-		$works->save();
+		$work->save();
 
 		Toast::info( 'Страница сохранена!' );
 

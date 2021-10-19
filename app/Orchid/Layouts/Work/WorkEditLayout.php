@@ -13,6 +13,8 @@ use Orchid\Screen\Layouts\Rows;
 
 class WorkEditLayout extends Rows {
 
+	public $target = 'work';
+
 	public function fields(): array {
 		return [
 			Group::make( [

@@ -660,6 +660,11 @@ WORKS
       background: rgba(0, 0, 0, .3) !important;
     }
   }
+  &-content {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: #a88989;
+  }
 }
 
 @media screen and(max-width: 650px) {
