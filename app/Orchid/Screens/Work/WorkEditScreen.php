@@ -22,10 +22,7 @@ class WorkEditScreen extends Screen {
 
 	public $description = 'Редактирование записи';
 
-	private $works;
-
 	public function query( Work $works ): array {
-		$this->works = $works;
 
 		if ( ! $works->exists ) {
 			$this->name        = 'Добавить';
@@ -62,8 +59,8 @@ class WorkEditScreen extends Screen {
 		$slug = Str::slug( $title, '-' );
 
 		return [
-			'works.slug'  => $slug,
-			'works.title' => $title
+			'work.slug'  => $slug,
+			'work.title' => $title
 		];
 	}
 

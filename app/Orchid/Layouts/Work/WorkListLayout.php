@@ -5,7 +5,7 @@ declare( strict_types=1 );
 namespace App\Orchid\Layouts\Work;
 
 use Illuminate\Support\Carbon;
-use App\Models\Works;
+use App\Models\Work;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
@@ -42,7 +42,7 @@ class WorkListLayout extends Table {
 			  ->cantHide()
 			  ->width( '60%' )
 			  ->render( function ( $works ) {
-				  return '<strong><a href=' . route( 'platform.portfolio.edit', $works ) . '>' . $works->title . '</a></strong>';
+				  return '<strong><a href=' . route( 'platform.works.edit', $works ) . '>' . $works->title . '</a></strong>';
 			  } ),
 			TD::make( 'created_at', 'Размещено' )
 			  ->align( 'right' )
@@ -55,13 +55,13 @@ class WorkListLayout extends Table {
 			TD::make( __( 'Действия' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
-			  ->render( function ( Works $works ) {
+			  ->render( function ( Work $works ) {
 				  return DropDown::make()
 				                 ->icon( 'options-vertical' )
 				                 ->list( [
 
 					                 Link::make( __( 'Edit' ) )
-					                     ->route( 'platform.portfolio.edit', $works->id )
+					                     ->route( 'platform.works.edit', $works->id )
 					                     ->icon( 'pencil' ),
 
 					                 Button::make( __( 'Delete' ) )

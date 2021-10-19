@@ -4,15 +4,12 @@ declare( strict_types=1 );
 
 namespace App\Orchid\Layouts\Work;
 
-use App\Models\Testimonial;
 use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\RadioButtons;
-use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Rows;
-use Orchid\Screen\Fields\Picture;
 
 class WorkEditLayout extends Rows {
 
@@ -25,7 +22,6 @@ class WorkEditLayout extends Rows {
 				     ->style( 'width: 100%; max-width: 100%;' )
 				     ->required(),
 			] ),
-
 			Group::make( [
 				RadioButtons::make( 'work.published' )
 				            ->title( 'Активность' )
@@ -51,7 +47,6 @@ class WorkEditLayout extends Rows {
 			     ->title( '' )
 			     ->popover( '' )
 			     ->required(),
-
 		];
 	}
 }
