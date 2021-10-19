@@ -21,7 +21,7 @@ class WorkListScreen extends Screen {
 
 		return [
 
-			'portfolio' => $result
+			'works' => $result
 			//->filters()
 			//->filtersApplySelection(UserFiltersLayout::class)
 			//->defaultSort('id', 'desc')
@@ -33,7 +33,7 @@ class WorkListScreen extends Screen {
 		return [
 			Link::make( __( 'Добавить запись' ) )
 			    ->icon( 'plus' )
-			    ->href( route( 'platform.portfolio.create' ) ),
+			    ->href( route( 'platform.works.create' ) ),
 		];
 	}
 
@@ -43,12 +43,12 @@ class WorkListScreen extends Screen {
 		];
 	}
 
-	public function remove(Works $portfolio)
+	public function remove(Works $works)
 	{
-		$portfolio->delete();
+		$works->delete();
 
 		Toast::info('Страница удалена');
 
-		return redirect()->route('platform.portfolio');
+		return redirect()->route('platform.works');
 	}
 }

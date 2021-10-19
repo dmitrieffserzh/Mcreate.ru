@@ -26,7 +26,7 @@ class WorkEditLayout extends Rows {
 			] ),
 
 			Group::make( [
-				RadioButtons::make( 'portfolio.published' )
+				RadioButtons::make( 'work.published' )
 				            ->title( 'Активность' )
 				            ->options( [
 					            1 => 'Опубликовать',
@@ -34,13 +34,19 @@ class WorkEditLayout extends Rows {
 				            ] )
 				            ->value( 1 )
 			] ),
-			Cropper::make( 'portfolio.img_cover' )
-			       ->title( 'Обложка' )
+			Cropper::make( 'work.img_cover' )
+			       ->title( 'Превью' )
 			       ->class( 'float-left' )
 			       ->width( 1200 )
 			       ->height( 496 )
 			       ->targetRelativeUrl(),
-			Quill::make( 'portfolio.content' )
+			Cropper::make( 'work.img_main' )
+			       ->title( 'Обложка страницы' )
+			       ->class( 'float-left' )
+			       ->width( 1920 )
+			       ->height( 1000 )
+			       ->targetRelativeUrl(),
+			Quill::make( 'work.content' )
 			     ->title( '' )
 			     ->popover( '' )
 			     ->required(),

@@ -22,24 +22,24 @@ class WorkEditScreen extends Screen {
 
 	public $description = 'Редактирование записи';
 
-	private $portfolio;
+	private $works;
 
-	public function query( Works $portfolio ): array {
-		$this->portfolio = $portfolio;
+	public function query( Works $works ): array {
+		$this->works = $works;
 
-		if ( ! $portfolio->exists ) {
+		if ( ! $works->exists ) {
 			$this->name        = 'Добавить';
 			$this->description = 'Добавление новой записи';
 		}
 
 		$meta = [];
-		foreach ( $portfolio->meta as $item ):
+		foreach ( $works->meta as $item ):
 			$meta = (array) $item->getAttributes();
 		endforeach;
 
 		return [
-			'portfolio' => $portfolio,
-			'title'     => $portfolio->title,
+			'works' => $works,
+			'title'     => $works->title,
 			'meta'      => $meta
 		];
 	}
@@ -75,7 +75,7 @@ class WorkEditScreen extends Screen {
 				],
 				'SEO'     => [
 					MetaLayout::class,
-					new SlugEditListener( 'portfolio' ),
+					new SlugEditListener( 'works' ),
 				]
 			] ),
 			Layout::rows( [
@@ -93,45 +93,45 @@ class WorkEditScreen extends Screen {
 		];
 	}
 
-	public function save( Works $portfolio, Request $request ) {
+	public function save( Works $works, Request $request ) {
 		$request->validate( [
-			'portfolio.title' => [
+			'work.title' => [
 				'required',
-				Rule::unique( Works::class, 'title' )->ignore( $portfolio ),
+				Rule::unique( Works::class, 'title' )->ignore( $works ),
 			],
-			'portfolio.slug'  => [
+			'work.slug'  => [
 				'required',
 				'regex:/[a-zA-Z0-9-]/',
-				Rule::unique( Works::class, 'slug' )->ignore( $portfolio ),
+				Rule::unique( Works::class, 'slug' )->ignore( $works ),
 			],
 		] );
 
-		$pageData = $request->get( 'portfolio' );
+		$pageData = $request->get( 'work' );
 		$metaData = $request->get( 'meta' );
 
-		$portfolio->fill( $pageData );
-		$portfolio->save();
-		if ( count( $portfolio->meta ) > 0 ):
-			$portfolio->meta()->update( $metaData );
+		$works->fill( $pageData );
+		$works->save();
+		if ( count( $works->meta ) > 0 ):
+			$works->meta()->update( $metaData );
 		else:
-			$portfolio->meta()->create( $metaData );
+			$works->meta()->create( $metaData );
 		endif;
-		$portfolio->save();
+		$works->save();
 
 		Toast::info( 'Страница сохранена!' );
 
-		return redirect()->route( 'platform.portfolio' );
+		return redirect()->route( 'platform.works' );
 	}
 
-	public function remove( Works $portfolio ) {
-		$portfolio->delete();
+	public function remove( Works $works ) {
+		$works->delete();
 
 		Toast::info( 'Страница удалена' );
 
-		return redirect()->route( 'platform.portfolio' );
+		return redirect()->route( 'platform.works' );
 	}
 
 	public function cancel() {
-		return redirect()->route( 'platform.portfolio' );
+		return redirect()->route( 'platform.works' );
 	}
 }

@@ -165,34 +165,34 @@ Route::screen('pages', PageListScreen::class)
 	});
 
 
-// PORTFOLIO
+// WORKS
 // =====================================================================================================================
 
 // Platform > Portfolio > Edit
-Route::screen('portfolio/{id}/edit', WorkEditScreen::class)
-     ->name('platform.portfolio.edit')
-     ->breadcrumbs(function (Trail $trail, $portfolio) {
+Route::screen('works/{id}/edit', WorkEditScreen::class)
+     ->name('platform.works.edit')
+     ->breadcrumbs(function (Trail $trail, $works) {
 	     return $trail
-		     ->parent('platform.portfolio')
-		     ->push(__('Edit'), route('platform.portfolio.edit', $portfolio));
+		     ->parent('platform.works')
+		     ->push(__('Edit'), route('platform.works.edit', $works));
      });
 
 // Platfotm > Portfolio > Create
-Route::screen('portfolio/create', WorkEditScreen::class)
-     ->name('platform.portfolio.create')
+Route::screen('works/create', WorkEditScreen::class)
+     ->name('platform.works.create')
      ->breadcrumbs(function (Trail $trail) {
 	     return $trail
-		     ->parent('platform.portfolio')
-		     ->push(__('Create'), route('platform.portfolio.create'));
+		     ->parent('platform.works')
+		     ->push(__('Create'), route('platform.works.create'));
      });
 
 // Platfotm > Portfolio
-Route::screen('portfolio', WorkListScreen::class)
-     ->name('platform.portfolio')
+Route::screen('works', WorkListScreen::class)
+     ->name('platform.works')
      ->breadcrumbs(function (Trail $trail) {
 	     return $trail
 		     ->parent('platform.index')
-		     ->push(__('Портфолио'), route('platform.portfolio'));
+		     ->push(__('Портфолио'), route('platform.works'));
      });
 
 

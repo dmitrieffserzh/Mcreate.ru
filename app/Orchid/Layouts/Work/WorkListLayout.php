@@ -14,7 +14,7 @@ use Orchid\Screen\TD;
 
 class WorkListLayout extends Table {
 
-	public $target = 'portfolio';
+	public $target = 'works';
 
 	public function columns(): array {
 		return [
@@ -22,9 +22,9 @@ class WorkListLayout extends Table {
 			  ->align( 'left' )
 			  ->cantHide()
 			  ->width( '30px' )
-			  ->render( function ( $portfolio ) {
+			  ->render( function ( $works ) {
 				  $color = '#eff1f9';
-				  if ( $portfolio->published == 1 ) {
+				  if ( $works->published == 1 ) {
 					  $color = '#43d040';
 				  }
 
@@ -34,34 +34,34 @@ class WorkListLayout extends Table {
 			  ->align( 'left' )
 			  ->cantHide()
 				//->width( '30px' )
-              ->render( function ( $portfolio ) {
-					return '<img src="' . $portfolio->img_cover . '" class="mw-100 d-block img-fluid">';
+              ->render( function ( $works ) {
+					return '<img src="' . $works->img_cover . '" class="mw-100 d-block img-fluid">';
 				} ),
 			TD::make( 'title', 'Заголовок' )
 			  ->align( 'left' )
 			  ->cantHide()
 			  ->width( '60%' )
-			  ->render( function ( $portfolio ) {
-				  return '<strong><a href=' . route( 'platform.portfolio.edit', $portfolio ) . '>' . $portfolio->title . '</a></strong>';
+			  ->render( function ( $works ) {
+				  return '<strong><a href=' . route( 'platform.portfolio.edit', $works ) . '>' . $works->title . '</a></strong>';
 			  } ),
 			TD::make( 'created_at', 'Размещено' )
 			  ->align( 'right' )
 			  ->cantHide()
 			  ->width( '220px' )
-			  ->render( function ( $portfolio ) {
-				  return '<span class="text-muted">Обновлено: ' . Carbon::parse( $portfolio->updated_at )->format( 'd.m.Y H:i:s' ) . '</span><br><span class="text-muted">Размещено: ' . Carbon::parse( $portfolio->created_at )->format( 'd.m.Y H:i:s' ) . '</span>';
+			  ->render( function ( $works ) {
+				  return '<span class="text-muted">Обновлено: ' . Carbon::parse( $works->updated_at )->format( 'd.m.Y H:i:s' ) . '</span><br><span class="text-muted">Размещено: ' . Carbon::parse( $works->created_at )->format( 'd.m.Y H:i:s' ) . '</span>';
 			  } )
 			  ->sort(),
 			TD::make( __( 'Действия' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
-			  ->render( function ( Works $portfolio ) {
+			  ->render( function ( Works $works ) {
 				  return DropDown::make()
 				                 ->icon( 'options-vertical' )
 				                 ->list( [
 
 					                 Link::make( __( 'Edit' ) )
-					                     ->route( 'platform.portfolio.edit', $portfolio->id )
+					                     ->route( 'platform.portfolio.edit', $works->id )
 					                     ->icon( 'pencil' ),
 
 					                 Button::make( __( 'Delete' ) )
@@ -69,7 +69,7 @@ class WorkListLayout extends Table {
 					                       ->method( 'remove' )
 					                       ->confirm( 'Как только запись будет удалена, все ее ресурсы и данные будут удалены безвозвратно.' )
 					                       ->parameters( [
-						                       'slug' => $portfolio->id,
+						                       'slug' => $works->id,
 					                       ] ),
 				                 ] );
 			  } ),
