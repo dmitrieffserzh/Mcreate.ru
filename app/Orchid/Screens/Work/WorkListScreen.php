@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Orchid\Screens\Portfolio;
+namespace App\Orchid\Screens\Work;
 
-use App\Models\Portfolio;
-use App\Orchid\Layouts\Portfolio\PortfolioListLayout;
+use App\Models\Works;
+use App\Orchid\Layouts\Work\WorkListLayout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Toast;
 
-class PortfolioListScreen extends Screen {
+class WorkListScreen extends Screen {
 
 	public $name = 'Страницы';
 
@@ -16,7 +16,7 @@ class PortfolioListScreen extends Screen {
 
 	public function query(): array {
 
-		$result = Portfolio::filters()->defaultSort('created_at', 'desc')->paginate( 15 );
+		$result = Works::filters()->defaultSort('created_at', 'desc')->paginate( 15 );
 
 
 		return [
@@ -39,11 +39,11 @@ class PortfolioListScreen extends Screen {
 
 	public function layout(): array {
 		return [
-			PortfolioListLayout::class,
+			WorkListLayout::class,
 		];
 	}
 
-	public function remove(Portfolio $portfolio)
+	public function remove(Works $portfolio)
 	{
 		$portfolio->delete();
 

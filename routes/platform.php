@@ -5,8 +5,8 @@ declare(strict_types=1);
 
 use App\Orchid\Screens\Page\PageListScreen;
 use App\Orchid\Screens\Page\PageEditScreen;
-use App\Orchid\Screens\Portfolio\PortfolioListScreen;
-use App\Orchid\Screens\Portfolio\PortfolioEditScreen;
+use App\Orchid\Screens\Work\WorkListScreen;
+use App\Orchid\Screens\Work\WorkEditScreen;
 use App\Orchid\Screens\Testimonial\TestimonialListScreen;
 use App\Orchid\Screens\Testimonial\TestimonialEditScreen;
 use App\Orchid\Screens\Callback\CallbackListScreen;
@@ -169,7 +169,7 @@ Route::screen('pages', PageListScreen::class)
 // =====================================================================================================================
 
 // Platform > Portfolio > Edit
-Route::screen('portfolio/{id}/edit', PortfolioEditScreen::class)
+Route::screen('portfolio/{id}/edit', WorkEditScreen::class)
      ->name('platform.portfolio.edit')
      ->breadcrumbs(function (Trail $trail, $portfolio) {
 	     return $trail
@@ -178,7 +178,7 @@ Route::screen('portfolio/{id}/edit', PortfolioEditScreen::class)
      });
 
 // Platfotm > Portfolio > Create
-Route::screen('portfolio/create', PortfolioEditScreen::class)
+Route::screen('portfolio/create', WorkEditScreen::class)
      ->name('platform.portfolio.create')
      ->breadcrumbs(function (Trail $trail) {
 	     return $trail
@@ -187,7 +187,7 @@ Route::screen('portfolio/create', PortfolioEditScreen::class)
      });
 
 // Platfotm > Portfolio
-Route::screen('portfolio', PortfolioListScreen::class)
+Route::screen('portfolio', WorkListScreen::class)
      ->name('platform.portfolio')
      ->breadcrumbs(function (Trail $trail) {
 	     return $trail

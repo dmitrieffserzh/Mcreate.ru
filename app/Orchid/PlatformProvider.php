@@ -29,8 +29,8 @@ class PlatformProvider extends OrchidServiceProvider {
 			Menu::make( 'Портфолио' )
 			    ->icon( 'grid' )
 			    ->list( [
-				    Menu::make( 'Записи' )->icon( 'docs' )->route( 'platform.portfolio' ),
-				    Menu::make( 'Добавить запись' )->icon( 'note' )->route( 'platform.portfolio.create' ),
+				    Menu::make( 'Записи' )->icon( 'docs' )->route( 'platform.work' ),
+				    Menu::make( 'Добавить запись' )->icon( 'note' )->route( 'platform.work.create' ),
 			    ] )
 			,
 			Menu::make( 'Отзывы' )

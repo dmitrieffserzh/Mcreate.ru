@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use App\Models\Portfolio;
+use App\Models\Works;
 
 class PageController extends Controller {
 
 
 	public function index() {
 		$page      = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'main' )->firstOrFail()->load( 'meta' )->toArray();
-		$works =    Portfolio::all()->toArray();
+		$works =    Works::all()->toArray();
 
 		return view( 'pages.main', [
 			'page'      => $page,
@@ -45,7 +45,7 @@ class PageController extends Controller {
 			abort( 404 );
 		}
 
-		$works = Portfolio::all()->toArray();
+		$works = Works::all()->toArray();
 
 		$url     = url()->current();
 		$segment = explode( "/", $url );

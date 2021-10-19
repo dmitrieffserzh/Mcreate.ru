@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace App\Orchid\Layouts\Portfolio;
+namespace App\Orchid\Layouts\Work;
 
 use App\Models\Testimonial;
 use Orchid\Screen\Fields\Cropper;
@@ -13,7 +13,7 @@ use Orchid\Screen\Fields\RadioButtons;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Rows;
 
-class PortfolioEditLayout extends Rows {
+class WorkEditLayout extends Rows {
 
 	public function fields(): array {
 		return [

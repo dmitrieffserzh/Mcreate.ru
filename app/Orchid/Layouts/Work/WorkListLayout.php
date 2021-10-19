@@ -2,17 +2,17 @@
 
 declare( strict_types=1 );
 
-namespace App\Orchid\Layouts\Portfolio;
+namespace App\Orchid\Layouts\Work;
 
 use Illuminate\Support\Carbon;
-use App\Models\Portfolio;
+use App\Models\Works;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
-class PortfolioListLayout extends Table {
+class WorkListLayout extends Table {
 
 	public $target = 'portfolio';
 
@@ -55,7 +55,7 @@ class PortfolioListLayout extends Table {
 			TD::make( __( 'Действия' ) )
 			  ->align( TD::ALIGN_CENTER )
 			  ->width( '50px' )
-			  ->render( function ( Portfolio $portfolio ) {
+			  ->render( function ( Works $portfolio ) {
 				  return DropDown::make()
 				                 ->icon( 'options-vertical' )
 				                 ->list( [

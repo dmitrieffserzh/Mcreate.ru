@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Orchid\Screens\Portfolio;
+namespace App\Orchid\Screens\Work;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use App\Models\Portfolio;
+use App\Models\Works;
 use App\Orchid\Layouts\SlugEditListener;
 use App\Orchid\Layouts\Helpers\MetaLayout;
-use App\Orchid\Layouts\Portfolio\PortfolioEditLayout;
+use App\Orchid\Layouts\Work\WorkEditLayout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Support\Color;
 use Orchid\Screen\Fields\Group;
@@ -16,7 +16,7 @@ use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
 
-class PortfolioEditScreen extends Screen {
+class WorkEditScreen extends Screen {
 
 	public $name = 'Редактировать';
 
@@ -24,7 +24,7 @@ class PortfolioEditScreen extends Screen {
 
 	private $portfolio;
 
-	public function query( Portfolio $portfolio ): array {
+	public function query( Works $portfolio ): array {
 		$this->portfolio = $portfolio;
 
 		if ( ! $portfolio->exists ) {
@@ -71,7 +71,7 @@ class PortfolioEditScreen extends Screen {
 		return [
 			Layout::tabs( [
 				'Контент' => [
-					PortfolioEditLayout::class,
+					WorkEditLayout::class,
 				],
 				'SEO'     => [
 					MetaLayout::class,
@@ -93,16 +93,16 @@ class PortfolioEditScreen extends Screen {
 		];
 	}
 
-	public function save( Portfolio $portfolio, Request $request ) {
+	public function save( Works $portfolio, Request $request ) {
 		$request->validate( [
 			'portfolio.title' => [
 				'required',
-				Rule::unique( Portfolio::class, 'title' )->ignore( $portfolio ),
+				Rule::unique( Works::class, 'title' )->ignore( $portfolio ),
 			],
 			'portfolio.slug'  => [
 				'required',
 				'regex:/[a-zA-Z0-9-]/',
-				Rule::unique( Portfolio::class, 'slug' )->ignore( $portfolio ),
+				Rule::unique( Works::class, 'slug' )->ignore( $portfolio ),
 			],
 		] );
 
@@ -123,7 +123,7 @@ class PortfolioEditScreen extends Screen {
 		return redirect()->route( 'platform.portfolio' );
 	}
 
-	public function remove( Portfolio $portfolio ) {
+	public function remove( Works $portfolio ) {
 		$portfolio->delete();
 
 		Toast::info( 'Страница удалена' );

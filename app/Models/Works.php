@@ -7,7 +7,7 @@ use Orchid\Screen\AsSource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Portfolio extends Model
+class Works extends Model
 {
 	use HasFactory;
 	use AsSource;
