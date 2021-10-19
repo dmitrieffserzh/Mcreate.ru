@@ -168,7 +168,7 @@ Route::screen('pages', PageListScreen::class)
 // WORKS
 // =====================================================================================================================
 
-// Platform > Portfolio > Edit
+// Platform > Works > Edit
 Route::screen('works/{id}/edit', WorkEditScreen::class)
      ->name('platform.works.edit')
      ->breadcrumbs(function (Trail $trail, $works) {
@@ -177,7 +177,7 @@ Route::screen('works/{id}/edit', WorkEditScreen::class)
 		     ->push(__('Edit'), route('platform.works.edit', $works));
      });
 
-// Platfotm > Portfolio > Create
+// Platfotm > Works > Create
 Route::screen('works/create', WorkEditScreen::class)
      ->name('platform.works.create')
      ->breadcrumbs(function (Trail $trail) {
@@ -186,7 +186,7 @@ Route::screen('works/create', WorkEditScreen::class)
 		     ->push(__('Create'), route('platform.works.create'));
      });
 
-// Platfotm > Portfolio
+// Platfotm > Works
 Route::screen('works', WorkListScreen::class)
      ->name('platform.works')
      ->breadcrumbs(function (Trail $trail) {

@@ -39,8 +39,8 @@ class WorkEditScreen extends Screen {
 
 		return [
 			'works' => $works,
-			'title'     => $works->title,
-			'meta'      => $meta
+			'title' => $works->title,
+			'meta'  => $meta
 		];
 	}
 

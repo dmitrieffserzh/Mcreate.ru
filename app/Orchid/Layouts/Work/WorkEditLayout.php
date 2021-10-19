@@ -12,6 +12,7 @@ use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\RadioButtons;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Fields\Picture;
 
 class WorkEditLayout extends Rows {
 
