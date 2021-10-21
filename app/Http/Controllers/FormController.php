@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class FormController extends Controller
 {
     public function sendForm(Request $request) {
-	   print_r($request->all());
+	   dd($request->all());
     }
 }

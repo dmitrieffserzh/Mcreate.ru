@@ -36,12 +36,6 @@
         <script src="//api-maps.yandex.ru/2.0/?load=package.standard,package.geoObjects&lang=ru-RU" type="text/javascript"></script>
     @endpush
     @push('footer-scripts')
-
-        <script>
-
-        </script>
-
-
         <script>
             ymaps.ready(init);
             function init() {

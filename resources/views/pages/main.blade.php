@@ -41,11 +41,11 @@
         </div>
         <div class="works">
             @foreach( $works as $item)
-            <div class="works-item">
-                <a class="works-item__link" href="{{ route('works.show', ['slug' => $item['slug']]) }}"></a>
-                <img class="works-item__img" src="{{ $item['img_cover'] }}" alt="">
-                <h3 class="works-item__title">{{ $item['title'] }}</h3>
-            </div>
+                <div class="works-item">
+                    <a class="works-item__link" href="{{ route('works.show', ['slug' => $item['slug']]) }}"></a>
+                    <img class="works-item__img" src="{{ $item['img_cover'] }}" alt="">
+                    <h3 class="works-item__title">{{ $item['title'] }}</h3>
+                </div>
             @endforeach
             <div class="container">
                 <a href="/works/" class="button button--center">Смореть все</a>
@@ -82,13 +82,13 @@
             <h2 class="section__title section__title--center">Контакты</h2>
             <form id="feedback" action="" class="feedback" novalidate>
                 <div class="feedback__block">
-                    <input type="text" class="feedback__input" placeholder="Имя *" autocomplete="off" required>
+                    <input type="text" name="name" class="feedback__input" placeholder="Имя *" autocomplete="off" required>
                 </div>
                 <div class="feedback__block">
-                    <input type="text" class="feedback__input" placeholder="Телефон *" autocomplete="off" required>
+                    <input type="text" name="phone" class="feedback__input" placeholder="Телефон *" autocomplete="off" required>
                 </div>
                 <div class="feedback__block">
-                    <textarea name="" rows="3" class="feedback__textarea" placeholder="Сообщение..."></textarea>
+                    <textarea name="message" rows="3" class="feedback__textarea"  placeholder="Сообщение..."></textarea>
                 </div>
                 <p>Нажимая «Отправить», Вы принимаете условия
                     <a href="">политики конфиденциальности</a>.
@@ -98,3 +98,5 @@
         </div>
     </section>
 @endsection
+@push('footer-scripts')
+@endpush

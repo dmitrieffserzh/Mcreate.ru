@@ -1,21 +1,21 @@
-window.Swiper = require('swiper');
-require('inputmask');
-window.onload = function() {
-    const swiper = new Swiper('.swiper', {
-        direction: 'vertical',
-        loop: true,
-        pagination: {
-            el: '.swiper-pagination'
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-        scrollbar: {
-            el: '.swiper-scrollbar'
-        }
-    });
-};
+import Inputmask from 'inputmask';
+import { Swiper } from 'swiper';
+/*
+const swiper = new Swiper('.swiper', {
+    direction: 'vertical',
+    loop: true,
+    pagination: {
+        el: '.swiper-pagination'
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+    },
+    scrollbar: {
+        el: '.swiper-scrollbar'
+    }
+});
+*/
 
 window.addEventListener("scroll", function () {
     if (document.scrollingElement.scrollTop > 10) {
@@ -61,7 +61,7 @@ window.addEventListener("scroll", function () {
 
 // OPEN MOBILE MENU
 var button = document.querySelectorAll(".button-menu, .overlay");
-for (i = 0; i < button.length; i++) {
+for (let i = 0; i < button.length; i++) {
     button[i].addEventListener("click", function () {
         document.querySelector("body").classList.toggle("open-menu");
     });
@@ -70,14 +70,14 @@ for (i = 0; i < button.length; i++) {
 
 // CONTACT FORM
 var phoneInputs = document.getElementsByName("phone");
-for (i = 0; i < phoneInputs.length; i++) {
-   Inputmask({"mask": "+7 (999) 999-9999"}).mask(phoneInputs[i]);
+for (let i = 0; i < phoneInputs.length; i++) {
+    Inputmask({"mask": "+7 (999) 999-9999"}).mask(phoneInputs[i]);
 }
 
 function validateForm(form) {
     var requiredInputs = form.querySelectorAll("[required]");
     var result = true;
-    for (i = 0; i < requiredInputs.length; i++) {
+    for (let i = 0; i < requiredInputs.length; i++) {
         if(requiredInputs[i].value === "" || requiredInputs[i].value.length < 3) {
             requiredInputs[i].classList.add('error');
             result = false;
@@ -94,7 +94,6 @@ function sendForm() {
 
     var xhttp = new XMLHttpRequest;
     var data = {
-        _token: token,
         name: 'Имя',
         phone: 'Телефон'
     };
@@ -103,10 +102,10 @@ function sendForm() {
     xhttp.setRequestHeader('X-CSRF-TOKEN', token);
     xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    xhttp.send(data);
+    xhttp.send(JSON.stringify(data));
 }
 
-var form = document.getElementById("contact-form");
+var form = document.getElementById("feedback");
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     if(validateForm(form))
