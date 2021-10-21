@@ -14,7 +14,7 @@ class RequestListScreen extends Screen {
 
 	public function query(): array {
 		return [
-			'result' => RequestForm::filters()->where( 'type', '=', 'callback' )->defaultSort( 'id', 'desc' )->paginate( 30 )
+			'result' => RequestForm::filters()->defaultSort( 'id', 'desc' )->paginate( 30 )
 		];
 	}
 

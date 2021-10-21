@@ -51,15 +51,15 @@ class PlatformScreen extends Screen {
 
 	public function layout(): array {
 		return [
-			Layout::columns( [
-				ChartLineExample::class,
-				ChartBarExample::class,
-			] ),
+			//Layout::columns( [
+			//	ChartLineExample::class,
+			//	ChartBarExample::class,
+			//] ),
 
-			Layout::columns( [
-				ChartPercentageExample::class,
-				ChartPieExample::class,
-			] ),
+			//Layout::columns( [
+			//	ChartPercentageExample::class,
+			//	ChartPieExample::class,
+			//] ),
 
 				Layout::view( 'platform::partials.welcome' )
 			];

@@ -90,6 +90,7 @@
                 <div class="feedback__block">
                     <textarea name="message" rows="3" class="feedback__textarea"  placeholder="Сообщение..."></textarea>
                 </div>
+                <input type="hidden" name="page_url" value="{{  url()->current() }}">
                 <p>Нажимая «Отправить», Вы принимаете условия
                     <a href="">политики конфиденциальности</a>.
                 </p>

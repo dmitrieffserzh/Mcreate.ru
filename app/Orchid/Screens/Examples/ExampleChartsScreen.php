@@ -32,7 +32,7 @@ class ExampleChartsScreen extends Screen
                     'values' => [25, 40, 30, 35, 8, 52, 17],
                     'labels' => ['12am-3am', '3am-6am', '6am-9am', '9am-12pm', '12pm-3pm', '3pm-6pm', '6pm-9pm'],
                 ],
-                [
+               /* [
                     'name'   => 'Another Set',
                     'values' => [25, 50, -10, 15, 18, 32, 27],
                     'labels' => ['12am-3am', '3am-6am', '6am-9am', '9am-12pm', '12pm-3pm', '3pm-6pm', '6pm-9pm'],
@@ -46,7 +46,7 @@ class ExampleChartsScreen extends Screen
                     'name'   => 'And Last',
                     'values' => [10, 33, -8, -3, 70, 20, -34],
                     'labels' => ['12am-3am', '3am-6am', '6am-9am', '9am-12pm', '12pm-3pm', '3pm-6pm', '6pm-9pm'],
-                ],
+                ], */
             ],
         ];
     }

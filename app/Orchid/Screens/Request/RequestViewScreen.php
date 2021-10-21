@@ -39,7 +39,7 @@ class RequestViewScreen extends Screen {
 				     } ),
 				Sight::make( 'message', 'Сообщение:' ),
 				Sight::make( 'page_url', 'Источник:' ),
-				Sight::make( 'utm_source', 'UTM-метка:' ),
+				//Sight::make( 'utm_source', 'UTM-метка:' ),
 				Sight::make( 'ip', 'IP-дрес:' ),
 				Sight::make( 'user_agent', 'User-Agent:' ),
 				Sight::make( 'created_at', 'Размещено:' )
