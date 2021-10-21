@@ -1,5 +1,5 @@
 import Inputmask from 'inputmask';
-import { Swiper } from 'swiper';
+import {Swiper} from 'swiper';
 /*
 const swiper = new Swiper('.swiper', {
     direction: 'vertical',
@@ -61,7 +61,7 @@ window.addEventListener("scroll", function () {
 
 // OPEN MOBILE MENU
 var button = document.querySelectorAll(".button-menu, .overlay");
-for (let i = 0; i < button.length; i++) {
+for (var i = 0; i < button.length; i++) {
     button[i].addEventListener("click", function () {
         document.querySelector("body").classList.toggle("open-menu");
     });
@@ -70,15 +70,15 @@ for (let i = 0; i < button.length; i++) {
 
 // CONTACT FORM
 var phoneInputs = document.getElementsByName("phone");
-for (let i = 0; i < phoneInputs.length; i++) {
+for (var i = 0; i < phoneInputs.length; i++) {
     Inputmask({"mask": "+7 (999) 999-9999"}).mask(phoneInputs[i]);
 }
 
 function validateForm(form) {
     var requiredInputs = form.querySelectorAll("[required]");
     var result = true;
-    for (let i = 0; i < requiredInputs.length; i++) {
-        if(requiredInputs[i].value === "" || requiredInputs[i].value.length < 3) {
+    for (var i = 0; i < requiredInputs.length; i++) {
+        if (requiredInputs[i].value === "" || requiredInputs[i].value.length < 3) {
             requiredInputs[i].classList.add('error');
             result = false;
         } else {
@@ -88,28 +88,22 @@ function validateForm(form) {
     return result;
 }
 
-function sendForm() {
-    var url = '/send';
-    var token = document.head.querySelector("[name=csrf-token]").content;
-
+function sendForm(form) {
+    var formData = new FormData(form);
     var xhttp = new XMLHttpRequest;
-    var data = {
-        name: 'Имя',
-        phone: 'Телефон'
-    };
 
-    xhttp.open('POST', url, true);
-    xhttp.setRequestHeader('X-CSRF-TOKEN', token);
+    xhttp.open('POST', '/send', true);
+    xhttp.setRequestHeader('X-CSRF-TOKEN', document.head.querySelector("[name=csrf-token]").content);
     xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    xhttp.send(JSON.stringify(data));
+    xhttp.send(formData);
+
 }
 
 var form = document.getElementById("feedback");
 form.addEventListener('submit', function (event) {
     event.preventDefault();
-    if(validateForm(form))
-        sendForm();
+    if (validateForm(form))
+        sendForm(form);
 });
 
 

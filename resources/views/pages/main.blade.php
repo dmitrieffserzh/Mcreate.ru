@@ -98,5 +98,3 @@
         </div>
     </section>
 @endsection
-@push('footer-scripts')
-@endpush
