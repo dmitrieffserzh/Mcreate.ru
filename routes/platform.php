@@ -9,9 +9,8 @@ use App\Orchid\Screens\Work\WorkListScreen;
 use App\Orchid\Screens\Work\WorkEditScreen;
 use App\Orchid\Screens\Testimonial\TestimonialListScreen;
 use App\Orchid\Screens\Testimonial\TestimonialEditScreen;
-use App\Orchid\Screens\Callback\CallbackListScreen;
-use App\Orchid\Screens\Callback\CallbackViewScreen;
-
+use App\Orchid\Screens\Request\RequestListScreen;
+use App\Orchid\Screens\Request\RequestViewScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
 use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
@@ -229,18 +228,18 @@ Route::screen('testimonials', TestimonialListScreen::class)
 // CALLBACKS
 // =====================================================================================================================
 // Platfotm > Callbacks > View
-Route::screen('callbacks/{id}/view', CallbackViewScreen::class)
-     ->name('platform.callbacks.view')
-     ->breadcrumbs(function (Trail $trail, $callback) {
+Route::screen('requests/{id}/view', RequestViewScreen::class)
+     ->name('platform.requests.view')
+     ->breadcrumbs(function (Trail $trail, $request) {
 	     return $trail
 		     ->parent('platform.index')
-		     ->push(__('Заявка на обратный звонок'), route('platform.callbacks.view', $callback));
+		     ->push(__('Заявка на обратный звонок'), route('platform.requests.view', $request));
      });
 // Platfotm > Callbacks
-Route::screen('callbacks', CallbackListScreen::class)
-     ->name('platform.callbacks')
+Route::screen('requests', RequestListScreen::class)
+     ->name('platform.requests')
      ->breadcrumbs(function (Trail $trail) {
 	     return $trail
 		     ->parent('platform.index')
-		     ->push(__('Обратный звонок'), route('platform.callbacks'));
+		     ->push(__('Обратный звонок'), route('platform.requests'));
      });

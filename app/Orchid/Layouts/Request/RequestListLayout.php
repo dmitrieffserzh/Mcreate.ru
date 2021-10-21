@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace App\Orchid\Layouts\Callback;
+namespace App\Orchid\Layouts\Request;
 
 use Illuminate\Support\Carbon;
 use Orchid\Screen\Actions\Button;
@@ -11,7 +11,7 @@ use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
-class CallbackListLayout extends Table {
+class RequestListLayout extends Table {
 
 	public $target = 'result';
 
@@ -29,7 +29,7 @@ class CallbackListLayout extends Table {
 			  ->cantHide()
 			  ->width( '20%' )
 			  ->render( function ( $result ) {
-				  return '<strong><a href=' . route( 'platform.callbacks.view', $result['id'] ) . '>' . $result['name'] . '</a></strong>';
+				  return '<strong><a href=' . route( 'platform.requests.view', $result['id'] ) . '>' . $result['name'] . '</a></strong>';
 			  } ),
 			TD::make( 'phone', 'Телефон' )
 			  ->align( 'left' )
@@ -54,7 +54,7 @@ class CallbackListLayout extends Table {
 				                 ->list( [
 
 					                 Link::make( 'Просмотреть' )
-					                     ->route( 'platform.callbacks.view', $result['id'] )
+					                     ->route( 'platform.requests.view', $result['id'] )
 					                     ->icon( 'eye' ),
 
 					                 Button::make( __( 'Delete' ) )

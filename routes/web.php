@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\WorkController;
-use App\Http\Controllers\FormController;
+use App\Http\Controllers\RequestFormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,4 +27,4 @@ Route::get('/',         [PageController::class, 'index']);
 Route::get('/{slug}',   [PageController::class, 'getPage']);
 
 // FORMS
-Route::post('send',     [FormController::class, 'sendForm']);
+Route::post('send',     [RequestFormController::class, 'sendFormFeedback']);

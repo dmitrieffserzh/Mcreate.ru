@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Orchid\Screens\Callback;
+namespace App\Orchid\Screens\Request;
 
 use Illuminate\Support\Carbon;
-use App\Models\Request;
+use App\Models\RequestForm;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Sight;
 use Orchid\Screen\Screen;
 
-class CallbackViewScreen extends Screen {
+class RequestViewScreen extends Screen {
 
 	public $name = 'Заявка на обратный звонок';
 
 	public $description = 'Просмотр заявки';
 
-	private $callback;
+	private $request;
 
-	public function query( Request $callback ): array {
-		$this->callback = $callback;
+	public function query( RequestForm $request ): array {
+		$this->callback = $request;
 
 		return [
-			'result' => $callback
+			'result' => $request
 		];
 	}
 
