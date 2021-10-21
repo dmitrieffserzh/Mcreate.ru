@@ -31,7 +31,7 @@
            <button class="button feedback__submit">Отправить</button>
        </form>
    </div>
-    <div id="map" style="width:100%; height:60vh;"></div>
+    <div id="map" style="width:100%; height:60vh;margin: 5rem 0 0;"></div>
     @push('header-scripts')
         <script src="//api-maps.yandex.ru/2.0/?load=package.standard,package.geoObjects&lang=ru-RU" type="text/javascript"></script>
     @endpush

@@ -40,6 +40,7 @@ class TestimonialEditLayout extends Rows {
 			Quill::make( 'testimonial.content' )
 			     ->title( '' )
 			     ->popover( '' )
+			     ->toolbar(["text", "color", "header", "list", "format", "media"])
 			     ->required(),
 		];
 	}

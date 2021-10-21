@@ -13,7 +13,7 @@
             "@endif>
         <div class="container">
             <div class="page-section">
-                <h1 class="page-section__title">{{ $work[0]['title'] }}</h1>
+                <h1 class="page-section__title">{!! $work[0]['title'] !!}</h1>
                 <p class="page-section__description">test desc</p>
             </div>
         </div>

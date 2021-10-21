@@ -67,7 +67,7 @@ a:not([class]) {
 img {
   display: block;
 
-  max-width: 100%;
+  //max-width: 100%;
 }
 
 article > * + * {
@@ -220,7 +220,7 @@ SECTIONS
     overflow: hidden;
 
     min-height: 80vh;
-    margin: 0 0 10rem;
+    //margin: 0 0 10rem;
 
     background-repeat: no-repeat;
     background-position: center center;
@@ -362,39 +362,15 @@ SECTIONS
     }
   }
 
-  &--main {
-    overflow: hidden;
-
-    min-height: 80vh;
-    margin: 0 0 10rem;
-
-    background-image: url('/img/wip2.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-
-    &::after {
-      position: absolute;
-      z-index: 0;
-      top: 0;
-      bottom: 0;
-      left: 0;
-
-      width: 100%;
-      height: 100%;
-
-      content: '';
-
-      background-image: -moz-linear-gradient(0deg, #0f1922 0%, rgba( 43, 44, 54, 0.6) 100%);
-      background-image: -webkit-linear-gradient(0deg, #0f1922 0%, rgba( 43, 44, 54, 0.6) 100%);
-      background-image: -o-linear-gradient(0deg, #0f1922 0%, rgba( 43, 44, 54, 0.6) 100%);
-      background-image: -ms-linear-gradient(0deg, #0f1922 0%, rgba( 43, 44, 54, 0.6) 100%);
-      background-image: linear-gradient(0deg, #0f1922 0%, rgba( 43, 44, 54, 0.6) 100%);
-    }
-  }
-
   &--contacts {
     background: #10151a;
+  }
+}
+@media screen and(max-width: 650px) {
+  .section {
+    &__title {
+      font-size: 1.5rem;
+    }
   }
 }
 
@@ -427,14 +403,18 @@ SECTIONS
     color: #a88989;
   }
 }
-
-@media screen and(max-width: 650px) {
-  .section {
+@media screen and(max-width: 767px) {
+  .main-section {
     &__title {
       font-size: 1.5rem;
     }
+
+    &__description {
+      font-size: 1rem;
+    }
   }
 }
+
 .page-section {
   position: relative;
   z-index: 1;
