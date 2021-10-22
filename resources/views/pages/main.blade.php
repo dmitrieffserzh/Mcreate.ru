@@ -60,12 +60,11 @@
                     <div class="swiper-wrapper">
                         @foreach($testimonials as $item)
                         <div class="swiper-slide">
-                            <h3 class="">{{ $item['title'] }} - ID: {{ $item['id'] }}</h3>
-                            <p class="">{!! $item['content'] !!}</p>
+                            <h3 class="testimonials__title">{{ $item['title'] }} - ID: {{ $item['id'] }}</h3>
+                            <div class="testimonials__desc">{!! $item['content'] !!}</div>
                         </div>
                         @endforeach
                     </div>
-                    <div class="swiper-pagination"></div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
                 </div>

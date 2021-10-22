@@ -1023,6 +1023,9 @@ SWIPER
 */
 
 @import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/autoplay';
+@import 'swiper/scss/effect-fade';
 
 /*
 TESTIMONIALS
@@ -1030,6 +1033,18 @@ TESTIMONIALS
 */
 
 .testimonials {
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    color: #ece8e1;
+  }
+  &__desc {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: #a88989;
+  }
   & .swiper-slide {
     min-height: 200px;
     color: #fff;
