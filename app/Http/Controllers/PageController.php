@@ -48,16 +48,18 @@ class PageController extends Controller {
 			abort( 404 );
 		}
 
-		$works = Work::all()->toArray();
+		$works        = Work::all()->toArray();
+		$testimonials = Testimonial::all()->toArray();
 
 		$url     = url()->current();
 		$segment = explode( "/", $url );
 
 
 		return view( 'pages.page-' . end( $segment ), [
-			'page'    => $page,
-			'works'   => $works,
-			'segment' => $segment
+			'page'         => $page,
+			'works'        => $works,
+			'testimonials' => $testimonials,
+			'segment'      => $segment
 		] );
 	}
 

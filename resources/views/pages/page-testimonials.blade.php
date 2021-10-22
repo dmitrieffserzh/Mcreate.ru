@@ -13,32 +13,16 @@
             </div>
         </div>
     </section>
-
-    <div id="map" style="width:100%; height:60vh;"></div>
-    @push('scripts')
-        <script>
-            ymaps.ready(init);
-            function init() {
-                var myMap = new ymaps.Map("map", {
-                        center: [55.751979, 37.617499],
-                        zoom: 15
-                    }),
-                    myPlacemark1 = new ymaps.Placemark([55.751979, 37.617499], {
-                        hintContent: 'Надпись, которая всплаывет при наведении на метку'
-                    }, {
-                        iconImageHref: 'https://static.tildacdn.com/tild3061-3235-4537-b066-616662373363/Group_783.svg',
-                        iconImageSize: [130, 130],
-                        iconImageOffset: [-65, -110]
-                    });
-
-                myMap.geoObjects
-                    .add(myPlacemark1)
-            }
-        </script>
-    @endpush
-    <style>
-        .ymaps-layers-pane {
-            -webkit-filter: grayscale(100%);
-        }
-    </style>
+    <section class="section section--works">
+        <div class="works">
+            @foreach( $testimonials as $item)
+                <div class="works-item">
+                    <a class="works-item__link" href="#"></a>
+                    <img class="works-item__img" src="{{ $item['img_cover'] }}" alt="">
+                    <h3 class="works-item__title">{{ $item['title'] }}</h3>
+                    <div>{!!  $item['content'] !!}</div>
+                </div>
+            @endforeach
+        </div>
+    </section>
 @endsection
