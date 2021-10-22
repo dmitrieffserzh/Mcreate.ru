@@ -9,7 +9,7 @@
         <div class="container">
             <div class="page-section">
                 <h1 class="page-section__title">{{ $page['title'] }}</h1>
-                <p class="page-section__description">{{ strip_tags($page['content']) }}</p>
+                <p class="page-section__description">{!! strip_tags($page['content']) !!}</p>
             </div>
         </div>
     </section>
