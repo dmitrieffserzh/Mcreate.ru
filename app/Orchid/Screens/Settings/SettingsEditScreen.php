@@ -5,9 +5,8 @@ namespace App\Orchid\Screens\Settings;
 use App\Models\Testimonial;
 use App\Orchid\Layouts\Settings\SettingsEditLayout;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Repository;
 use Orchid\Support\Color;
 use Orchid\Screen\Fields\Group;
 use Orchid\Support\Facades\Layout;
@@ -27,15 +26,10 @@ class SettingsEditScreen extends Screen {
 			$this->description = 'Основные настройки сайта';
 		}
 
-		$meta = [];
-		foreach ( $testimonial->meta as $item ):
-			$meta = (array) $item->getAttributes();
-		endforeach;
+		$settings = include(config_path().'/settings.php');
 
 		return [
-			'testimonial' => $testimonial,
-			'title'       => $testimonial->title,
-			'meta'        => $meta
+			'settings' => new Repository($settings ),
 		];
 	}
 
@@ -70,32 +64,13 @@ class SettingsEditScreen extends Screen {
 		];
 	}
 
-	public function save( Testimonial $testimonial, Request $request ) {
-		$request->validate( [
-			'testimonial.title' => [
-				'required',
-				Rule::unique( Testimonial::class, 'title' )->ignore( $testimonial ),
-			],
-			'testimonial.slug'  => [
-				'required',
-				'regex:/[a-zA-Z0-9-]/',
-				Rule::unique( Testimonial::class, 'slug' )->ignore( $testimonial ),
-			],
-		] );
+	public function save( Request $request ) {
 
-		$pageData = $request->get( 'testimonial' );
-		$metaData = $request->get( 'meta' );
+		config(['settings.email' => 'NEW_VALUE', 'settings.phone' => '+79154553399']);
+		$text = '<?php return ' . var_export(config('settings'), true) . ';';
+		file_put_contents(config_path('settings.php'), $text);
 
-		$testimonial->fill( $pageData );
-		$testimonial->save();
-		if ( count( $testimonial->meta ) > 0 ):
-			$testimonial->meta()->update( $metaData );
-		else:
-			$testimonial->meta()->create( $metaData );
-		endif;
-		$testimonial->save();
-
-		Toast::info( 'Отзыв сохранен!' );
+		Toast::info( 'Настройки сохранены!' );
 
 		return redirect()->route( 'platform.settings' );
 	}

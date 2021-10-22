@@ -11,21 +11,18 @@ class SettingsEditLayout extends Rows {
 
 	public function fields(): array {
 		return [
-
-			Input::make('telephone')
+			Input::make('settings.phone')
 			     ->type('tel')
 			     ->title('Телефон')
-			     ->value('+7(999)-999-99-99')
+			     ->placeholder('+7 (915) 455-33-99)')
 			     ->horizontal(),
-			Input::make('email')
+			Input::make('settings.email')
 			     ->type('email')
 			     ->title('E-mail')
-			     ->value('example@example.com')
-			     ->help('')
+			     ->placeholder('example@eample.com')
 			     ->horizontal(),
-			Input::make('address')
+			Input::make('settings.address')
 			     ->title('Адрес')
-			     ->value('')
 			     ->help('')
 			     ->horizontal(),
 		];
