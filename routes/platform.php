@@ -252,5 +252,5 @@ Route::screen('settings', SettingsEditScreen::class)
      ->breadcrumbs(function (Trail $trail) {
 	     return $trail
 		     ->parent('platform.index')
-		     ->push(__('Create'), route('platform.systems.roles.create'));
+		     ->push(__('Настройки'), route('platform.settings'));
      });

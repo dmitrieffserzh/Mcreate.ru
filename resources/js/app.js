@@ -1,29 +1,5 @@
 import Inputmask from 'inputmask';
 import {Swiper} from 'swiper';
-/*
-const swiper = new Swiper('.swiper', {
-    direction: 'vertical',
-    loop: true,
-    pagination: {
-        el: '.swiper-pagination'
-    },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-    },
-    scrollbar: {
-        el: '.swiper-scrollbar'
-    }
-});
-*/
-
-window.addEventListener("scroll", function () {
-    if (document.scrollingElement.scrollTop > 10) {
-        document.querySelector('body').classList.add("scroll");
-    } else {
-        document.querySelector('body').classList.remove("scroll");
-    }
-});
 
 // ADD CONTACTS NAVIGATION
 function appengHeaderContacts() {
@@ -67,7 +43,6 @@ for (var i = 0; i < button.length; i++) {
     });
 }
 
-
 // CONTACT FORM
 var phoneInputs = document.getElementsByName("phone");
 for (var i = 0; i < phoneInputs.length; i++) {
@@ -106,4 +81,18 @@ form.addEventListener('submit', function (event) {
         sendForm(form);
 });
 
-
+// SWIPER
+const swiper = new Swiper('.swiper', {
+    direction: 'vertical',
+    loop: true,
+    pagination: {
+        el: '.swiper-pagination'
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+    },
+    scrollbar: {
+        el: '.swiper-scrollbar'
+    }
+});

@@ -26,10 +26,10 @@ class SettingsEditScreen extends Screen {
 			$this->description = 'Основные настройки сайта';
 		}
 
-		$settings = include(config_path().'/settings.php');
+		$settings = include( config_path( 'settings.php' ) );
 
 		return [
-			'settings' => new Repository($settings ),
+			'settings' => new Repository( $settings ),
 		];
 	}
 
@@ -48,8 +48,8 @@ class SettingsEditScreen extends Screen {
 
 	public function layout(): array {
 		return [
-				SettingsEditLayout::class,
-				Layout::rows( [
+			SettingsEditLayout::class,
+			Layout::rows( [
 				Group::make( [
 					Button::make( 'Отменить' )
 					      ->method( 'cancel' )
@@ -66,17 +66,24 @@ class SettingsEditScreen extends Screen {
 
 	public function save( Request $request ) {
 
-		config(['settings.email' => 'NEW_VALUE', 'settings.phone' => '+79154553399']);
-		$text = '<?php return ' . var_export(config('settings'), true) . ';';
-		file_put_contents(config_path('settings.php'), $text);
+		$settings = [];
+		foreach ( $request->settings as $key => $value ) {
+			$settings[ 'settings.' . $key ] = $value;
+		}
 
-		Toast::info( 'Настройки сохранены!' );
-
-		return redirect()->route( 'platform.settings' );
+		config( $settings );
+		$text = '<?php return ' . var_export( config( 'settings' ), true ) . ';';
+		if ( file_put_contents( config_path( 'settings.php' ), $text ) ) {
+			Toast::info( 'Настройки сохранены!' );
+			return redirect()->route( 'platform.settings' );
+		} else {
+			Toast::error( 'Ошибка сохранения!' );
+		}
 	}
 
 
 	public function cancel() {
 		return redirect()->route( 'platform.settings' );
 	}
+
 }

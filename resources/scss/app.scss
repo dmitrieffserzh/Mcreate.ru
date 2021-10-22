@@ -134,6 +134,9 @@ body {
 
   transition: padding .3s Linear;
 }
+.logo {
+  cursor: pointer;
+}
 
 .button-menu {
   position: relative;
@@ -1013,4 +1016,19 @@ SCROLL PAGE
 
     opacity: 0;
   }
+}
+/*
+SWIPER
+=========================================================================================
+*/
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+/*
+TESTIMONIALS
+=========================================================================================
+*/
+.testimonials {
+  max-height: 500px;
 }

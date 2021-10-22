@@ -18,10 +18,9 @@
 <body>
 <header class="header">
     <div class="container d-flex justify-content-between">
-        <div class="logo">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  height="40" viewBox="0 0 837 153" xml:space="preserve" stroke="none" stroke-width="0"
-                 stroke-linecap="round" stroke-linejoin="round">
+                 stroke-linecap="round" stroke-linejoin="round" class="logo" onclick="window.location.href = '/'">
                     <polygon fill="#ff003f" points="146,145.6 77.6,77.1 146,8.7 "></polygon>
                 <path fill="#fff"
                       d="M111.8,111.3L77.7,77.2c0,0-0.1-0.1-0.1-0.1L9,8.7c0,45.6,0,91.2,0,136.8c12-11.4,22.9-22.8,34.3-34.1l34.2,34.1L111.8,111.3z">
@@ -92,9 +91,7 @@
                 </path>
                 <path class="hidden" fill="#fff"
                       d="M817.4,135.5v10.8h-5.7v-10.7l-12-19.9h6l8.9,14.9l9-14.9h5.6L817.4,135.5z"></path>
-                </svg>
-        </div>
-
+        </svg>
         <div class="header__menu">
             <div class="overlay"></div>
             <nav class="main-menu">
