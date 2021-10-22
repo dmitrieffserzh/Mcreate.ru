@@ -67,8 +67,7 @@ class PlatformProvider extends OrchidServiceProvider {
 			    ->permission( 'platform.systems.roles' ),
 			Menu::make( 'Настройки' )
 			    ->icon( 'settings' )
-			    ->route( 'platform.systems.users' )
-			    ->permission( 'platform.systems.users' )
+			    ->route( 'platform.settings' )
 			    ->title( 'Настройки продукта' ),
 
 

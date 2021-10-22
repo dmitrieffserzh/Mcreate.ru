@@ -26,7 +26,7 @@ use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
-
+use App\Orchid\Screens\Settings\SettingsEditScreen;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -242,4 +242,15 @@ Route::screen('requests', RequestListScreen::class)
 	     return $trail
 		     ->parent('platform.index')
 		     ->push(__('Обратный звонок'), route('platform.requests'));
+     });
+
+// SETTINGS
+// =====================================================================================================================
+// Platform > Settings
+Route::screen('settings', SettingsEditScreen::class)
+     ->name('platform.settings')
+     ->breadcrumbs(function (Trail $trail) {
+	     return $trail
+		     ->parent('platform.index')
+		     ->push(__('Create'), route('platform.systems.roles.create'));
      });
