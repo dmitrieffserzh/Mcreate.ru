@@ -20,17 +20,17 @@
                 <div class="services__item">
                     <h3 class="services__item-title">Разработка</h3>
                     <p class="services__item-description">Разработка корпоративных сайтов и интернет-магазинов.</p>
-                    <a href="" class="services__item-link">Подробнее</a>
+                    <a href="/services/development" class="services__item-link">Подробнее</a>
                 </div>
                 <div class="services__item">
                     <h3 class="services__item-title">Поддержка</h3>
                     <p class="services__item-description">Продвижение сайта в поисковых системах (SEO).</p>
-                    <a href="" class="services__item-link">Подробнее</a>
+                    <a href="/services/support" class="services__item-link">Подробнее</a>
                 </div>
                 <div class="services__item">
                     <h3 class="services__item-title">Продвижение</h3>
                     <p class="services__item-description">Следим за сайтом, пишем и размещаем новости.</p>
-                    <a href="" class="services__item-link">Подробнее</a>
+                    <a href="/services/promotion" class="services__item-link">Подробнее</a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
             <h2 class="section__title">Наши работы</h2>
         </div>
         <div class="works">
-            @foreach( $works as $item)
+            @foreach($works as $item)
                 <div class="works-item">
                     <a class="works-item__link" href="{{ route('works.show', ['slug' => $item['slug']]) }}"></a>
                     <img class="works-item__img" src="{{ $item['img_cover'] }}" alt="">
@@ -57,34 +57,15 @@
             <h2 class="section__title">Отзывы</h2>
             <div class="testimonials">
                 <div class="swiper">
-                    <!-- Additional required wrapper -->
                     <div class="swiper-wrapper">
-                        <!-- Slides -->
+                        @foreach($testimonials as $item)
                         <div class="swiper-slide">
-                            <h3 class="">Slide 1</h3><br>
-                            <p class="">Не следует, однако забывать, что начало повседневной работы по формированию позиции влечет за собой процесс внедрения и модернизации соответствующий условий активизации. Равным образом укрепление и развитие структуры представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям.</p>
+                            <h3 class="">{{ $item['title'] }} - ID: {{ $item['id'] }}</h3>
+                            <p class="">{!! $item['content'] !!}</p>
                         </div>
-                        <div class="swiper-slide">
-                            <h3 class="">Slide 2</h3><br>
-                            <p class="">Не следует, однако забывать, что начало повседневной работы по формированию позиции влечет за собой процесс внедрения и модернизации соответствующий условий активизации. Равным образом укрепление и развитие структуры представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям.</p>
-                        </div>
-                        <div class="swiper-slide">
-                            <h3 class="">Slide 3</h3><br>
-                            <p class="">Не следует, однако забывать, что начало повседневной работы по формированию позиции влечет за собой процесс внедрения и модернизации соответствующий условий активизации. Равным образом укрепление и развитие структуры представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям.</p>
-                        </div>
-                        <div class="swiper-slide">
-                            <h3 class="">Slide 4</h3><br>
-                            <p class="">Не следует, однако забывать, что начало повседневной работы по формированию позиции влечет за собой процесс внедрения и модернизации соответствующий условий активизации. Равным образом укрепление и развитие структуры представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям.</p>
-                        </div>
-                        <div class="swiper-slide">
-                            <h3 class="">Slide 5</h3><br>
-                            <p class="">Не следует, однако забывать, что начало повседневной работы по формированию позиции влечет за собой процесс внедрения и модернизации соответствующий условий активизации. Равным образом укрепление и развитие структуры представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям.</p>
-                        </div>
+                        @endforeach
                     </div>
-                    <!-- If we need pagination -->
                     <div class="swiper-pagination"></div>
-
-                    <!-- If we need navigation buttons -->
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
                 </div>

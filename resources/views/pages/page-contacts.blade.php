@@ -17,13 +17,13 @@
    <div class="container">
        <form id="feedback" action="" class="feedback" novalidate>
            <div class="feedback__block">
-               <input type="text" class="feedback__input" placeholder="Имя *" autocomplete="off" required>
+               <input type="text" name="name" class="feedback__input" placeholder="Имя *" autocomplete="off" required>
            </div>
            <div class="feedback__block">
-               <input type="text" class="feedback__input" placeholder="Телефон *" autocomplete="off" required>
+               <input type="text" name="phone" class="feedback__input" placeholder="Телефон *" autocomplete="off" required>
            </div>
            <div class="feedback__block">
-               <textarea name="" rows="3" class="feedback__textarea" placeholder="Сообщение..."></textarea>
+               <textarea name="message" rows="3" class="feedback__textarea" placeholder="Сообщение..."></textarea>
            </div>
            <p>Нажимая «Отправить», Вы принимаете условия
                <a href="">политики конфиденциальности</a>.

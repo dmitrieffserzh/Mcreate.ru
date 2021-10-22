@@ -1,4 +1,5 @@
 <?php return array (
-  'email' => 'test@test.ru',
-  'phone' => '+79154553399',
+  'email' => 'dmitrieffserzh@ya.ru',
+  'phone' => '+79017968400',
+  'address' => 'Москва, ул. Советская, д.80, стр.10',
 );

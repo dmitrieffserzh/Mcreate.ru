@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Work;
+use App\Models\Testimonial;
 
 class PageController extends Controller {
 
 
 	public function index() {
-		$page  = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'main' )->firstOrFail()->load( 'meta' )->toArray();
-		$works = Work::all()->toArray();
+		$page         = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'main' )->firstOrFail()->load( 'meta' )->toArray();
+		$works        = Work::all()->toArray();
+		$testimonials = Testimonial::all()->toArray();
 
 		return view( 'pages.main', [
-			'page'  => $page,
-			'works' => $works
+			'page'         => $page,
+			'works'        => $works,
+			'testimonials' => $testimonials
 		] );
 	}
 
