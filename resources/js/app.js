@@ -83,7 +83,7 @@ form.addEventListener('submit', function (event) {
 
 // SWIPER
 const swiper = new Swiper('.swiper', {
-    direction: 'vertical',
+    direction: 'horizontal',
     loop: true,
     pagination: {
         el: '.swiper-pagination'

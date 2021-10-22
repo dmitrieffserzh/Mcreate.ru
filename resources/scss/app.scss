@@ -1021,14 +1021,17 @@ SCROLL PAGE
 SWIPER
 =========================================================================================
 */
-@import 'swiper/css';
-@import 'swiper/css/navigation';
-@import 'swiper/css/pagination';
+
+@import 'swiper/scss';
 
 /*
 TESTIMONIALS
 =========================================================================================
 */
+
 .testimonials {
-  max-height: 500px;
+  & .swiper-slide {
+    min-height: 200px;
+    color: #fff;
+  }
 }
