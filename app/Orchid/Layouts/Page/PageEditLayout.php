@@ -21,28 +21,29 @@ class PageEditLayout extends Rows {
 		return [
 			Group::make( [
 				Input::make( 'title' )
-				     ->title( 'Заголовок' )
-				     ->placeholder( 'Введите заголовок страницы' )
-				     ->style( 'width: 100%; max-width: 100%;' )
-				     ->required(),
+					->title( 'Заголовок' )
+					->placeholder( 'Введите заголовок страницы' )
+					->style( 'width: 100%; max-width: 100%;' )
+					->required(),
 			] ),
 
 			Group::make( [
 				Select::make( 'page.parent_id' )
-				      ->fromModel( Page::class, 'title', 'id' )
-				      ->empty( 'Корневая', '0' )
-				      ->title( 'Вложенность' ),
-				Relation::make('page.')
-				        ->fromModel(Service::class, 'name', 'parent_id')
-						->empty( 'Корневая', '0' )
-				        ->title('Выберите свою идею'),
+					->fromModel( Page::class, 'title', 'id' )
+					->empty( 'Корневая', '0' )
+					->title( 'Вложенность' ),
+
+				Relation::make( 'page.service' )
+					->fromModel( Service::class, 'title', 'id' )
+					->title( 'Выберите свою идею' )->runBeforeRender(),
+
 				RadioButtons::make( 'page.published' )
-				            ->title( 'Активность' )
-				            ->options( [
-					            1 => 'Опубликовать',
-					            0 => 'Скрыть',
-				            ] )
-				            ->value( 1 ),
+					->title( 'Активность' )
+					->options( [
+						1 => 'Опубликовать',
+						0 => 'Скрыть',
+					 ] )
+					->value( 1 ),
 			] ),
 
 			Quill::make( 'page.content' )

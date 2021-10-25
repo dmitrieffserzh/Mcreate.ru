@@ -23,7 +23,7 @@ class Service extends Model
 		'updated_at'
 	];
 
-
+	// RELATIONSHIPS
 	public function page() {
 		return $this->hasOne( Page::class, 'id' );
 	}
