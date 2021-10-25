@@ -12,7 +12,6 @@ class Page extends Model {
 
 	public $fillable = [
 		'parent_id',
-		'published',
 		'title',
 		'slug',
 		'content',
@@ -37,5 +36,9 @@ class Page extends Model {
 
 	public function meta() {
 		return $this->morphMany( Meta::class, 'content' );
+	}
+
+	public function service() {
+		return $this->hasOne( Service::class, 'id' );
 	}
 }

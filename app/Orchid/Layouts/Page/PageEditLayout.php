@@ -6,12 +6,14 @@ namespace App\Orchid\Layouts\Page;
 
 use App\Models\Page;
 
+use App\Models\Service;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\RadioButtons;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Fields\Relation;
 
 class PageEditLayout extends Rows {
 
@@ -30,13 +32,17 @@ class PageEditLayout extends Rows {
 				      ->fromModel( Page::class, 'title', 'id' )
 				      ->empty( 'Корневая', '0' )
 				      ->title( 'Вложенность' ),
+				Relation::make('page.')
+				        ->fromModel(Service::class, 'name', 'parent_id')
+						->empty( 'Корневая', '0' )
+				        ->title('Выберите свою идею'),
 				RadioButtons::make( 'page.published' )
 				            ->title( 'Активность' )
 				            ->options( [
 					            1 => 'Опубликовать',
 					            0 => 'Скрыть',
 				            ] )
-				            ->value( 1 )
+				            ->value( 1 ),
 			] ),
 
 			Quill::make( 'page.content' )

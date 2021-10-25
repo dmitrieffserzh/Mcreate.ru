@@ -11,8 +11,6 @@ class WorkController extends Controller
     	return "ЖОПА";
     }
 
-
-
 	public function show ($slug) {
 		$work = Work::where( 'slug', '=', $slug )->get()->load( 'meta' )->toArray();
 		$works = Work::all()->toArray();
