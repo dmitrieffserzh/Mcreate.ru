@@ -35,7 +35,7 @@ class WorkEditScreen extends Screen {
 		endforeach;
 
 		return [
-			'work' => $works,
+			'work'  => $works,
 			'title' => $works->title,
 			'meta'  => $meta
 		];

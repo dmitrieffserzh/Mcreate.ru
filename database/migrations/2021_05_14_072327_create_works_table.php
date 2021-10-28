@@ -17,7 +17,10 @@ class CreateWorksTable extends Migration {
 			$table->integer( 'published' )->unsigned()->default( 1 );
 			$table->string( 'title' );
 			$table->string( 'slug' );
+			$table->string( 'url' );
 			$table->text( 'content' );
+			$table->text( 'work' );
+			$table->text( 'results' );
 			$table->string( 'img_cover' )->nullable();
 			$table->string( 'img_main' )->nullable();
 			$table->timestamps();

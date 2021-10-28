@@ -104,6 +104,7 @@ class TestimonialEditScreen extends Screen {
 		] );
 
 		$pageData = $request->get( 'testimonial' );
+
 		$metaData = $request->get( 'meta' );
 
 		$testimonial->fill( $pageData );
