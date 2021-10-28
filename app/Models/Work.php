@@ -20,6 +20,9 @@ class Work extends Model
 		'img_cover',
 		'img_main',
 		'slug',
+		'url',
+		'work',
+		'results',
 		'created_at',
 		'updated_at'
 	];

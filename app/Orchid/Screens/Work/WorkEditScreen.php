@@ -34,6 +34,9 @@ class WorkEditScreen extends Screen {
 			$meta = (array) $item->getAttributes();
 		endforeach;
 
+		$works['work']    = json_decode( $works['work'], true );
+		$works['results'] = json_decode( $works['results'], true );
+
 		return [
 			'work'  => $works,
 			'title' => $works->title,
@@ -105,6 +108,9 @@ class WorkEditScreen extends Screen {
 
 		$pageData = $request->get( 'work' );
 		$metaData = $request->get( 'meta' );
+
+		$pageData['work']    = json_encode( $pageData['work'] );
+		$pageData['results'] = json_encode( $pageData['results'] );
 
 		$work->fill( $pageData );
 		$work->save();
