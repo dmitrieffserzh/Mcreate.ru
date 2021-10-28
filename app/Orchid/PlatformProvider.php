@@ -26,28 +26,22 @@ class PlatformProvider extends OrchidServiceProvider {
 			    ->icon( 'layers' )
 			    ->route( 'platform.pages' )
 			    ->title( 'Контент' ),
+			Menu::make( 'Услуги' )
+			    ->icon( 'money' )
+			    ->route( 'platform.services' ),
 			Menu::make( 'Портфолио' )
 			    ->icon( 'grid' )
-			    ->list( [
-				    Menu::make( 'Записи' )->icon( 'docs' )->route( 'platform.works' ),
-				    Menu::make( 'Добавить запись' )->icon( 'note' )->route( 'platform.works.create' ),
-			    ] )
-			,
+				->route( 'platform.works' ),
 			Menu::make( 'Отзывы' )
 			    ->icon( 'bubble' )
-			    ->list( [
-				    Menu::make( 'Записи' )->icon( 'docs' )->route( 'platform.testimonials' ),
-				    Menu::make( 'Добавить запись' )->icon( 'note' )->route( 'platform.testimonials.create' ),
-			    ] )
-			,
+				->route( 'platform.testimonials' ),
 			Menu::make( 'Блог (DEV)' )
 			    ->icon( 'module' )
 			    ->list( [
 				    Menu::make( 'Записи' )->icon( 'docs' ),
 				    Menu::make( 'Категории' )->icon( 'folder' ),
 				    Menu::make( 'Добавить запись' )->icon( 'note' ),
-			    ] )
-			,
+			    ] ),
 
 			// Заявки
 			Menu::make( 'Запросы' )

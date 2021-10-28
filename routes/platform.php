@@ -5,6 +5,8 @@ declare(strict_types=1);
 
 use App\Orchid\Screens\Page\PageListScreen;
 use App\Orchid\Screens\Page\PageEditScreen;
+use App\Orchid\Screens\Service\ServiceListScreen;
+use App\Orchid\Screens\Service\ServiceEditScreen;
 use App\Orchid\Screens\Work\WorkListScreen;
 use App\Orchid\Screens\Work\WorkEditScreen;
 use App\Orchid\Screens\Testimonial\TestimonialListScreen;
@@ -163,6 +165,35 @@ Route::screen('pages', PageListScreen::class)
 			->push(__('Страницы'), route('platform.pages'));
 	});
 
+// SERVICES
+// =====================================================================================================================
+
+// Platform > Services > Edit
+Route::screen('services/{id}/edit', ServiceEditScreen::class)
+     ->name('platform.services.edit')
+     ->breadcrumbs(function (Trail $trail, $services) {
+	     return $trail
+		     ->parent('platform.works')
+		     ->push(__('Edit'), route('platform.services.edit', $services));
+     });
+
+// Platfotm > Services > Create
+Route::screen('services/create', ServiceEditScreen::class)
+     ->name('platform.services.create')
+     ->breadcrumbs(function (Trail $trail) {
+	     return $trail
+		     ->parent('platform.works')
+		     ->push(__('Create'), route('platform.services.create'));
+     });
+
+// Platfotm > Services
+Route::screen('services', ServiceListScreen::class)
+     ->name('platform.services')
+     ->breadcrumbs(function (Trail $trail) {
+	     return $trail
+		     ->parent('platform.index')
+		     ->push(__('Портфолио'), route('platform.services'));
+     });
 
 // WORKS
 // =====================================================================================================================

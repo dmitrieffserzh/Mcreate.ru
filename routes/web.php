@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\RequestFormController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,16 +17,17 @@ use App\Http\Controllers\RequestFormController;
 |
 */
 
-Route::pattern(	'slug',     '[a-z0-9-_\/]+');
+Route::pattern( 'slug', '[a-z0-9-_\/]+' );
 
+// SERVICES
+Route::get( '/services/{slug}', [ ServiceController::class, 'show' ] )->name( 'services.show' );
 
 // WORKS
-//Route::get('/works/',   [WorkController::class, 'index'])->name('works');
-Route::get('/works/{slug}',   [WorkController::class, 'show'])->name('works.show');
+Route::get( '/works/{slug}',    [ WorkController::class, 'show' ] )->name( 'works.show' );
 
 // PAGES
-Route::get('/',         [PageController::class, 'index']);
-Route::get('/{slug}',   [PageController::class, 'getPage']);
+Route::get( '/',                [ PageController::class, 'index' ] );
+Route::get( '/{slug}',          [ PageController::class, 'getPage' ] );
 
 // FORMS
-Route::post('send',     [RequestFormController::class, 'sendFormFeedback']);
+Route::post( 'send',            [ RequestFormController::class, 'sendFormFeedback' ] );

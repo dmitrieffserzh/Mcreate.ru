@@ -70,7 +70,7 @@ class PageListScreen extends Screen {
 				'slug'      => $pageChild->slug,
 				'content'   => $pageChild->content
 			];
-			$pageTree   = array_merge( $pageTree, $this->recursion( $pageChild, '—' . ' ' .$prefix ) );
+			$pageTree   = array_merge( $pageTree, $this->recursion( $pageChild, '—' . ' ' . $prefix ) );
 		endforeach;
 
 		return $pageTree;
@@ -78,7 +78,7 @@ class PageListScreen extends Screen {
 
 	public function getTree( $page, $prefix ) {
 
-		return $prefix .  ' ' .$page['title'];
+		return $prefix . ' ' . $page['title'];
 	}
 
 }

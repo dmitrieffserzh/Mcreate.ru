@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Orchid\Screens\Page;
+namespace App\Orchid\Screens\Service;
 
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use App\Models\Page;
 use App\Orchid\Layouts\SlugEditListener;
 use App\Orchid\Layouts\Helpers\MetaLayout;
-use App\Orchid\Layouts\Page\PageEditLayout;
+use App\Orchid\Layouts\Service\ServiceEditLayout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Support\Color;
 use Orchid\Screen\Fields\Group;
@@ -16,28 +16,28 @@ use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
 
-class PageEditScreen extends Screen {
+class ServiceEditScreen extends Screen {
 
 	public $name = 'Редактировать';
 
-	public $description = 'Редактирование страницы';
+	public $description = 'Редактирование услуги';
 
-	public function query( Page $page ): array {
+	public function query( Service $service ): array {
 
-		if ( ! $page->exists ) {
+		if ( ! $service->exists ) {
 			$this->name        = 'Добавить';
-			$this->description = 'Добавление новой страницы';
+			$this->description = 'Добавление новой услуги';
 		}
 
 		$meta = [];
-		foreach ( $page->meta as $item ):
+		foreach ( $service->meta as $item ):
 			$meta = (array) $item->getAttributes();
 		endforeach;
 
 		return [
-			'page'  => $page,
-			'title' => $page->title,
-			'meta'  => $meta
+			'service' => $service,
+			'title'   => $service->title,
+			'meta'    => $meta
 		];
 	}
 
@@ -59,8 +59,8 @@ class PageEditScreen extends Screen {
 		$slug = Str::slug( $title, '-' );
 
 		return [
-			'page.slug'  => $slug,
-			'page.title' => $title
+			'service.slug'  => $slug,
+			'service.title' => $title
 		];
 	}
 
@@ -68,11 +68,11 @@ class PageEditScreen extends Screen {
 		return [
 			Layout::tabs( [
 				'Контент' => [
-					PageEditLayout::class,
+					ServiceEditLayout::class,
 				],
 				'SEO'     => [
 					MetaLayout::class,
-					new SlugEditListener( 'page' )
+					new SlugEditListener( 'service' )
 				]
 			] ),
 			Layout::rows( [
@@ -90,47 +90,47 @@ class PageEditScreen extends Screen {
 		];
 	}
 
-	public function save( Page $page, Request $request ) {
+	public function save( Service $service, Request $request ) {
 
 		$request->validate( [
-			'page.title' => [
+			'service.title' => [
 				'required',
-				Rule::unique( Page::class, 'title' )->ignore( $page ),
+				Rule::unique( Service::class, 'title' )->ignore( $service ),
 			],
-			'page.slug'  => [
+			'service.slug'  => [
 				'required',
 				'regex:/[a-zA-Z0-9-]/',
-				Rule::unique( Page::class, 'slug' )->ignore( $page ),
+				Rule::unique( Service::class, 'slug' )->ignore( $service ),
 			],
 		] );
 
-		$pageData = $request->get( 'page' );
+		$pageData = $request->get( 'service' );
 		$metaData = $request->get( 'meta' );
 
-		$page->fill( $pageData );
-		$page->save();
-		if ( count( $page->meta ) > 0 ):
-			$page->meta()->update( $metaData );
+		$service->fill( $pageData );
+		$service->save();
+		if ( count( $service->meta ) > 0 ):
+			$service->meta()->update( $metaData );
 		else:
-			$page->meta()->create( $metaData );
+			$service->meta()->create( $metaData );
 		endif;
-		$page->save();
+		$service->save();
 
-		Toast::info( 'Страница сохранена!' );
+		Toast::info( 'Услуга сохранена!' );
 
-		return redirect()->route( 'platform.pages' );
+		return redirect()->route( 'platform.services' );
 	}
 
 
-	public function remove( Page $page ) {
-		$page->delete();
-		$page->meta()->delete();
-		Toast::info( 'Страница удалена' );
+	public function remove( Service $service ) {
+		$service->delete();
+		$service->meta()->delete();
+		Toast::info( 'Услуга удалена' );
 
-		return redirect()->route( 'platform.pages' );
+		return redirect()->route( 'platform.services' );
 	}
 
 	public function cancel() {
-		return redirect()->route( 'platform.pages' );
+		return redirect()->route( 'platform.services' );
 	}
 }

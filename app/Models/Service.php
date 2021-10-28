@@ -10,8 +10,8 @@ class Service extends Model
     use HasFactory;
 
 	public $fillable = [
-		'parent_id',
 		'title',
+		'slug',
 		'content',
 		'published',
 		'created_at',
@@ -23,8 +23,12 @@ class Service extends Model
 		'updated_at'
 	];
 
+	public function getRouteKeyName() {
+		return 'slug';
+	}
+
 	// RELATIONSHIPS
-	public function page() {
-		return $this->hasOne( Page::class, 'id' );
+	public function meta() {
+		return $this->morphMany( Meta::class, 'content' );
 	}
 }

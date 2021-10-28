@@ -17,6 +17,8 @@ use Orchid\Screen\Fields\Relation;
 
 class PageEditLayout extends Rows {
 
+
+
 	public function fields(): array {
 		return [
 			Group::make( [
@@ -32,11 +34,6 @@ class PageEditLayout extends Rows {
 					->fromModel( Page::class, 'title', 'id' )
 					->empty( 'Корневая', '0' )
 					->title( 'Вложенность' ),
-
-				Relation::make( 'page.service' )
-					->fromModel( Service::class, 'title', 'id' )
-					->title( 'Выберите свою идею' )->runBeforeRender(),
-
 				RadioButtons::make( 'page.published' )
 					->title( 'Активность' )
 					->options( [
