@@ -25,6 +25,16 @@
             </div>
         </div>
     </section>
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">Что мы сделали?</h2>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">Результаты</h2>
+        </div>
+    </section>
     <section class="section section--works">
         <div class="works">
         @foreach($works as $item)

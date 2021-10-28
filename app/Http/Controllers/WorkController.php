@@ -16,7 +16,6 @@ class WorkController extends Controller
 		$works = Work::all()->toArray();
 
 		return view( 'pages.page-work-show', [
-			//'page'      => $page,
 			'work' => $work,
 			'works' => $works
 		] );

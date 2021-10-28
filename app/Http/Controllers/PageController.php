@@ -8,7 +8,6 @@ use App\Models\Testimonial;
 
 class PageController extends Controller {
 
-
 	public function index() {
 		$page         = Page::where( 'published', '=', 1 )->where( 'slug', '=', 'main' )->firstOrFail()->load( 'meta' )->toArray();
 		$works        = Work::all()->toArray();
