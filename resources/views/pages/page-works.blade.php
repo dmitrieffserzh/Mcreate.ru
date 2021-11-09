@@ -20,7 +20,7 @@
                 <div class="works-item">
                     <a class="works-item__link" href="{{ route('works.show', ['slug' => $item['slug']]) }}"></a>
                     <img class="works-item__img" src="{{ $item['img_cover'] }}" alt="">
-                    <h3 class="works-item__title">{{ $item['title'] }}</h3>
+                    <h3 class="works-item__title">{{ preg_replace('#^https?://#', '', $item['url']) }}</h3>
                 </div>
             @endforeach
         </div>
