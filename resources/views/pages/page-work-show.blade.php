@@ -53,6 +53,7 @@
             </div>
         </div>
     </section>
+    @if(isset($work->testimonials))
     <section class="section section--services">
         <div class="container">
             <h2 class="section__title">Отзывы</h2>
@@ -62,6 +63,7 @@
             </div>
         </div>
     </section>
+    @endif
     <section class="section section--works">
         <div class="works">
             @foreach($works as $item)
