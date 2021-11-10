@@ -67,7 +67,8 @@ class WorkEditLayout extends Rows {
 			    ->title( 'Ссылка на проект' )
 			    ->placeholder( 'http://example.com' )
 			    ->style( 'width: 100%; max-width: 100%;' )
-                ->help('Необходимо вводить без "/" в конце строки'),
+                ->help('Необходимо вводить без "/" в конце строки')
+                ->required(),
 
 			Matrix::make( 'work.work' )
 			    ->title( 'Что сделали' )
