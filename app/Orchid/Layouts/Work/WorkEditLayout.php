@@ -14,6 +14,7 @@ use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\RadioButtons;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\Relation;
 
 class WorkEditLayout extends Rows {
 
@@ -30,9 +31,10 @@ class WorkEditLayout extends Rows {
 			] ),
 
 			Group::make([
-                Select::make('work.testimonial_id')
-                    ->fromModel(Testimonial::class, 'title', 'title')
-                    ->empty('Не выбрано', '0')
+                Relation::make('work.testimonial_id')
+                    ->empty('Не выбрано')
+                    ->fromModel(Testimonial::class, 'title', 'id')
+
                     ->title('Привязать отзыв'),
 				RadioButtons::make( 'work.published')
 				     ->title( 'Активность' )

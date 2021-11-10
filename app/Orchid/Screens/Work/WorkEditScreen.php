@@ -18,122 +18,125 @@ use Orchid\Support\Facades\Toast;
 
 class WorkEditScreen extends Screen {
 
-	public $name = 'Редактировать';
+    public $name = 'Редактировать';
 
-	public $description = 'Редактирование записи';
+    public $description = 'Редактирование записи';
 
-	public function query( Work $works ): array {
+    public function query( Work $works ): array {
 
-		if ( ! $works->exists ) {
-			$this->name        = 'Добавить';
-			$this->description = 'Добавление новой записи';
-		}
+        if ( ! $works->exists ) {
+            $this->name        = 'Добавить';
+            $this->description = 'Добавление новой записи';
+        }
 
-		$meta = [];
-		foreach ( $works->meta as $item ):
-			$meta = (array) $item->getAttributes();
-		endforeach;
+        $meta = [];
+        foreach ( $works->meta as $item ):
+            $meta = (array) $item->getAttributes();
+        endforeach;
 
-		$works['work']    = json_decode( $works['work'], true );
-		$works['results'] = json_decode( $works['results'], true );
+        $works['work']    = json_decode( $works['work'], true );
+        $works['results'] = json_decode( $works['results'], true );
 
-		return [
-			'work'  => $works,
-			'title' => $works->title,
-			'meta'  => $meta
-		];
-	}
+        return [
+            'work'  => $works,
+            'title' => $works->title,
+            'meta'  => $meta
+        ];
+    }
 
-	public function commandBar(): array {
-		return [
-			Button::make( 'Отменить' )
-			      ->method( 'cancel' )
-			      ->type( Color::LIGHT() )
-			      ->icon( 'close' ),
-			Button::make( 'Сохранить' )
-			      ->method( 'save' )
-			      ->type( Color::LIGHT() )
-			      ->icon( 'check' ),
-		];
-	}
+    public function commandBar(): array {
+        return [
+            Button::make( 'Отменить' )
+                  ->method( 'cancel' )
+                  ->type( Color::LIGHT() )
+                  ->icon( 'close' ),
+            Button::make( 'Сохранить' )
+                  ->method( 'save' )
+                  ->type( Color::LIGHT() )
+                  ->icon( 'check' ),
+        ];
+    }
 
-	public function asyncSlugEdit( $title ) {
+    public function asyncSlugEdit( $title ) {
 
-		$slug = Str::slug( $title, '-' );
+        $slug = Str::slug( $title, '-' );
 
-		return [
-			'work.slug'  => $slug,
-			'work.title' => $title
-		];
-	}
+        return [
+            'work.slug'  => $slug,
+            'work.title' => $title
+        ];
+    }
 
-	public function layout(): array {
-		return [
-			Layout::tabs( [
-				'Контент' => [
-					WorkEditLayout::class,
-				],
-				'SEO'     => [
-					MetaLayout::class,
-					new SlugEditListener( 'work' ),
-				]
-			] ),
-			Layout::rows( [
-				Group::make( [
-					Button::make( 'Отменить' )
-					      ->method( 'cancel' )
-					      ->icon( 'close' )
-					      ->class( 'float-start btn btn-' . Color::SECONDARY() ),
-					Button::make( 'Сохранить' )
-					      ->method( 'save' )
-					      ->icon( 'check' )
-					      ->class( 'float-end btn btn-' . Color::PRIMARY() ),
-				] )
-			] )
-		];
-	}
+    public function layout(): array {
+        return [
+            Layout::tabs( [
+                'Контент' => [
+                    WorkEditLayout::class,
+                ],
+                'SEO'     => [
+                    MetaLayout::class,
+                    new SlugEditListener( 'work' ),
+                ]
+            ] ),
+            Layout::rows( [
+                Group::make( [
+                    Button::make( 'Отменить' )
+                          ->method( 'cancel' )
+                          ->icon( 'close' )
+                          ->class( 'float-start btn btn-' . Color::SECONDARY() ),
+                    Button::make( 'Сохранить' )
+                          ->method( 'save' )
+                          ->icon( 'check' )
+                          ->class( 'float-end btn btn-' . Color::PRIMARY() ),
+                ] )
+            ] )
+        ];
+    }
 
-	public function save( Work $work, Request $request ) {
-		$request->validate( [
-			'work.title' => [
-				'required',
-				Rule::unique( Work::class, 'title' )->ignore( $work ),
-			],
-			'work.slug'  => [
-				'required',
-				'regex:/[a-zA-Z0-9-]/',
-				Rule::unique( Work::class, 'slug' )->ignore( $work ),
-			],
-		] );
+    public function save( Work $work, Request $request ) {
+        $request->validate( [
+            'work.title' => [
+                'required',
+                Rule::unique( Work::class, 'title' )->ignore( $work ),
+            ],
+            'work.slug'  => [
+                'required',
+                'regex:/[a-zA-Z0-9-]/',
+                Rule::unique( Work::class, 'slug' )->ignore( $work ),
+            ],
+        ] );
 
-		$pageData = $request->get( 'work' );
-		$metaData = $request->get( 'meta' );
+        $pageData = $request->get( 'work' );
+        $metaData = $request->get( 'meta' );
 
-		$pageData['work']    = json_encode( $pageData['work'] );
-		$pageData['results'] = json_encode( $pageData['results'] );
+        if($pageData['work'])
+            $pageData['work']    = json_encode( $pageData['work'] );
 
-		$work->fill( $pageData );
-		if ( count( $work->meta ) > 0 ):
-			$work->meta()->update( $metaData );
-		else:
-			$work->meta()->create( $metaData );
-		endif;
-		$work->save();
+        if($pageData['result'])
+            $pageData['results'] = json_encode( $pageData['results'] );
 
-		Toast::info( 'Страница сохранена!' );
+        $work->fill( $pageData );
+        if ( count( $work->meta ) > 0 ):
+            $work->meta()->update( $metaData );
+        else:
+            $work->meta()->create( $metaData );
+        endif;
+        $work->save();
 
-		return redirect()->route( 'platform.works' );
-	}
+        Toast::info( 'Страница сохранена!' );
 
-	public function remove( Work $works ) {
-		$works->delete();
+        return redirect()->route( 'platform.works' );
+    }
 
-		Toast::info( 'Страница удалена' );
+    public function remove( Work $works ) {
+        $works->delete();
 
-		return redirect()->route( 'platform.works' );
-	}
+        Toast::info( 'Страница удалена' );
 
-	public function cancel() {
-		return redirect()->route( 'platform.works' );
-	}
+        return redirect()->route( 'platform.works' );
+    }
+
+    public function cancel() {
+        return redirect()->route( 'platform.works' );
+    }
 }
