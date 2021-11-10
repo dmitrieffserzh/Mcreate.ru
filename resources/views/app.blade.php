@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<header class="header">
+<!--<header class="header">
     <div class="container d-flex justify-content-between">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  height="40" viewBox="0 0 837 153" xml:space="preserve" stroke="none" stroke-width="0"
@@ -110,7 +110,7 @@
             </button>
         </div>
     </div>
-</header>
+</header>-->
 <main class="main">
     @yield('content')
 </main>

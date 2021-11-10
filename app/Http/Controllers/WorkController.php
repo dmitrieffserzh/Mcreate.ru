@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class WorkController extends Controller
 {
-    public function index () {
-    	return "ЖОПА";
-    }
-
 	public function show ($slug) {
 		$work = Work::where( 'slug', '=', $slug )->firstOrFail()->load( 'meta' )->toArray();
         $works = Work::where('id', '!=' , $work['id'])->limit(6)->get()->toArray();

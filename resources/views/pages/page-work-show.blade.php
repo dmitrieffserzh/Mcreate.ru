@@ -14,7 +14,7 @@
         <div class="container">
             <div class="page-section">
                 <h1 class="page-section__title">{!! $work['title'] !!}</h1>
-                <p class="page-section__description">test desc</p>
+                <p class="page-section__description"></p>
             </div>
         </div>
     </section>
@@ -28,11 +28,10 @@
     <section class="section">
         <div class="container">
             <h2 class="section__title">Что мы сделали?</h2>
-            <div class="work">
+            <div class="works-do">
                 @foreach($work['work'] as $item)
-                    <div class="work-item">
-                        <div class="work-item__number"></div>
-                        <h3 class="work-item__title">{{ $item['Описание'] }}</h3>
+                    <div class="works-do-item">
+                        <h3 class="works-do-item__title"><span class="works-do-item__icon"></span><span>{{ $item['Описание'] }}</span></h3>
                     </div>
                 @endforeach
             </div>
