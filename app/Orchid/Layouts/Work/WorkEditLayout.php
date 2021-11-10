@@ -13,7 +13,6 @@ use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\RadioButtons;
 use Orchid\Screen\Layouts\Rows;
-use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Relation;
 
 class WorkEditLayout extends Rows {
@@ -36,7 +35,7 @@ class WorkEditLayout extends Rows {
                     ->fromModel(Testimonial::class, 'title', 'id')
 
                     ->title('Привязать отзыв'),
-				RadioButtons::make( 'work.published')
+				RadioButtons::make( 'works.published')
 				     ->title( 'Активность' )
 				    ->options([
 				        1 => 'Опубликовать',

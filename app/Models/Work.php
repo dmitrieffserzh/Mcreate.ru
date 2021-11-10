@@ -13,6 +13,8 @@ class Work extends Model
 	use AsSource;
 	use Filterable;
 
+    public $table = 'works';
+
 	public $fillable = [
 		'published',
 		'title',
@@ -47,7 +49,7 @@ class Work extends Model
 
 	// RELATIONSHIPS
 	public function testimonials() {
-		return $this->hasOne(Testimonial::class, 'id');
+		return $this->hasOne(Testimonial::class, 'id', 'testimonial_id');
 	}
 
 	public function meta() {

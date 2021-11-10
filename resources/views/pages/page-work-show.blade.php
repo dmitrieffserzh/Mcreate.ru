@@ -1,12 +1,12 @@
 @extends('app')
 
-@section('title', $work["meta"][0]['title'])
-@section('meta_keywords',$work["meta"][0]['keywords'])
-@section('meta_description', $work["meta"][0]['description'])
+@section('title', $work->meta[0]->title)
+@section('meta_keywords', $work->meta[0]->keywords)
+@section('meta_description', $work->meta[0]->description)
 
 @section('content')
-    <section class="section section--page section-bg--page-" @if($work['img_main']) style="
-            background: url('{{ $work['img_main'] }}');
+    <section class="section section--page section-bg--page-" @if($work->img_main) style="
+            background: url('{{ $work->img_main }}');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -30,10 +30,12 @@
             <h2 class="section__title">Что мы сделали?</h2>
             <div class="works-do">
                 @foreach($work['work'] as $item)
+                    @if($item['Описание'] != '')
                     <div class="works-do-item">
                         <span class="works-do-item__icon"></span>
                         <h3 class="works-do-item__title">{{ $item['Описание'] }}</h3>
                     </div>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -48,6 +50,15 @@
                         <div class="works-results-item__desc">{{ $item['Описание'] }}</div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+    </section>
+    <section class="section section--services">
+        <div class="container">
+            <h2 class="section__title">Отзывы</h2>
+            <div class="testimonials">
+                <h3 class="testimonials__title">{{ $work->testimonials->title }} - ID: {{ $work->testimonials->id }}</h3>
+                <div class="testimonials__desc">{!! $work->testimonials->content !!}</div>
             </div>
         </div>
     </section>

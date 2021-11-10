@@ -45,4 +45,5 @@ class Testimonial extends Model
 	public function meta() {
 		return $this->morphMany( Meta::class, 'content' );
 	}
+
 }
