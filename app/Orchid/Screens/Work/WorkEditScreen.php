@@ -113,7 +113,6 @@ class WorkEditScreen extends Screen {
 		$pageData['results'] = json_encode( $pageData['results'] );
 
 		$work->fill( $pageData );
-		$work->save();
 		if ( count( $work->meta ) > 0 ):
 			$work->meta()->update( $metaData );
 		else:

@@ -31,7 +31,8 @@
             <div class="works-do">
                 @foreach($work['work'] as $item)
                     <div class="works-do-item">
-                        <h3 class="works-do-item__title"><span class="works-do-item__icon"></span><span>{{ $item['Описание'] }}</span></h3>
+                        <span class="works-do-item__icon"></span>
+                        <h3 class="works-do-item__title">{{ $item['Описание'] }}</h3>
                     </div>
                 @endforeach
             </div>

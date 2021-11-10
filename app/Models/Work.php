@@ -23,6 +23,7 @@ class Work extends Model
 		'url',
 		'work',
 		'results',
+        'testimonial_id',
 		'created_at',
 		'updated_at'
 	];
