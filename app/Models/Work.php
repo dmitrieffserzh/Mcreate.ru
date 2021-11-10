@@ -13,8 +13,6 @@ class Work extends Model
 	use AsSource;
 	use Filterable;
 
-    public $table = 'works';
-
 	public $fillable = [
 		'published',
 		'title',

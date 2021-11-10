@@ -59,6 +59,7 @@ class WorkEditScreen extends Screen {
 
     public function asyncSlugEdit( $title ) {
         $slug = Str::slug( $title, '-' );
+
         return [
             'work.slug'  => $slug,
             'work.title' => $title
@@ -107,8 +108,13 @@ class WorkEditScreen extends Screen {
         $pageData = $request->get( 'work' );
         $metaData = $request->get( 'meta' );
 
-        $pageData['work']  = json_encode( isset($pageData['dowork']) ? $pageData['work'] : []);
-        $pageData['results'] = json_encode(isset($pageData['results']) ? $pageData['results'] : []);
+        if ( isset( $pageData['work'] ) ) {
+            $pageData['work'] = json_encode( $pageData['work'] );
+        }
+
+        if ( isset( $pageData['results'] ) ) {
+            $pageData['results'] = json_encode( $pageData['results'] );
+        }
 
         $work->fill( $pageData );
         $work->save();
