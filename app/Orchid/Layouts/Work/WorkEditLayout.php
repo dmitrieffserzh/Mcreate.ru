@@ -35,7 +35,7 @@ class WorkEditLayout extends Rows {
                     ->fromModel(Testimonial::class, 'title', 'id')
 
                     ->title('Привязать отзыв'),
-				RadioButtons::make( 'works.published')
+				RadioButtons::make( 'work.published')
 				     ->title( 'Активность' )
 				    ->options([
 				        1 => 'Опубликовать',

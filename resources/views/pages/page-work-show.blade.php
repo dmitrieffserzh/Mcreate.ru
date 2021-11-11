@@ -56,7 +56,7 @@
     @if(isset($work->testimonials))
     <section class="section section--services">
         <div class="container">
-            <h2 class="section__title">Отзывы</h2>
+            <h2 class="section__title">Отзыв</h2>
             <div class="testimonials">
                 <h3 class="testimonials__title">{{ $work->testimonials->title }} - ID: {{ $work->testimonials->id }}</h3>
                 <div class="testimonials__desc">{!! $work->testimonials->content !!}</div>

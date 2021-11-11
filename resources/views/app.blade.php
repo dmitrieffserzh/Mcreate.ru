@@ -95,7 +95,6 @@
         <div class="header__menu">
             <div class="overlay"></div>
             <nav class="main-menu">
-                <a href="/" class="main-menu__link">Главная</a>
                 <a href="/services/" class="main-menu__link{{ request()->is('services*') ? ' main-menu__link--active' : '' }}">Услуги</a>
                 <a href="/works/" class="main-menu__link{{ request()->is('works*') ? ' main-menu__link--active' : '' }}">Работы</a>
                 <a href="/testimonials/" class="main-menu__link{{ request()->is('testimonials*') ? ' main-menu__link--active' : '' }}">Отзывы</a>
