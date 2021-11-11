@@ -209,10 +209,14 @@ SECTIONS
         {
             background-image: url('/img/wip2.jpg');
         }
-
+        &--page-services
+        {
+            background-image: url('/img/hhh.jpg');
+        }
         &--page-works
         {
-            background-image: url('/img/bg_main-1.jpg');
+            //background-image: url('/img/bg_main-1.jpg');
+            background-image: url('/img/www.jpg');
         }
 
         &--page-contacts

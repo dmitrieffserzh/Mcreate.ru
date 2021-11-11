@@ -17,21 +17,13 @@
         <div class="container">
             <h2 class="section__title">Наши Услуги</h2>
             <div class="services">
-                <div class="services__item">
-                    <h3 class="services__item-title">Разработка</h3>
-                    <p class="services__item-description">Разработка корпоративных сайтов и интернет-магазинов.</p>
-                    <a href="/services/development" class="services__item-link">Подробнее</a>
-                </div>
-                <div class="services__item">
-                    <h3 class="services__item-title">Поддержка</h3>
-                    <p class="services__item-description">Продвижение сайта в поисковых системах (SEO).</p>
-                    <a href="/services/support" class="services__item-link">Подробнее</a>
-                </div>
-                <div class="services__item">
-                    <h3 class="services__item-title">Продвижение</h3>
-                    <p class="services__item-description">Следим за сайтом, пишем и размещаем новости.</p>
-                    <a href="/services/promotion" class="services__item-link">Подробнее</a>
-                </div>
+                @foreach($services as $item)
+                    <div class="services__item">
+                        <h3 class="services__item-title">{{ $item->title }}</h3>
+                        <p class="services__item-description">{{ strip_tags($item->content) }}</p>
+                        <a href="{{ route('services.show', ['slug' => $item->slug]) }}" class="services__item-link">Подробнее</a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
