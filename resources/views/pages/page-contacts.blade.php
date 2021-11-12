@@ -43,16 +43,16 @@
                         center: [55.751979, 37.617499],
                         zoom: 15
                     }),
-                    myPlacemark1 = new ymaps.Placemark([55.751979, 37.617499], {
-                        hintContent: 'Надпись, которая всплаывет при наведении на метку'
+                    myPlacemark = new ymaps.Placemark([55.751979, 37.617499], {
+                       // hintContent: 'Надпись, которая всплаывет при наведении на метку'
                     }, {
-                        iconImageHref: 'https://static.tildacdn.com/tild3061-3235-4537-b066-616662373363/Group_783.svg',
-                        iconImageSize: [130, 130],
-                        iconImageOffset: [-65, -110]
+                        iconImageHref: 'img/map-point.svg',
+                        iconImageSize: [46, 60],
+                        iconImageOffset: [-23, -60]
                     })
 
                 myMap.geoObjects
-                    .add(myPlacemark1)
+                    .add(myPlacemark)
             }
         </script>
     @endpush
